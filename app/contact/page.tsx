@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { submitContactForm } from "@/app/actions/contact";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -11,6 +12,7 @@ export default function Contact() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -20,23 +22,29 @@ export default function Contact() {
       ...prev,
       [name]: value,
     }));
+    // Clear error when user starts typing
+    if (error) setError(null);
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
+    setError(null);
 
     try {
-      // TODO: Integrate with Airtable API in Phase 5
-      // For now, we'll just show a success message
-      console.log("Form submitted:", formData);
-      setSubmitted(true);
-      setFormData({ name: "", email: "", phone: "", message: "" });
+      const result = await submitContactForm(formData);
 
-      // Reset success message after 5 seconds
-      setTimeout(() => setSubmitted(false), 5000);
-    } catch (error) {
-      console.error("Error submitting form:", error);
+      if (result.success) {
+        setSubmitted(true);
+        setFormData({ name: "", email: "", phone: "", message: "" });
+        // Reset success message after 5 seconds
+        setTimeout(() => setSubmitted(false), 5000);
+      } else {
+        setError(result.error || "Something went wrong. Please try again.");
+      }
+    } catch (err) {
+      console.error("Error submitting form:", err);
+      setError("Something went wrong. Please try again or call us directly.");
     } finally {
       setIsLoading(false);
     }
@@ -121,6 +129,15 @@ export default function Contact() {
                 We've received your message and will get back to you soon. God
                 bless!
               </p>
+            </div>
+          )}
+
+          {error && (
+            <div className="mb-8 bg-red-50 border-l-4 border-red-600 p-6 rounded">
+              <h3 className="text-lg font-bold text-red-900 mb-2">
+                Something went wrong
+              </h3>
+              <p className="text-red-800">{error}</p>
             </div>
           )}
 

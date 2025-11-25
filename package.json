@@ -6,9 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "setup-airtable": "tsx scripts/setup-airtable.ts",
+    "create-tables": "tsx scripts/create-tables.ts"
   },
   "dependencies": {
+    "airtable": "^0.12.2",
+    "dotenv": "^17.2.3",
     "next": "16.0.4",
     "react": "19.2.0",
     "react-dom": "19.2.0"
@@ -21,6 +25,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.0.4",
     "tailwindcss": "^4",
+    "tsx": "^4.20.6",
     "typescript": "^5"
   }
 }
