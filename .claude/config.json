@@ -1,0 +1,58 @@
+{
+  "project": {
+    "name": "Calvary Fellowship Baptist Church Website",
+    "shortName": "CFBC",
+    "description": "Website for Calvary Fellowship Baptist Church in Painesville, OH built with Next.js, TypeScript, and Airtable",
+    "version": "1.0.0",
+    "methodology": "Web Launch Academy (WLA)"
+  },
+  "church": {
+    "name": "Calvary Fellowship Baptist Church",
+    "location": "727 Mentor Avenue, Painesville, OH 44077",
+    "phone": "(440) 354-8994",
+    "fax": "(440) 354-3301",
+    "email": "info@cfbchurch.net",
+    "domain": "cfbchurch.net",
+    "founded": 1984
+  },
+  "team": {
+    "seniorPastor": "Doug Reeder",
+    "deacons": ["Bill Beedie", "Joe Burke", "Jim Carnovale", "Gene Hodgson"],
+    "trustees": ["Dave Babuder", "Doug Sabattis", "Mike McKenna", "George Dujanovic"]
+  },
+  "technology": {
+    "framework": "Next.js",
+    "language": "TypeScript",
+    "styling": "Tailwind CSS",
+    "database": "Airtable",
+    "hosting": "Vercel",
+    "versionControl": "GitHub",
+    "repository": "https://github.com/cfbpainesville/cfbrepo"
+  },
+  "phases": {
+    "phase1": "Foundation - GitHub repo, domain, email, Next.js setup",
+    "phase2": "Core Pages - Homepage, About, Visit Us, Contact, layout components",
+    "phase3": "Airtable Integration - Set up base, API routes, dynamic data",
+    "phase4": "Dynamic Pages - Ministry pages, leader profiles, blog posts",
+    "phase5": "Forms & Submissions - Contact form, validation, Airtable integration",
+    "phase6": "Giving Integration - Stripe setup and donation page",
+    "phase7": "Design & Responsiveness - TailwindCSS styling, mobile optimization",
+    "phase8": "Deployment - Vercel setup, domain configuration, DNS setup",
+    "phase9": "Optimization & Launch - Final QA, analytics, submission"
+  },
+  "airtable": {
+    "baseName": "CFBC Website",
+    "tables": [
+      "Events",
+      "Leadership",
+      "Ministries",
+      "Blog Posts",
+      "Contact Form Submissions",
+      "Sermons/Messages"
+    ]
+  },
+  "environment": {
+    "dev": "localhost:3000",
+    "prod": "cfbchurch.net"
+  }
+}
