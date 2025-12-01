@@ -1,0 +1,18 @@
+.header-bg {
+  color: var(--color-structure);
+}
+
+.header-bg h1,
+.header-bg p {
+  color: var(--color-structure);
+}
+
+.header-bg .hover-secondary {
+  color: var(--color-structure);
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.header-bg .hover-secondary:hover {
+  color: var(--color-primary-darker);
+}

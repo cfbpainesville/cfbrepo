@@ -53,10 +53,10 @@ export default function Contact() {
   return (
     <div className="w-full">
       {/* Header */}
-      <section className="bg-gradient-to-br from-blue-900 to-blue-700 text-white py-16 px-4">
+      <section style={{ background: "linear-gradient(135deg, #87ceeb 0%, #ffffff 100%)" }} className="text-gray-900 py-16 px-4">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-5xl font-bold mb-4">Contact Us</h1>
-          <p className="text-xl text-blue-100">
+          <p className="text-xl text-gray-700">
             We'd love to hear from you. Get in touch anytime.
           </p>
         </div>
@@ -75,7 +75,7 @@ export default function Contact() {
               </p>
               <a
                 href="tel:(440) 354-8994"
-                className="text-3xl font-bold text-blue-600 hover:text-blue-700 transition-colors"
+                className="text-3xl font-bold text-sky-600 hover:text-sky-700 transition-colors"
               >
                 (440) 354-8994
               </a>
@@ -90,7 +90,7 @@ export default function Contact() {
               </p>
               <a
                 href="mailto:info@cfbchurch.net"
-                className="text-xl font-bold text-blue-600 hover:text-blue-700 transition-colors break-all"
+                className="text-xl font-bold text-sky-600 hover:text-sky-700 transition-colors break-all"
               >
                 info@cfbchurch.net
               </a>
@@ -157,7 +157,7 @@ export default function Contact() {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-200"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-sky-600 focus:ring-2 focus:ring-sky-200"
                 placeholder="John Doe"
               />
             </div>
@@ -177,7 +177,7 @@ export default function Contact() {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-200"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-sky-600 focus:ring-2 focus:ring-sky-200"
                 placeholder="john@example.com"
               />
             </div>
@@ -196,7 +196,7 @@ export default function Contact() {
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-200"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-sky-600 focus:ring-2 focus:ring-sky-200"
                 placeholder="(440) 123-4567"
               />
             </div>
@@ -216,7 +216,7 @@ export default function Contact() {
                 onChange={handleChange}
                 required
                 rows={6}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-200 resize-none"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-sky-600 focus:ring-2 focus:ring-sky-200 resize-none"
                 placeholder="Tell us how we can help you..."
               ></textarea>
             </div>
@@ -226,7 +226,7 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-blue-600 text-white font-bold py-3 rounded-lg hover:bg-blue-700 transition-colors disabled:bg-blue-400 disabled:cursor-not-allowed"
+                className="w-full bg-sky-600 text-white font-bold py-3 rounded-lg hover:bg-sky-700 transition-colors disabled:bg-sky-300 disabled:cursor-not-allowed"
               >
                 {isLoading ? "Sending..." : "Send Message"}
               </button>
@@ -245,13 +245,13 @@ export default function Contact() {
           <h2 className="text-3xl font-bold mb-8 text-center text-gray-900">
             Prayer Requests
           </h2>
-          <div className="bg-blue-50 border-l-4 border-blue-600 p-8 rounded-lg">
+          <div className="bg-sky-50 border-l-4 border-sky-600 p-8 rounded-lg">
             <p className="text-gray-700 mb-4">
               If you have a prayer request you'd like our church to lift up in
               prayer, please include it in your message or call us directly at{" "}
               <a
                 href="tel:(440) 354-8994"
-                className="font-bold text-blue-600 hover:underline"
+                className="font-bold text-sky-600 hover:underline"
               >
                 (440) 354-8994
               </a>
@@ -275,19 +275,19 @@ export default function Contact() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="text-4xl font-bold text-blue-600 mb-2">24hrs</div>
+              <div className="text-4xl font-bold text-sky-600 mb-2">24hrs</div>
               <p className="text-gray-600">
                 We aim to respond to all messages within 24 hours
               </p>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-blue-600 mb-2">100%</div>
+              <div className="text-4xl font-bold text-sky-600 mb-2">100%</div>
               <p className="text-gray-600">
                 All inquiries are welcomed and treated with care
               </p>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-blue-600 mb-2">👥</div>
+              <div className="text-4xl font-bold text-sky-600 mb-2">👥</div>
               <p className="text-gray-600">
                 Our team is happy to help with any questions or concerns
               </p>

@@ -1,0 +1,83 @@
+/* Church Building Color Palette */
+:root {
+  /* Primary Colors - Sky Blue (dominant in image) */
+  --color-primary: #87ceeb;            /* Light sky blue - primary */
+  --color-primary-dark: #5a8fba;       /* Medium sky blue */
+  --color-primary-darker: #4682b4;     /* Darker sky blue */
+
+  /* Secondary Colors - Earthy Tones (warm accent) */
+  --color-secondary-light: #d2b48c;    /* Tan - left side of building */
+  --color-secondary: #a0522d;          /* Sienna - medium brick */
+  --color-secondary-dark: #8b4513;     /* Saddle brown - darker brick */
+
+  /* Tertiary Colors - Nature & Structure */
+  --color-tertiary: #6b8e23;           /* Dark olive green - trees */
+  --color-structure: #1a1a1a;          /* Nearly black - windows/dark elements */
+
+  /* Color Blends - Smooth transitions */
+  --color-blue-to-white: linear-gradient(135deg, #87ceeb 0%, #ffffff 100%);
+  --color-tan-to-brown: linear-gradient(135deg, #d2b48c 0%, #8b4513 100%);
+
+  /* Neutral Colors */
+  --color-white: #ffffff;
+  --color-light: #f5f1e8;              /* Off-white */
+  --color-gray-light: #f3f3f3;
+  --color-gray: #888888;
+  --color-gray-dark: #333333;
+  --color-black: #000000;
+}
+
+/* Header & Footer - Primary Brand Color */
+.header-bg {
+  background: var(--color-blue-to-white);
+  color: var(--color-structure);
+}
+
+.footer-bg {
+  background: var(--color-tan-to-brown);
+  color: var(--color-white);
+}
+
+/* Hover States */
+.hover-secondary {
+  transition: color 0.3s ease;
+}
+
+.hover-secondary:hover {
+  color: var(--color-earth-light);
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: var(--color-primary-dark);
+  color: var(--color-white);
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-darker);
+}
+
+.btn-primary:disabled {
+  background-color: var(--color-primary);
+}
+
+/* Links */
+.link-accent {
+  color: var(--color-primary-dark);
+}
+
+.link-accent:hover {
+  color: var(--color-primary-darker);
+}
+
+/* Form Focus */
+.form-focus:focus {
+  border-color: var(--color-primary-dark);
+  box-shadow: 0 0 0 2px var(--color-secondary-light);
+}
+
+/* Borders */
+.border-accent {
+  border-color: var(--color-primary-dark);
+}

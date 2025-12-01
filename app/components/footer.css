@@ -1,0 +1,44 @@
+.footer-text {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.footer-link {
+  color: rgba(255, 255, 255, 0.95);
+  cursor: pointer;
+  transition: color 0.3s ease;
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.footer-highlight {
+  color: var(--color-secondary-light);
+}
+
+.footer-divider {
+  border-top-color: rgba(255, 255, 255, 0.15);
+}
+
+.footer-copyright {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.footer-map-btn {
+  display: inline-block;
+  background-color: var(--color-primary-dark);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border: none;
+  font-size: 0.875rem;
+}
+
+.footer-map-btn:hover {
+  background-color: var(--color-primary-darker);
+}
