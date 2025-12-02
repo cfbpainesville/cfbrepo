@@ -1,26 +1,53 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import MapModalProvider from "./providers/MapModalProvider";
 import "./globals.css";
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1.0,
+  viewportFit: "cover",
+};
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Calvary Fellowship Baptist Church",
+  title: "Calvary Fellowship Baptist Church | Painesville, Ohio",
   description:
-    "Calvary Fellowship Baptist Church in Painesville, Ohio - Proclaiming the Good News of Jesus Christ",
+    "Calvary Fellowship Baptist Church in Painesville, Ohio - Proclaiming the Good News of Jesus Christ with worship services, ministries, and community outreach.",
+  keywords: [
+    "church",
+    "baptist",
+    "Painesville",
+    "Ohio",
+    "worship",
+    "Sunday service",
+    "Jesus Christ",
+    "Christian",
+  ],
   icons: {
     icon: "/favicon.ico",
+  },
+  robots: "index, follow",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://cfbchurch.net",
+    title: "Calvary Fellowship Baptist Church",
+    description:
+      "Calvary Fellowship Baptist Church in Painesville, Ohio - Proclaiming the Good News of Jesus Christ.",
   },
 };
 

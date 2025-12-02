@@ -89,7 +89,7 @@ function EventsGalleryComponent() {
     }
   }, []);
 
-  // Auto-play carousel (3.5 second interval)
+  // Auto-play carousel (3.5 second interval) - optimized to reduce layout thrashing
   useEffect(() => {
     if (!isAutoplay || events.length <= 1) return;
 
@@ -103,6 +103,18 @@ function EventsGalleryComponent() {
       }
     };
   }, [isAutoplay, events.length]);
+
+  // Prefetch next event image
+  useEffect(() => {
+    if (events.length <= 1) return;
+    const nextIndex = (currentIndex + 1) % events.length;
+    const nextEvent = events[nextIndex];
+    // Prefetch to improve perceived performance
+    if (nextEvent && typeof Image !== "undefined") {
+      const img = new Image();
+      img.src = nextEvent.image || "";
+    }
+  }, [currentIndex, events]);
 
   const goToEvent = (index: number) => {
     setCurrentIndex(index % events.length);

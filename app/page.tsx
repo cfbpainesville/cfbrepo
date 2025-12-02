@@ -15,8 +15,11 @@ export default function Home() {
               alt="Calvary Fellowship Baptist Church Building at 727 Mentor Avenue"
               width={950}
               height={323}
-              priority
+              priority={true}
+              loading="eager"
+              quality={85}
               className="w-full h-auto"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 950px"
             />
           </div>
           <LocationLink />
@@ -30,10 +33,10 @@ export default function Home() {
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
               Welcome to CFBC
             </h1>
-            <p className="text-xl md:text-2xl mb-8 text-gray-700">
+            <p className="text-xl md:text-2xl mb-8 text-gray-800">
               Calvary Fellowship Baptist Church
             </p>
-            <p className="text-lg max-w-2xl mx-auto text-gray-600">
+            <p className="text-lg max-w-2xl mx-auto text-gray-700">
               Small enough for you to quickly get to meet others in fellowship,
               but big enough to provide pertinent ministry and educational
               opportunities.
