@@ -41,10 +41,11 @@
 /* Hover States */
 .hover-secondary {
   transition: color 0.3s ease;
+  color: var(--color-structure);
 }
 
 .hover-secondary:hover {
-  color: var(--color-earth-light);
+  color: var(--color-primary-darker);
 }
 
 /* Buttons */

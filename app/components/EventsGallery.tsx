@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, memo } from "react";
 import "./events-gallery.css";
 
 interface Event {
@@ -18,7 +18,7 @@ const INITIAL_EVENT: Event = {
   image: "🙏",
 };
 
-export default function EventsGallery() {
+function EventsGalleryComponent() {
   const [events, setEvents] = useState<Event[]>([INITIAL_EVENT]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
@@ -194,3 +194,5 @@ export default function EventsGallery() {
     </div>
   );
 }
+
+export default memo(EventsGalleryComponent);

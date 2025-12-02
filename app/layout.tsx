@@ -19,6 +19,9 @@ export const metadata: Metadata = {
   title: "Calvary Fellowship Baptist Church",
   description:
     "Calvary Fellowship Baptist Church in Painesville, Ohio - Proclaiming the Good News of Jesus Christ",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
