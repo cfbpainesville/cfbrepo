@@ -157,7 +157,7 @@ export default function Contact() {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-sky-600 focus:ring-2 focus:ring-sky-200 placeholder-gray-500"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-sky-600 focus:ring-2 focus:ring-sky-200 placeholder-gray-500 text-gray-900"
                 placeholder="John Doe"
               />
             </div>
@@ -177,7 +177,7 @@ export default function Contact() {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-sky-600 focus:ring-2 focus:ring-sky-200 placeholder-gray-500"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-sky-600 focus:ring-2 focus:ring-sky-200 placeholder-gray-500 text-gray-900"
                 placeholder="john@example.com"
               />
             </div>
@@ -196,7 +196,7 @@ export default function Contact() {
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-sky-600 focus:ring-2 focus:ring-sky-200 placeholder-gray-500"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-sky-600 focus:ring-2 focus:ring-sky-200 placeholder-gray-500 text-gray-900"
                 placeholder="(440) 123-4567"
               />
             </div>
@@ -216,7 +216,7 @@ export default function Contact() {
                 onChange={handleChange}
                 required
                 rows={6}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-sky-600 focus:ring-2 focus:ring-sky-200 resize-none placeholder-gray-500"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-sky-600 focus:ring-2 focus:ring-sky-200 resize-none placeholder-gray-500 text-gray-900"
                 placeholder="Tell us how we can help you..."
               ></textarea>
             </div>
