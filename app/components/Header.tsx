@@ -33,10 +33,22 @@ export default function Header() {
               Visit Us
             </Link>
             <Link
+              href="/sermons"
+              className="hover-secondary"
+            >
+              Sermons
+            </Link>
+            <Link
               href="/ministries"
               className="hover-secondary"
             >
               Ministries
+            </Link>
+            <Link
+              href="/missions"
+              className="hover-secondary"
+            >
+              Missions
             </Link>
             <Link
               href="/contact"
@@ -82,11 +94,25 @@ export default function Header() {
               Visit Us
             </Link>
             <Link
+              href="/sermons"
+              className="hover-secondary block"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Sermons
+            </Link>
+            <Link
               href="/ministries"
               className="hover-secondary block"
               onClick={() => setIsMenuOpen(false)}
             >
               Ministries
+            </Link>
+            <Link
+              href="/missions"
+              className="hover-secondary block"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Missions
             </Link>
             <Link
               href="/contact"

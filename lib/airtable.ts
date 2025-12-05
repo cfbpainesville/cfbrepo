@@ -1,14 +1,23 @@
 import Airtable from "airtable";
 
-// Initialize Airtable
-const airtable = new Airtable({
-  apiKey: process.env.NEXT_PUBLIC_AIRTABLE_API_TOKEN,
-});
+// Lazy initialization of Airtable to support both Next.js and scripts
+let airtableInstance: Airtable | null = null;
+
+function getAirtableInstance(): Airtable {
+  if (!airtableInstance) {
+    const apiKey = process.env.NEXT_PUBLIC_AIRTABLE_API_TOKEN;
+    if (!apiKey) {
+      throw new Error("NEXT_PUBLIC_AIRTABLE_API_TOKEN is not defined");
+    }
+    airtableInstance = new Airtable({ apiKey });
+  }
+  return airtableInstance;
+}
 
 // We'll need to create or get the base ID
 // For now, we'll export a function to get the base
 export const getBase = (baseId: string) => {
-  return airtable.base(baseId);
+  return getAirtableInstance().base(baseId);
 };
 
 // Table names as constants
@@ -19,6 +28,7 @@ export const TABLES = {
   BLOG_POSTS: "Blog Posts",
   CONTACT_SUBMISSIONS: "Contact Form Submissions",
   SERMONS: "Sermons",
+  MISSIONS: "Missions",
 } as const;
 
 // Types for our Airtable records
@@ -53,6 +63,7 @@ export interface LeadershipMember {
 
 export interface Ministry {
   "Ministry Name": string;
+  Slug?: string;
   Description: string;
   "Age/Group Target"?: string;
   "Meeting Times"?: string;
@@ -78,6 +89,20 @@ export interface Sermon {
   "Video Link"?: string;
   "Download Link"?: string;
   Series?: string;
+  Published: boolean;
+}
+
+export interface Mission {
+  "Missionary Name": string;
+  Location: string;
+  Country?: string;
+  Ministry: string;
+  Description?: string;
+  Email?: string;
+  Phone?: string;
+  Address?: string;
+  Website?: string;
+  "Image Path"?: string;
   Published: boolean;
 }
 

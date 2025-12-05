@@ -187,6 +187,30 @@ const tables: TableSchema[] = [
       },
     ],
   },
+  {
+    name: "Missions",
+    description: "Missionaries and mission work supported by CFBC",
+    fields: [
+      { name: "Missionary Name", type: "singleLineText" },
+      { name: "Location", type: "singleLineText" },
+      { name: "Country", type: "singleLineText" },
+      { name: "Ministry", type: "singleLineText" },
+      { name: "Description", type: "multilineText" },
+      { name: "Email", type: "email" },
+      { name: "Phone", type: "phoneNumber" },
+      { name: "Address", type: "multilineText" },
+      { name: "Website", type: "url" },
+      { name: "Image Path", type: "singleLineText" },
+      {
+        name: "Published",
+        type: "checkbox",
+        options: {
+          icon: "check",
+          color: "greenBright"
+        }
+      },
+    ],
+  },
 ];
 
 async function createTable(tableSchema: TableSchema) {

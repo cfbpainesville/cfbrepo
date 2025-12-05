@@ -12,9 +12,9 @@ interface Event {
 }
 
 const INITIAL_EVENT: Event = {
-  name: "Sunday Worship",
-  time: "11:00 AM",
-  description: "Main worship service",
+  name: "Sunday Morning Services",
+  time: "10:00 AM - 12:00 PM",
+  description: "Sunday School @ 10 AM • Morning Worship @ 11 AM",
   image: "🙏",
 };
 
@@ -35,8 +35,11 @@ function EventsGalleryComponent() {
       threshold: 0.1,
     };
 
+    let hasTriggered = false;
+
     observerRef.current = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting && events.length === 1) {
+      if (entry.isIntersecting && events.length === 1 && !hasTriggered) {
+        hasTriggered = true;
         fetchEvents();
       }
     }, options);
@@ -50,7 +53,7 @@ function EventsGalleryComponent() {
         observerRef.current.disconnect();
       }
     };
-  }, [events.length]);
+  }, []); // Remove events.length from dependencies
 
   // Fetch events from Airtable
   const fetchEvents = useCallback(async () => {
@@ -80,6 +83,8 @@ function EventsGalleryComponent() {
 
         if (fetchedEvents.length > 0) {
           setEvents([INITIAL_EVENT, ...fetchedEvents]);
+          // Reset to first event when new events are loaded
+          setCurrentIndex(0);
         }
       }
     } catch (error) {
@@ -91,15 +96,31 @@ function EventsGalleryComponent() {
 
   // Auto-play carousel (3.5 second interval) - optimized to reduce layout thrashing
   useEffect(() => {
-    if (!isAutoplay || events.length <= 1) return;
+    if (!isAutoplay || events.length <= 1) {
+      // Clear any existing interval if autoplay is disabled or only one event
+      if (autoplayIntervalRef.current) {
+        clearInterval(autoplayIntervalRef.current);
+        autoplayIntervalRef.current = null;
+      }
+      return;
+    }
+
+    // Clear any existing interval before creating a new one
+    if (autoplayIntervalRef.current) {
+      clearInterval(autoplayIntervalRef.current);
+    }
 
     autoplayIntervalRef.current = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % events.length);
+      setCurrentIndex((prev) => {
+        const next = (prev + 1) % events.length;
+        return next;
+      });
     }, 3500); // 3.5 seconds - good balance between readability and engagement
 
     return () => {
       if (autoplayIntervalRef.current) {
         clearInterval(autoplayIntervalRef.current);
+        autoplayIntervalRef.current = null;
       }
     };
   }, [isAutoplay, events.length]);
@@ -117,7 +138,15 @@ function EventsGalleryComponent() {
   }, [currentIndex, events]);
 
   const goToEvent = (index: number) => {
-    setCurrentIndex(index % events.length);
+    // Ensure index is positive before modulo
+    const normalizedIndex = ((index % events.length) + events.length) % events.length;
+    setCurrentIndex(normalizedIndex);
+
+    // Clear and restart autoplay
+    if (autoplayIntervalRef.current) {
+      clearInterval(autoplayIntervalRef.current);
+      autoplayIntervalRef.current = null;
+    }
     setIsAutoplay(true);
   };
 

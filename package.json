@@ -8,7 +8,12 @@
     "start": "next start",
     "lint": "eslint",
     "setup-airtable": "tsx scripts/setup-airtable.ts",
-    "create-tables": "tsx scripts/create-tables.ts"
+    "create-tables": "tsx scripts/create-tables.ts",
+    "sync-sermons": "tsx scripts/sync-sermons-to-airtable.ts",
+    "add-ministries": "tsx scripts/add-ministries-to-airtable.ts",
+    "add-slugs": "tsx scripts/add-slugs-to-ministries.ts",
+    "add-missions": "tsx scripts/add-missions-to-airtable.ts",
+    "add-events": "tsx scripts/add-recurring-events.ts"
   },
   "dependencies": {
     "airtable": "^0.12.2",
