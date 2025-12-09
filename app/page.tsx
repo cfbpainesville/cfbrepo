@@ -11,15 +11,15 @@ export default function Home() {
         <div className="max-w-5xl mx-auto">
           <div className="rounded-lg overflow-hidden shadow-lg">
             <Image
-              src="/cfb-church-building.webp"
+              src="/church-artistic-sketch.webp"
               alt="Calvary Fellowship Baptist Church Building at 727 Mentor Avenue"
-              width={950}
-              height={323}
+              width={1200}
+              height={900}
               priority={true}
               loading="eager"
               quality={85}
               className="w-full h-auto"
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 950px"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1200px"
             />
           </div>
           <LocationLink />

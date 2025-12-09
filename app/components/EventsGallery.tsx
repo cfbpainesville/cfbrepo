@@ -55,6 +55,35 @@ function EventsGalleryComponent() {
     };
   }, []); // Remove events.length from dependencies
 
+  // Format date/time from Airtable to user-friendly format
+  const formatEventTime = (dateTimeStr: string): string => {
+    if (!dateTimeStr) return "";
+
+    try {
+      const date = new Date(dateTimeStr);
+
+      // Check if date is valid
+      if (isNaN(date.getTime())) return dateTimeStr;
+
+      // Format date as "Day, Month Date" (e.g., "Sunday, December 15")
+      const dayName = date.toLocaleDateString('en-US', { weekday: 'long' });
+      const monthName = date.toLocaleDateString('en-US', { month: 'long' });
+      const dayNumber = date.getDate();
+
+      // Format time as "H:MM AM/PM"
+      const timeStr = date.toLocaleTimeString('en-US', {
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true
+      });
+
+      return `${dayName}, ${monthName} ${dayNumber} @ ${timeStr}`;
+    } catch (error) {
+      // If parsing fails, return original string
+      return dateTimeStr;
+    }
+  };
+
   // Fetch events from Airtable
   const fetchEvents = useCallback(async () => {
     setIsLoading(true);
@@ -76,7 +105,7 @@ function EventsGalleryComponent() {
         const fetchedEvents: Event[] = data.records.map((record: any) => ({
           id: record.id,
           name: record.fields["Event Name"] || "Event",
-          time: record.fields["Date/Time"] || "",
+          time: formatEventTime(record.fields["Date/Time"] || ""),
           description: record.fields.Description || "",
           image: "📅",
         }));
