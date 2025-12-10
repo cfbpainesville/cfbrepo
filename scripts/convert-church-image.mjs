@@ -1,32 +1,35 @@
 import sharp from 'sharp';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { readdir } from 'fs/promises';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-async function convertChurchImage() {
-  const inputPath = join(__dirname, '..', 'public', 'church-artistic-sketch.jpg');
-  const outputPath = join(__dirname, '..', 'public', 'church-artistic-sketch.webp');
+async function convertImages() {
+  const publicDir = join(__dirname, '..', 'public');
+
+  // Convert CFB Church Image.png to WebP
+  const largeImage = join(publicDir, 'CFB Church Image.png');
+  const largeImageOutput = join(publicDir, 'cfb-church-image.webp');
 
   try {
-    await sharp(inputPath)
-      .resize(1200, null, { // Resize to 1200px width, maintain aspect ratio
+    await sharp(largeImage)
+      .resize(1200, null, {
         withoutEnlargement: true,
         fit: 'inside'
       })
       .webp({
-        quality: 85, // High quality for main hero image
-        effort: 6    // More compression effort
+        quality: 85,
+        effort: 6
       })
-      .toFile(outputPath);
+      .toFile(largeImageOutput);
 
-    console.log('✓ Church artistic sketch converted to WebP successfully!');
-    console.log(`  Output: ${outputPath}`);
+    console.log('✓ CFB Church Image converted to WebP successfully!');
+    console.log(`  Saved: ${largeImageOutput}`);
   } catch (error) {
-    console.error('Error converting image:', error);
-    process.exit(1);
+    console.error('Error converting CFB Church Image:', error);
   }
 }
 
-convertChurchImage();
+convertImages();

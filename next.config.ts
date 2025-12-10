@@ -5,11 +5,21 @@ const nextConfig: NextConfig = {
   compress: true,
   poweredByHeader: false,
 
+  /* React Compiler for automatic optimizations */
+  experimental: {
+    reactCompiler: true,
+  },
+
+  /* Production Optimizations */
+  productionBrowserSourceMaps: false,
+  optimizeFonts: true,
+
   /* Image Optimization */
   images: {
-    formats: ["image/webp"],
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    formats: ["image/avif", "image/webp"],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    minimumCacheTTL: 31536000,
   },
 
   /* Headers for Performance */
@@ -37,7 +47,7 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        source: "/cfb-church-building.webp",
+        source: "/:all*(webp|png|jpg|jpeg|gif|svg|ico)",
         headers: [
           {
             key: "Cache-Control",

@@ -56,12 +56,6 @@ export default function Header() {
             >
               Contact
             </Link>
-            <a
-              href="tel:(440) 354-8994"
-              className="btn-primary px-4 py-2 rounded-lg font-semibold"
-            >
-              Call Us
-            </a>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -121,13 +115,6 @@ export default function Header() {
             >
               Contact
             </Link>
-            <a
-              href="tel:(440) 354-8994"
-              className="btn-primary px-4 py-2 rounded-lg font-semibold inline-block w-full text-center"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Call Us
-            </a>
           </nav>
         )}
       </div>

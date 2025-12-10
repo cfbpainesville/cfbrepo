@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:analyze": "ANALYZE=true next build",
     "start": "next start",
     "lint": "eslint",
     "setup-airtable": "tsx scripts/setup-airtable.ts",
@@ -17,6 +18,7 @@
   },
   "dependencies": {
     "airtable": "^0.12.2",
+    "babel-plugin-react-compiler": "^1.0.0",
     "dotenv": "^17.2.3",
     "next": "16.0.7",
     "react": "19.2.1",
