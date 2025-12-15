@@ -150,15 +150,14 @@ function EventsGalleryComponent({ events: serverEvents }: EventsGalleryProps) {
       </div>
 
       {/* Indicators */}
-      <div className="events-indicators">
+      <div className="events-indicators" role="status" aria-live="polite">
         {allEvents.map((_, index) => (
-          <button
+          <div
             key={index}
-            onClick={() => goToEvent(index)}
             className={`events-indicator ${
               index === currentIndex ? "active" : ""
             }`}
-            aria-label={`Go to event ${index + 1}`}
+            aria-label={index === currentIndex ? `Currently showing event ${index + 1} of ${allEvents.length}` : undefined}
           />
         ))}
       </div>

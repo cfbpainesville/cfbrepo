@@ -137,15 +137,7 @@
   height: 10px;
   border-radius: 50%;
   background: #ddd;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  padding: 0;
-}
-
-.events-indicator:hover {
-  background: #999;
-  transform: scale(1.2);
+  transition: background 0.3s ease;
 }
 
 .events-indicator.active {

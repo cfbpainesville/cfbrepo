@@ -11,6 +11,11 @@ const nextConfig: NextConfig = {
   /* Production Optimizations */
   productionBrowserSourceMaps: false,
 
+  /* Experimental Performance Features */
+  experimental: {
+    optimizePackageImports: ['react', 'react-dom'],
+  },
+
   /* Image Optimization */
   images: {
     formats: ["image/avif", "image/webp"],
