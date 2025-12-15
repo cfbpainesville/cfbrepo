@@ -86,7 +86,7 @@ export default function Contact() {
               <div className="text-5xl mb-4">✉️</div>
               <h3 className="text-2xl font-bold text-gray-900 mb-2">Email Us</h3>
               <p className="text-gray-600 mb-4">
-                We'll respond within 24 hours
+                Email is monitored on Thursdays
               </p>
               <a
                 href="mailto:info@cfbchurch.net"

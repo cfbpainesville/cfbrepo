@@ -37,13 +37,6 @@ export default function Footer() {
               >
                 📞 (440) 354-8994
               </a>
-              <br />
-              <a
-                href="fax:(440) 354-3301"
-                className="footer-link text-sm"
-              >
-                Fax: (440) 354-3301
-              </a>
             </p>
             <p className="footer-text text-sm">
               <Link href="/contact" className="footer-link font-semibold">
@@ -107,11 +100,6 @@ export default function Footer() {
                 <p className="font-semibold footer-highlight">Sunday</p>
                 <p>10:00 AM - Sunday School</p>
                 <p>11:00 AM - Morning Worship</p>
-                <p>5:30 PM - Evening Programs</p>
-              </div>
-              <div>
-                <p className="font-semibold footer-highlight mt-3">Wednesday</p>
-                <p>10:00 AM - Ladies Bible Study</p>
               </div>
             </div>
           </div>
@@ -173,13 +161,6 @@ export default function Footer() {
                       10:00 AM - Sunday School
                       <br />
                       11:00 AM - Morning Worship
-                      <br />
-                      5:30 PM - Evening Programs
-                    </li>
-                    <li className="mt-2">
-                      <strong>Wednesday:</strong>
-                      <br />
-                      10:00 AM - Ladies Bible Study
                     </li>
                   </ul>
                 </div>
@@ -194,14 +175,6 @@ export default function Footer() {
                       className="text-sky-600 hover:text-sky-700 font-semibold"
                     >
                       📞 (440) 354-8994
-                    </a>
-                  </p>
-                  <p className="text-gray-700 text-sm mb-2">
-                    <a
-                      href="fax:(440) 354-3301"
-                      className="text-sky-600 hover:text-sky-700"
-                    >
-                      Fax: (440) 354-3301
                     </a>
                   </p>
                   <p className="text-gray-700 text-sm">

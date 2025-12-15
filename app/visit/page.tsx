@@ -56,10 +56,10 @@ export default function Visit() {
               </div>
             </div>
 
-            {/* Wednesday & Thursday */}
+            {/* During the Week */}
             <div className="bg-gray-50 p-8 rounded-lg">
               <h3 className="text-2xl font-bold text-gray-900 mb-6">
-                Wednesday & Thursday
+                During the Week
               </h3>
               <div className="space-y-4">
                 <div className="border-b border-gray-300 pb-4">
@@ -75,13 +75,46 @@ export default function Visit() {
                 </div>
                 <div className="border-b border-gray-300 pb-4">
                   <p className="font-semibold text-gray-900">
+                    Prayer Meeting
+                  </p>
+                  <p className="text-lg font-bold text-blue-600">
+                    Wednesday, 6:30 PM
+                  </p>
+                  <p className="text-sm text-gray-600 mt-1">
+                    Join us in prayer for our community and church
+                  </p>
+                </div>
+                <div className="border-b border-gray-300 pb-4">
+                  <p className="font-semibold text-gray-900">
+                    Prayer Meeting
+                  </p>
+                  <p className="text-lg font-bold text-blue-600">
+                    Thursday, 2:00 PM
+                  </p>
+                  <p className="text-sm text-gray-600 mt-1">
+                    Join us in prayer for our community and church
+                  </p>
+                </div>
+                <div className="border-b border-gray-300 pb-4">
+                  <p className="font-semibold text-gray-900">
+                    Ladies ABF meeting
+                  </p>
+                  <p className="text-lg font-bold text-blue-600">
+                    Thursday Evening
+                  </p>
+                  <p className="text-sm text-gray-600 mt-1">
+                    Adult Bible Fellowship for ladies
+                  </p>
+                </div>
+                <div className="border-b border-gray-300 pb-4">
+                  <p className="font-semibold text-gray-900">
                     Helping Hands Food Pantry
                   </p>
                   <p className="text-lg font-bold text-blue-600">
-                    Thursday, 10:00 AM - 12:00 PM
+                    Call the church office
                   </p>
                   <p className="text-sm text-gray-600 mt-1">
-                    Open to the community - no registration required
+                    Open to the community - contact us to schedule a pickup time
                   </p>
                 </div>
                 <div>

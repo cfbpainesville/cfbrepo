@@ -2,8 +2,82 @@ import Link from "next/link";
 import Image from "next/image";
 import EventsGallery from "@/app/components/EventsGallery";
 import LocationLink from "@/app/components/LocationLink";
+import { getAllRecords, TABLES } from "@/lib/airtable";
 
-export default function Home() {
+// Enable ISR with 24-hour revalidation
+export const revalidate = 86400;
+
+interface AirtableEvent {
+  id: string;
+  "Event Name": string;
+  "Date/Time": string;
+  Description?: string;
+  Ministry?: string;
+  Location?: string;
+}
+
+interface Event {
+  id: string;
+  name: string;
+  time: string;
+  description?: string;
+  image?: string;
+}
+
+// Format date/time from Airtable to user-friendly format
+function formatEventTime(dateTimeStr: string): string {
+  if (!dateTimeStr) return "";
+
+  try {
+    const date = new Date(dateTimeStr);
+
+    // Check if date is valid
+    if (isNaN(date.getTime())) return dateTimeStr;
+
+    // Format date as "Day, Month Date" (e.g., "Sunday, December 15")
+    const dayName = date.toLocaleDateString('en-US', { weekday: 'long' });
+    const monthName = date.toLocaleDateString('en-US', { month: 'long' });
+    const dayNumber = date.getDate();
+
+    // Format time as "H:MM AM/PM"
+    const timeStr = date.toLocaleTimeString('en-US', {
+      hour: 'numeric',
+      minute: '2-digit',
+      hour12: true
+    });
+
+    return `${dayName}, ${monthName} ${dayNumber} @ ${timeStr}`;
+  } catch (error) {
+    // If parsing fails, return original string
+    return dateTimeStr;
+  }
+}
+
+async function getEvents(): Promise<Event[]> {
+  try {
+    const baseId = process.env.NEXT_PUBLIC_AIRTABLE_BASE_ID;
+    if (!baseId) {
+      console.error("NEXT_PUBLIC_AIRTABLE_BASE_ID is not defined");
+      return [];
+    }
+
+    const records = await getAllRecords(baseId, TABLES.EVENTS) as AirtableEvent[];
+
+    return records.map((record) => ({
+      id: record.id,
+      name: record["Event Name"] || "Event",
+      time: formatEventTime(record["Date/Time"] || ""),
+      description: record.Description || "",
+      image: "📅",
+    }));
+  } catch (error) {
+    console.error("Error fetching events:", error);
+    return [];
+  }
+}
+
+export default async function Home() {
+  const events = await getEvents();
   return (
     <div className="w-full">
       {/* Church Building Image - First Section */}
@@ -48,7 +122,7 @@ export default function Home() {
             <h2 className="text-3xl font-bold mb-8 text-center text-gray-900">
               Upcoming Events & Ministries
             </h2>
-            <EventsGallery />
+            <EventsGallery events={events} />
           </div>
         </div>
       </section>
@@ -164,7 +238,7 @@ export default function Home() {
 
             <div className="bg-gray-50 p-6 rounded-lg">
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                Wednesday & Thursday
+                During the Week
               </h3>
               <ul className="space-y-3 text-gray-700">
                 <li className="flex justify-between">
@@ -172,8 +246,16 @@ export default function Home() {
                   <span className="font-semibold">Wed 10:00 AM</span>
                 </li>
                 <li className="flex justify-between">
+                  <span>Prayer Meeting</span>
+                  <span className="font-semibold">Wed 6:30 PM</span>
+                </li>
+                <li className="flex justify-between">
+                  <span>Prayer Meeting</span>
+                  <span className="font-semibold">Thu 2:00 PM</span>
+                </li>
+                <li className="flex justify-between">
                   <span>Helping Hands Food Pantry</span>
-                  <span className="font-semibold">Thu 10 AM-12 PM</span>
+                  <span className="font-semibold">Call the church office</span>
                 </li>
                 <li className="flex justify-between">
                   <span>Men's Bible Study</span>

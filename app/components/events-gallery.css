@@ -19,12 +19,20 @@
   padding: 2rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   display: flex;
+  flex-direction: column;
   gap: 2rem;
-  align-items: center;
   animation: fadeIn 0.5s ease-in-out;
   min-height: 250px;
   will-change: opacity;
   contain: layout style paint;
+}
+
+/* Card Top Section (Icon + Buttons) */
+.events-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
 }
 
 @keyframes fadeIn {
@@ -49,12 +57,14 @@
   font-size: 4rem;
   color: white;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  order: 2;
 }
 
 /* Event Content */
 .events-content {
   flex: 1;
   min-width: 0;
+  text-align: center;
 }
 
 .events-title {
@@ -77,17 +87,15 @@
   line-height: 1.6;
 }
 
-/* Navigation Buttons */
+/* Navigation Buttons - Rounded blocks (height = 2x width) */
 .events-nav-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: var(--color-primary-dark);
+  flex-shrink: 0;
+  background: #0284c7;  /* sky-600 for better contrast */
   color: white;
   border: none;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
+  width: 2.5rem;
+  height: 5rem;  /* Double the width */
+  border-radius: 1.25rem;  /* Half the width for rounded ends */
   font-size: 2rem;
   cursor: pointer;
   display: flex;
@@ -95,11 +103,12 @@
   justify-content: center;
   transition: all 0.3s ease;
   z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .events-nav-btn:hover:not(:disabled) {
-  background: var(--color-primary-darker);
-  transform: translateY(-50%) scale(1.1);
+  background: #0369a1;  /* sky-700 */
+  transform: scale(1.05);
 }
 
 .events-nav-btn:disabled {
@@ -108,11 +117,11 @@
 }
 
 .events-nav-btn-left {
-  left: 0;
+  order: 1;
 }
 
 .events-nav-btn-right {
-  right: 0;
+  order: 3;
 }
 
 /* Indicators */
@@ -163,9 +172,12 @@
 /* Responsive Design */
 @media (max-width: 768px) {
   .events-gallery-card {
-    flex-direction: column;
     padding: 1.5rem;
     min-height: auto;
+    gap: 1.5rem;
+  }
+
+  .events-card-top {
     gap: 1.5rem;
   }
 
@@ -184,17 +196,10 @@
   }
 
   .events-nav-btn {
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 2rem;
+    height: 4rem;  /* Double the width */
+    border-radius: 1rem;  /* Half the width */
     font-size: 1.5rem;
-  }
-
-  .events-nav-btn-left {
-    left: 0.5rem;
-  }
-
-  .events-nav-btn-right {
-    right: 0.5rem;
   }
 }
 
@@ -205,6 +210,10 @@
 
   .events-gallery-card {
     padding: 1rem;
+  }
+
+  .events-card-top {
+    gap: 1rem;
   }
 
   .events-image-placeholder {
@@ -222,16 +231,9 @@
   }
 
   .events-nav-btn {
-    width: 2rem;
-    height: 2rem;
+    width: 1.5rem;
+    height: 3rem;  /* Double the width */
+    border-radius: 0.75rem;  /* Half the width */
     font-size: 1.25rem;
-  }
-
-  .events-nav-btn-left {
-    left: 0.25rem;
-  }
-
-  .events-nav-btn-right {
-    right: 0.25rem;
   }
 }

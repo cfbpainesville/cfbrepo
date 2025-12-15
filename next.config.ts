@@ -6,13 +6,10 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
 
   /* React Compiler for automatic optimizations */
-  experimental: {
-    reactCompiler: true,
-  },
+  reactCompiler: true,
 
   /* Production Optimizations */
   productionBrowserSourceMaps: false,
-  optimizeFonts: true,
 
   /* Image Optimization */
   images: {

@@ -9,7 +9,10 @@ function getAirtableInstance(): Airtable {
     if (!apiKey) {
       throw new Error("NEXT_PUBLIC_AIRTABLE_API_TOKEN is not defined");
     }
-    airtableInstance = new Airtable({ apiKey });
+    airtableInstance = new Airtable({
+      apiKey,
+      requestTimeout: 60000, // 60 second timeout
+    });
   }
   return airtableInstance;
 }
@@ -122,19 +125,32 @@ export async function createRecord<T>(
   }
 }
 
-// Helper function to get all records from a table
-export async function getAllRecords(baseId: string, tableName: string) {
+// Helper function to get all records from a table with retry logic
+export async function getAllRecords(baseId: string, tableName: string, retries = 3) {
   const base = getBase(baseId);
-  try {
-    const records = await base(tableName).select().all();
-    return records.map((record) => ({
-      id: record.id,
-      ...record.fields,
-    }));
-  } catch (error) {
-    console.error("Error fetching records:", error);
-    throw error;
+
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    try {
+      const records = await base(tableName).select().all();
+      return records.map((record) => ({
+        id: record.id,
+        ...record.fields,
+      }));
+    } catch (error) {
+      console.error(`Error fetching records (attempt ${attempt}/${retries}):`, error);
+
+      // If this was the last attempt, throw the error
+      if (attempt === retries) {
+        throw error;
+      }
+
+      // Wait before retrying (exponential backoff: 1s, 2s, 4s)
+      await new Promise(resolve => setTimeout(resolve, Math.pow(2, attempt - 1) * 1000));
+    }
   }
+
+  // This should never be reached, but TypeScript needs it
+  throw new Error("Failed to fetch records after all retries");
 }
 
 // Helper function to get a single record by ID
