@@ -38,7 +38,10 @@ export const metadata: Metadata = {
     "Christian",
   ],
   icons: {
-    icon: "/favicon.ico",
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "any" }
+    ],
   },
   robots: "index, follow",
   openGraph: {
