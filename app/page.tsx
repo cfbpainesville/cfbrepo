@@ -268,7 +268,7 @@ export default async function Home() {
           <div className="mt-8 text-center">
             <Link
               href="/visit"
-              className="inline-block bg-sky-600 text-white px-8 py-3 rounded-lg font-bold hover:bg-sky-700 transition-colors"
+              className="inline-block bg-blue-800 text-white px-8 py-3 rounded-lg font-bold hover:bg-blue-900 transition-colors shadow-lg"
             >
               Learn More About Our Ministries
             </Link>

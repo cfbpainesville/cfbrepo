@@ -28,7 +28,7 @@
 
 .footer-map-btn {
   display: inline-block;
-  background-color: #0284c7;  /* Tailwind sky-600 for better contrast */
+  background-color: #1e40af;  /* Tailwind blue-800 for better contrast on tan/brown */
   color: white;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
@@ -40,5 +40,5 @@
 }
 
 .footer-map-btn:hover {
-  background-color: #0369a1;  /* Tailwind sky-700 for hover state */
+  background-color: #1e3a8a;  /* Tailwind blue-900 for hover state */
 }
