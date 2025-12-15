@@ -51,7 +51,7 @@ export default function RootLayout({
       <body className="antialiased flex flex-col min-h-screen">
         <MapModalProvider>
           <Header />
-          <main className="flex-grow">{children}</main>
+          <main className="grow">{children}</main>
           <Footer />
         </MapModalProvider>
       </body>
