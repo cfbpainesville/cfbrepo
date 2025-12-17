@@ -37,6 +37,8 @@ function MissionaryCard({ missionary }: { missionary: MissionRecord }) {
             fill
             className="object-cover"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            quality={75}
+            loading="lazy"
           />
         </div>
       ) : (
@@ -218,10 +220,7 @@ export default async function MissionsPage() {
     <div className="w-full">
       {/* Hero Section */}
       <section
-        style={{
-          background: "linear-gradient(135deg, #87ceeb 0%, #ffffff 100%)",
-        }}
-        className="py-20 px-4"
+        className="hero-gradient py-20 px-4"
       >
         <div className="max-w-7xl mx-auto text-center">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 text-gray-900">

@@ -111,8 +111,7 @@ export default async function MinistriesPage() {
     <div className="w-full">
       {/* Hero Section */}
       <section
-        style={{ background: "linear-gradient(135deg, #87ceeb 0%, #ffffff 100%)" }}
-        className="py-20 px-4"
+        className="hero-gradient py-20 px-4"
       >
         <div className="max-w-7xl mx-auto text-center">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 text-gray-900">

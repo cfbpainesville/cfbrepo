@@ -59,7 +59,7 @@ function EventsGalleryComponent({ events: serverEvents }: EventsGalleryProps) {
   const [isAutoplay, setIsAutoplay] = useState(true);
   const autoplayIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Auto-play carousel (3.5 second interval) - optimized to reduce layout thrashing
+  // Auto-play carousel (5 second interval) - optimized to reduce main-thread work
   useEffect(() => {
     if (!isAutoplay || allEvents.length <= 1) {
       // Clear any existing interval if autoplay is disabled or only one event
@@ -76,11 +76,8 @@ function EventsGalleryComponent({ events: serverEvents }: EventsGalleryProps) {
     }
 
     autoplayIntervalRef.current = setInterval(() => {
-      setCurrentIndex((prev) => {
-        const next = (prev + 1) % allEvents.length;
-        return next;
-      });
-    }, 3500); // 3.5 seconds - good balance between readability and engagement
+      setCurrentIndex((prev) => (prev + 1) % allEvents.length);
+    }, 5000); // 5 seconds - reduces CPU usage while maintaining engagement
 
     return () => {
       if (autoplayIntervalRef.current) {
@@ -90,38 +87,14 @@ function EventsGalleryComponent({ events: serverEvents }: EventsGalleryProps) {
     };
   }, [isAutoplay, allEvents.length]);
 
-  // Prefetch next event image (only for actual image URLs, not emojis)
-  useEffect(() => {
-    if (allEvents.length <= 1) return;
-    const nextIndex = (currentIndex + 1) % allEvents.length;
-    const nextEvent = allEvents[nextIndex];
-    // Only prefetch if it's an actual image URL (starts with http/https or /)
-    const imageUrl = nextEvent?.image || "";
-    if (imageUrl && typeof Image !== "undefined" && (imageUrl.startsWith('http') || imageUrl.startsWith('/'))) {
-      const img = new Image();
-      img.src = imageUrl;
-    }
-  }, [currentIndex, allEvents]);
-
-  const goToEvent = (index: number) => {
-    // Ensure index is positive before modulo
-    const normalizedIndex = ((index % allEvents.length) + allEvents.length) % allEvents.length;
-    setCurrentIndex(normalizedIndex);
-
-    // Clear and restart autoplay
-    if (autoplayIntervalRef.current) {
-      clearInterval(autoplayIntervalRef.current);
-      autoplayIntervalRef.current = null;
-    }
+  const goToNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % allEvents.length);
     setIsAutoplay(true);
   };
 
-  const goToNext = () => {
-    goToEvent(currentIndex + 1);
-  };
-
   const goToPrev = () => {
-    goToEvent(currentIndex - 1 + allEvents.length);
+    setCurrentIndex((prev) => (prev - 1 + allEvents.length) % allEvents.length);
+    setIsAutoplay(true);
   };
 
   const handleMouseEnter = () => {

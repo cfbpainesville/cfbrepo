@@ -53,7 +53,7 @@ export default function Contact() {
   return (
     <div className="w-full">
       {/* Header */}
-      <section style={{ background: "linear-gradient(135deg, #87ceeb 0%, #ffffff 100%)" }} className="text-gray-900 py-16 px-4">
+      <section className="hero-gradient text-gray-900 py-16 px-4">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-5xl font-bold mb-4">Contact Us</h1>
           <p className="text-xl text-gray-700">
