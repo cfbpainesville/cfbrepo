@@ -117,17 +117,6 @@ export default function Visit() {
                     Open to the community - contact us to schedule a pickup time
                   </p>
                 </div>
-                <div>
-                  <p className="font-semibold text-gray-900">
-                    Men's Bible Study
-                  </p>
-                  <p className="text-lg font-bold text-blue-600">
-                    Thursday, 7:00 PM
-                  </p>
-                  <p className="text-sm text-gray-600 mt-1">
-                    For all men to develop in faith
-                  </p>
-                </div>
               </div>
             </div>
           </div>
@@ -175,8 +164,7 @@ export default function Visit() {
                 </p>
                 <p>
                   <span className="font-semibold text-gray-900">Fellowship:</span>{" "}
-                  After service, we encourage visitors to join us in the fellowship
-                  area for refreshments and conversation.
+                  After service, we encourage visitors to join us in conversation. As an additional enticement on the first Sunday of the month, during the school year, we have a free lunch after the service!
                 </p>
               </div>
             </div>
@@ -198,9 +186,7 @@ export default function Visit() {
                 <div>
                   <p className="font-semibold text-gray-900 mb-2">Parking</p>
                   <p className="text-gray-600">
-                    We have ample free parking. We're located on busy Mentor
-                    Avenue, so if you're driving by, just look for our building
-                    and parking lot.
+                    We have ample free parking in both our front parking lot off of Mentor Avenue and our rear parking lot off of Hartshorn Drive.
                   </p>
                 </div>
                 <div>
@@ -330,12 +316,6 @@ export default function Visit() {
           </p>
           <div className="space-y-4">
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="tel:(440) 354-8994"
-                className="bg-white text-blue-900 px-8 py-3 rounded-lg font-bold hover:bg-blue-50 transition-colors"
-              >
-                Call to Confirm
-              </a>
               <a
                 href="mailto:info@cfbchurch.net"
                 className="border-2 border-white text-white px-8 py-3 rounded-lg font-bold hover:bg-white/10 transition-colors"

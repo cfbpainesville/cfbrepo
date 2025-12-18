@@ -1,9 +1,12 @@
 import { getAllRecords, TABLES } from "@/lib/airtable";
+import { MISSIONS_BACKUP_DATA } from "@/lib/data/missions";
 import Link from "next/link";
 import Image from "next/image";
 
-// Enable ISR - revalidate every hour
-export const revalidate = 3600;
+// Enable ISR - revalidate every 7 days (604800 seconds)
+// Missions data rarely changes (monthly/quarterly updates)
+// This reduces API calls while still allowing updates within a week
+export const revalidate = 604800;
 
 export const metadata = {
   title: "Missions | Calvary Fellowship Baptist Church",
@@ -199,6 +202,7 @@ export default async function MissionsPage() {
 
   let missions: MissionRecord[] = [];
   let error = null;
+  let usingBackupData = false;
 
   try {
     const allMissions = (await getAllRecords(
@@ -206,8 +210,18 @@ export default async function MissionsPage() {
       TABLES.MISSIONS
     )) as MissionRecord[];
     missions = allMissions.filter((m) => m.Published);
+
+    // If no missions found, use backup data
+    if (!missions || missions.length === 0) {
+      console.warn("No published missions found in Airtable, using backup data");
+      missions = MISSIONS_BACKUP_DATA.filter((m) => m.Published);
+      usingBackupData = true;
+    }
   } catch (e) {
-    console.error("Error fetching missions:", e);
+    console.error("Error fetching missions from Airtable:", e);
+    // Use backup data on error
+    missions = MISSIONS_BACKUP_DATA.filter((m) => m.Published);
+    usingBackupData = true;
     error = e;
   }
 

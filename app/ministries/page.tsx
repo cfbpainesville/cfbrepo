@@ -1,8 +1,11 @@
 import { getAllRecords, TABLES } from "@/lib/airtable";
+import { MINISTRIES_BACKUP_DATA } from "@/lib/data/ministries";
 import Link from "next/link";
 
-// Enable ISR - revalidate every hour
-export const revalidate = 3600;
+// Enable ISR - revalidate every 7 days (604800 seconds)
+// Ministries data rarely changes (monthly/quarterly updates)
+// This reduces API calls while still allowing updates within a week
+export const revalidate = 604800;
 
 export const metadata = {
   title: "Ministries | Calvary Fellowship Baptist Church",
@@ -97,8 +100,16 @@ export default async function MinistriesPage() {
 
   try {
     ministries = await getAllRecords(BASE_ID, TABLES.MINISTRIES) as MinistryRecord[];
+
+    // If no ministries found, use backup data
+    if (!ministries || ministries.length === 0) {
+      console.warn("No ministries found in Airtable, using backup data");
+      ministries = MINISTRIES_BACKUP_DATA;
+    }
   } catch (e) {
-    console.error("Error fetching ministries:", e);
+    console.error("Error fetching ministries from Airtable:", e);
+    // Use backup data on error
+    ministries = MINISTRIES_BACKUP_DATA;
     error = e;
   }
 

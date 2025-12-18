@@ -4,8 +4,10 @@ import EventsGallery from "@/app/components/EventsGallery";
 import LocationLink from "@/app/components/LocationLink";
 import { getAllRecords, TABLES } from "@/lib/airtable";
 
-// Enable ISR with 24-hour revalidation
-export const revalidate = 86400;
+// Enable ISR with 3-day revalidation (259200 seconds)
+// Events change several times a month, so checking every 3 days is optimal
+// This reduces API load while ensuring events are fresh within 3 days
+export const revalidate = 259200;
 
 interface AirtableEvent {
   id: string;
@@ -230,17 +232,13 @@ export default async function Home() {
                   <span>Helping Hands Food Pantry</span>
                   <span className="font-semibold">Call the church office</span>
                 </li>
-                <li className="flex justify-between">
-                  <span>Men's Bible Study</span>
-                  <span className="font-semibold">Thu 7:00 PM</span>
-                </li>
               </ul>
             </div>
           </div>
 
           <div className="mt-8 text-center">
             <Link
-              href="/visit"
+              href="/ministries"
               className="inline-block bg-blue-800 text-white px-8 py-3 rounded-lg font-bold hover:bg-blue-900 transition-colors shadow-lg"
             >
               Learn More About Our Ministries

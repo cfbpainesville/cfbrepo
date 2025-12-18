@@ -21,6 +21,12 @@ export default function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex gap-8 items-center">
             <Link
+              href="/"
+              className="hover-secondary"
+            >
+              Home
+            </Link>
+            <Link
               href="/about"
               className="hover-secondary"
             >
@@ -73,6 +79,13 @@ export default function Header() {
         {/* Mobile Navigation Menu */}
         {isMenuOpen && (
           <nav className="md:hidden mt-4 pb-4 flex flex-col gap-4">
+            <Link
+              href="/"
+              className="hover-secondary block"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Home
+            </Link>
             <Link
               href="/about"
               className="hover-secondary block"

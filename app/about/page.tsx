@@ -1,4 +1,6 @@
 import type { Viewport } from "next";
+import { getAllRecords, TABLES } from "@/lib/airtable";
+import { LEADERSHIP_DATA } from "@/lib/data/leadership";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -6,7 +8,56 @@ export const viewport: Viewport = {
   viewportFit: "cover",
 };
 
-export default function About() {
+// Enable ISR with 7-day revalidation (604800 seconds)
+// Leadership data almost never changes (once or twice a year)
+// Has hardcoded fallback data, so safe to use longer cache
+export const revalidate = 604800;
+
+interface LeadershipMember {
+  id?: string;
+  Name: string;
+  Position: string;
+  Bio?: string;
+  Email?: string;
+  Phone?: string;
+}
+
+async function getLeadership(): Promise<LeadershipMember[]> {
+  try {
+    const baseId = process.env.NEXT_PUBLIC_AIRTABLE_BASE_ID;
+    if (!baseId) {
+      console.error("NEXT_PUBLIC_AIRTABLE_BASE_ID is not defined, using backup data");
+      return LEADERSHIP_DATA;
+    }
+
+    const records = (await getAllRecords(baseId, TABLES.LEADERSHIP)) as LeadershipMember[];
+
+    // If no records found, use backup data
+    if (!records || records.length === 0) {
+      return LEADERSHIP_DATA;
+    }
+
+    // Sort by position (Pastor first, then Deacons, then Trustees) and alphabetically within each group
+    const positionOrder: { [key: string]: number } = {
+      Pastor: 0,
+      Deacon: 1,
+      Trustee: 2,
+    };
+
+    return records.sort((a, b) => {
+      const posA = positionOrder[a.Position] ?? 999;
+      const posB = positionOrder[b.Position] ?? 999;
+      if (posA !== posB) return posA - posB;
+      return a.Name.localeCompare(b.Name);
+    });
+  } catch (error) {
+    console.error("Error fetching leadership data:", error);
+    return LEADERSHIP_DATA;
+  }
+}
+
+export default async function About() {
+  const leadership = await getLeadership();
   return (
     <div className="w-full">
       {/* Header */}
@@ -69,13 +120,10 @@ export default function About() {
           <div className="space-y-6">
             <div className="border-l-4 border-blue-600 pl-6">
               <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                Founded in 1984
+                Founded in 1985
               </h3>
               <p className="text-gray-600">
-                Calvary Fellowship Baptist Church was established with a vision
-                to reach the Painesville community with the Gospel of Jesus
-                Christ and to build a church family committed to biblical truth
-                and genuine fellowship.
+                We were founded in 1985 as the merger of Calvary Baptist Church and Fellowship Baptist Church with a vision to reach the Painesville community with the Gospel of Jesus Christ and to build a church family committed to biblical truth and genuine fellowship.
               </p>
             </div>
 
@@ -111,58 +159,72 @@ export default function About() {
             Our Leadership
           </h2>
 
-          {/* Pastor Doug Reeder */}
-          <div className="bg-white rounded-lg shadow-md p-8 mb-8">
-            <h3 className="text-3xl font-bold text-gray-900 mb-2">
-              Pastor Doug Reeder
-            </h3>
-            <p className="text-lg text-blue-600 font-semibold mb-6">
-              Senior Pastor
-            </p>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-              <div className="md:col-span-2">
-                <p className="text-gray-600 mb-4 leading-relaxed">
-                  Pastor Doug Reeder has been serving at CFBC since 1989 and
-                  became Senior Pastor in 2002. His passion is to lead our church
-                  family in knowing God's Word, growing in faith, and reaching
-                  the lost with the Gospel of Jesus Christ.
+          {/* Pastor Section */}
+          {leadership
+            .filter((member) => member.Position === "Pastor")
+            .map((pastor) => (
+              <div key={pastor.id || pastor.Name} className="bg-white rounded-lg shadow-md p-8 mb-8">
+                <h3 className="text-3xl font-bold text-gray-900 mb-2">
+                  {pastor.Name}
+                </h3>
+                <p className="text-lg text-blue-600 font-semibold mb-6">
+                  {pastor.Position}
                 </p>
-                <p className="text-gray-600 mb-4 leading-relaxed">
-                  A graduate of Liberty University, Pastor Doug brings a strong
-                  biblical foundation and a heart for discipleship. He is
-                  committed to expository preaching that challenges believers to
-                  live out their faith in practical, meaningful ways.
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                  <div className="md:col-span-2">
+                    {pastor.Bio && (
+                      <p className="text-gray-600 mb-4 leading-relaxed">
+                        {pastor.Bio}
+                      </p>
+                    )}
+                  </div>
+                  <div className="bg-blue-50 p-6 rounded-lg">
+                    {pastor.Phone && (
+                      <p className="text-gray-700 mb-3">
+                        <span className="font-bold text-gray-900">Phone:</span>{" "}
+                        <a
+                          href={`tel:${pastor.Phone}`}
+                          className="text-blue-600 hover:underline"
+                        >
+                          {pastor.Phone}
+                        </a>
+                      </p>
+                    )}
+                    {pastor.Email && (
+                      <p className="text-gray-700">
+                        <span className="font-bold text-gray-900">Email:</span>{" "}
+                        <a
+                          href={`mailto:${pastor.Email}`}
+                          className="text-blue-600 hover:underline"
+                        >
+                          {pastor.Email}
+                        </a>
+                      </p>
+                    )}
+                  </div>
+                </div>
+
+                <p className="text-gray-600 italic border-t pt-4">
+                  "My desire is to shepherd this flock with care and integrity,
+                  leading people to a deeper knowledge of Christ and a commitment to
+                  His Kingdom."
+                </p>
+
+                <p className="text-gray-600 border-t pt-4 mt-4">
+                  If you would like to meet with our Pastor you can schedule that by calling the church. If you prefer you can send him an email at{" "}
+                  {pastor.Email && (
+                    <a
+                      href={`mailto:${pastor.Email}`}
+                      className="text-blue-600 hover:underline font-semibold"
+                    >
+                      {pastor.Name.split(" ")[1]}
+                    </a>
+                  )}
                 </p>
               </div>
-              <div className="bg-blue-50 p-6 rounded-lg">
-                <p className="text-gray-700 mb-3">
-                  <span className="font-bold text-gray-900">At CFBC Since:</span>{" "}
-                  1989
-                </p>
-                <p className="text-gray-700 mb-3">
-                  <span className="font-bold text-gray-900">
-                    Senior Pastor Since:
-                  </span>{" "}
-                  2002
-                </p>
-                <p className="text-gray-700 mb-3">
-                  <span className="font-bold text-gray-900">Education:</span>{" "}
-                  Liberty University
-                </p>
-                <p className="text-gray-700">
-                  <span className="font-bold text-gray-900">Family:</span>{" "}
-                  Married to Robin since 1985; two grown sons (John & Michael)
-                </p>
-              </div>
-            </div>
+            ))}
 
-            <p className="text-gray-600 italic border-t pt-4">
-              "My desire is to shepherd this flock with care and integrity,
-              leading people to a deeper knowledge of Christ and a commitment to
-              His Kingdom."
-            </p>
-          </div>
 
           {/* Deacons */}
           <div className="bg-white rounded-lg shadow-md p-8 mb-8">
@@ -172,18 +234,13 @@ export default function About() {
               family and ensuring we live out our mission faithfully.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="border-l-4 border-blue-600 pl-4">
-                <p className="font-semibold text-gray-900">Bill Beedie</p>
-              </div>
-              <div className="border-l-4 border-blue-600 pl-4">
-                <p className="font-semibold text-gray-900">Joe Burke</p>
-              </div>
-              <div className="border-l-4 border-blue-600 pl-4">
-                <p className="font-semibold text-gray-900">Jim Carnovale</p>
-              </div>
-              <div className="border-l-4 border-blue-600 pl-4">
-                <p className="font-semibold text-gray-900">Gene Hodgson</p>
-              </div>
+              {leadership
+                .filter((member) => member.Position === "Deacon")
+                .map((member) => (
+                  <div key={member.id || member.Name} className="border-l-4 border-blue-600 pl-4">
+                    <p className="font-semibold text-gray-900">{member.Name}</p>
+                  </div>
+                ))}
             </div>
           </div>
 
@@ -195,18 +252,13 @@ export default function About() {
               church, ensuring we are good stewards of God's resources.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="border-l-4 border-blue-600 pl-4">
-                <p className="font-semibold text-gray-900">Dave Babuder</p>
-              </div>
-              <div className="border-l-4 border-blue-600 pl-4">
-                <p className="font-semibold text-gray-900">Doug Sabattis</p>
-              </div>
-              <div className="border-l-4 border-blue-600 pl-4">
-                <p className="font-semibold text-gray-900">Mike McKenna</p>
-              </div>
-              <div className="border-l-4 border-blue-600 pl-4">
-                <p className="font-semibold text-gray-900">George Dujanovic</p>
-              </div>
+              {leadership
+                .filter((member) => member.Position === "Trustee")
+                .map((member) => (
+                  <div key={member.id || member.Name} className="border-l-4 border-blue-600 pl-4">
+                    <p className="font-semibold text-gray-900">{member.Name}</p>
+                  </div>
+                ))}
             </div>
           </div>
         </div>
