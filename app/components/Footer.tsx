@@ -15,9 +15,9 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* Church Info */}
           <div>
-            <h3 className="text-xl font-bold mb-4">CFBC</h3>
+            <h3 className="text-xl font-bold mb-4">Calvary Fellowship</h3>
             <p className="footer-text mb-4">
-              Calvary Fellowship Baptist Church
+              Baptist Church
             </p>
             <p className="footer-text text-sm mb-4">
               727 Mentor Avenue

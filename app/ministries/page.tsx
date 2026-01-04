@@ -160,7 +160,7 @@ export default async function MinistriesPage() {
                   Connect & Grow
                 </h2>
                 <p className="text-lg text-gray-700 max-w-2xl mx-auto">
-                  We believe everyone has a place at CFBC. Explore our ministries below
+                  At Calvary Fellowship we have ministries for all ages and stages of life. Explore our ministries below
                   and find where you can serve, learn, and build meaningful relationships.
                 </p>
               </div>
@@ -185,7 +185,7 @@ export default async function MinistriesPage() {
             <p className="text-gray-700 mb-6">
               We'd love to help you find the right ministry for you. Whether you're
               looking to serve, learn, or connect with others, there's a place for you
-              at CFBC.
+              at Calvary Fellowship.
             </p>
             <Link
               href="/contact"

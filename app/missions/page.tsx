@@ -225,10 +225,36 @@ export default async function MissionsPage() {
     error = e;
   }
 
-  // Sort missions by name
-  missions.sort((a, b) =>
-    a["Missionary Name"].localeCompare(b["Missionary Name"])
-  );
+  // Custom sort order based on last names
+  const getSortKey = (name: string): string => {
+    const sortMap: { [key: string]: string } = {
+      "Bart & Emily Allen": "Allen",
+      "Commonwealth Community Baptist Church": "Commonwealth",
+      "David & Renee Lyons": "Lyons",
+      "Dave & Renee Lyons": "Lyons",
+      "Dr. Jack & Sandy Sorg": "Sorg",
+      "Gary & Darla Pettet": "Pettet",
+      "Hannah's Home": "Hannah",
+      "Joy Spieth": "Spieth",
+      "Ken & Melinda Cogley": "Cogley",
+      "Michael & Sherri Vanek": "Vanek",
+      "Paul & Elaine Kintner": "Kintner",
+      "Steve & Beth Coffey": "Coffey",
+      "The Friends of Israel Gospel Ministry": "Berg",
+      "Jeff & Arlene Berg": "Berg",
+      "Tim & Alice Dysert": "Dysert",
+      "Short Term Missions": "Short",
+    };
+
+    return sortMap[name] || name.split(" ").pop() || name;
+  };
+
+  // Sort missions by custom sort key
+  missions.sort((a, b) => {
+    const keyA = getSortKey(a["Missionary Name"]);
+    const keyB = getSortKey(b["Missionary Name"]);
+    return keyA.localeCompare(keyB);
+  });
 
   return (
     <div className="w-full">
@@ -241,7 +267,7 @@ export default async function MissionsPage() {
             Our Missionaries
           </h1>
           <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto">
-            Calvary Fellowship Baptist Church supports missionaries around the
+            Calvary Fellowship supports missionaries around the
             world. We partner with those who are spreading the Gospel and making
             disciples in their communities.
           </p>
@@ -275,8 +301,7 @@ export default async function MissionsPage() {
                 </h2>
                 <p className="text-lg text-gray-700 max-w-2xl mx-auto">
                   We are privileged to support {missions.length} missionaries
-                  serving in {new Set(missions.map((m) => m.Country)).size}{" "}
-                  countries. Your prayers and support make their work possible.
+                  serving in countries throughout the world. Your prayers and support make their work possible.
                 </p>
               </div>
 

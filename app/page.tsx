@@ -75,29 +75,21 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Hero Section with Events Gallery */}
+      {/* Hero Section */}
       <section className="hero-gradient text-gray-900 py-24 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              Welcome to CFBC
+              Welcome to Calvary Fellowship
             </h1>
             <p className="text-xl md:text-2xl mb-8 text-gray-800">
-              Calvary Fellowship Baptist Church
+              Baptist Church
             </p>
             <p className="text-lg max-w-2xl mx-auto text-gray-700">
               Small enough for you to quickly get to meet others in fellowship,
               but big enough to provide pertinent ministry and educational
               opportunities.
             </p>
-          </div>
-
-          {/* Events & Ministries Gallery - Inline */}
-          <div className="max-w-5xl mx-auto mb-12">
-            <h2 className="text-3xl font-bold mb-8 text-center text-gray-900">
-              Upcoming Events & Ministries
-            </h2>
-            <EventsGallery events={events} />
           </div>
         </div>
       </section>
@@ -114,7 +106,7 @@ export default async function Home() {
               done what's right, and I wouldn't expect you to come back."
             </p>
             <p className="text-gray-600">
-              This is our commitment to you. At CFBC, we believe in genuine
+              This is our commitment to you. At Calvary Fellowship, we believe in genuine
               fellowship and making every visitor feel like part of our church
               family. Whether this is your first time visiting or you're looking
               for a church home, we'd love to welcome you.
@@ -134,15 +126,15 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Quick Info Section */}
-      <section className="py-16 px-4 bg-gray-50">
+      {/* Why Visit Section */}
+      <section className="py-16 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-4xl font-bold mb-12 text-center text-gray-900">
-            Why Visit CFBC?
+            Why Visit Calvary Fellowship?
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Card 1 */}
-            <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+            <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-200">
               <div className="w-12 h-12 bg-sky-600 rounded-full flex items-center justify-center mb-4">
                 <span className="text-white text-2xl">🙏</span>
               </div>
@@ -156,7 +148,7 @@ export default async function Home() {
             </div>
 
             {/* Card 2 */}
-            <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+            <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-200">
               <div className="w-12 h-12 bg-sky-600 rounded-full flex items-center justify-center mb-4">
                 <span className="text-white text-2xl">👥</span>
               </div>
@@ -170,7 +162,7 @@ export default async function Home() {
             </div>
 
             {/* Card 3 */}
-            <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+            <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-200">
               <div className="w-12 h-12 bg-sky-600 rounded-full flex items-center justify-center mb-4">
                 <span className="text-white text-2xl">📚</span>
               </div>
@@ -182,6 +174,18 @@ export default async function Home() {
                 closer to God and His Word.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Events & Ministries Gallery */}
+      <section className="py-16 px-4 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-4xl font-bold mb-12 text-center text-gray-900">
+            Upcoming Events & Ministries
+          </h2>
+          <div className="max-w-5xl mx-auto">
+            <EventsGallery events={events} />
           </div>
         </div>
       </section>
@@ -205,7 +209,7 @@ export default async function Home() {
                   <span className="font-semibold">11:00 AM</span>
                 </li>
                 <li className="flex justify-between">
-                  <span>AWANA, 727 Ministry, Adult Bible Study</span>
+                  <span>AWANA program for kids</span>
                   <span className="font-semibold">5:30 PM</span>
                 </li>
               </ul>
@@ -230,7 +234,7 @@ export default async function Home() {
                 </li>
                 <li className="flex justify-between">
                   <span>Helping Hands Food Pantry</span>
-                  <span className="font-semibold">Call the church office</span>
+                  <span className="font-semibold text-sm">Contact church Thu 10am-2pm</span>
                 </li>
               </ul>
             </div>

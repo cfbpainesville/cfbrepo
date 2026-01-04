@@ -63,7 +63,7 @@ export default async function About() {
       {/* Header */}
       <section className="bg-gradient-to-br from-blue-900 to-blue-700 text-white py-16 px-4">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-5xl font-bold mb-4">About CFBC</h1>
+          <h1 className="text-5xl font-bold mb-4">About Calvary Fellowship</h1>
           <p className="text-xl text-blue-100">
             Learn about our history, mission, and commitment to serving our
             community
@@ -79,10 +79,11 @@ export default async function About() {
           </h2>
           <div className="bg-blue-50 border-l-4 border-blue-600 p-8 rounded">
             <p className="text-xl text-gray-800 leading-relaxed font-semibold">
-              Proclaim the Good News of Jesus Christ to all people; Promote the
-              Spiritual Growth of Believers through the study of God's Holy Word,
-              the Bible; and Provide spiritual support through Prayer,
-              Discipleship, and Fellowship.
+              <span className="font-bold">P</span>roclaim the Good News of Jesus Christ to all people;
+              <br /><br />
+              <span className="font-bold">P</span>romote the Spiritual Growth of Believers through the study of God's Holy Word, the Bible; and
+              <br /><br />
+              <span className="font-bold">P</span>rovide spiritual support through Prayer, Discipleship, and Fellowship.
             </p>
           </div>
         </div>
@@ -310,6 +311,20 @@ export default async function About() {
                 Christ through study, prayer, and service.
               </p>
             </div>
+          </div>
+
+          <div className="mt-12 text-center">
+            <p className="text-gray-700 mb-4">
+              For our complete, detailed, statement of faith,{" "}
+              <a
+                href="https://www.cfbchurch.net/hp_wordpress/wp-content/uploads/2011/06/statement-of-faith.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:text-blue-700 font-semibold underline"
+              >
+                click here
+              </a>
+            </p>
           </div>
         </div>
       </section>

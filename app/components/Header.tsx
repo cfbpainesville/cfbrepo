@@ -12,9 +12,9 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
           <Link href="/" className="flex flex-col">
-            <h1 className="text-2xl font-bold">CFBC</h1>
+            <h1 className="text-2xl font-bold">Calvary Fellowship</h1>
             <p className="text-xs opacity-90">
-              Calvary Fellowship Baptist Church
+              Baptist Church
             </p>
           </Link>
 
@@ -61,6 +61,12 @@ export default function Header() {
               className="hover-secondary"
             >
               Contact
+            </Link>
+            <Link
+              href="/giving"
+              className="hover-secondary"
+            >
+              Give
             </Link>
           </nav>
 
@@ -127,6 +133,13 @@ export default function Header() {
               onClick={() => setIsMenuOpen(false)}
             >
               Contact
+            </Link>
+            <Link
+              href="/giving"
+              className="hover-secondary block"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Give
             </Link>
           </nav>
         )}

@@ -171,3 +171,48 @@ export async function getRecord(
     throw error;
   }
 }
+
+// Helper function to update a record
+export async function updateRecord<T>(
+  baseId: string,
+  tableName: string,
+  recordId: string,
+  fields: Partial<T>
+) {
+  const base = getBase(baseId);
+  try {
+    const record = await base(tableName).update(recordId, fields as any);
+    return {
+      id: record.id,
+      ...record.fields,
+    };
+  } catch (error) {
+    console.error("Error updating record:", error);
+    throw error;
+  }
+}
+
+// Helper function to find records by a field value
+export async function findRecordsByField(
+  baseId: string,
+  tableName: string,
+  fieldName: string,
+  value: string
+) {
+  const base = getBase(baseId);
+  try {
+    const records = await base(tableName)
+      .select({
+        filterByFormula: `{${fieldName}} = "${value}"`,
+      })
+      .all();
+
+    return records.map((record) => ({
+      id: record.id,
+      ...record.fields,
+    }));
+  } catch (error) {
+    console.error("Error finding records:", error);
+    throw error;
+  }
+}

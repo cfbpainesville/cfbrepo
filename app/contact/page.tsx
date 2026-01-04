@@ -65,7 +65,7 @@ export default function Contact() {
       {/* Contact Options */}
       <section className="py-16 px-4 bg-gray-50">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Phone */}
             <div className="bg-white p-8 rounded-lg shadow-md text-center">
               <div className="text-5xl mb-4">📞</div>
@@ -97,7 +97,10 @@ export default function Contact() {
             </div>
 
             {/* Visit */}
-            <div className="bg-white p-8 rounded-lg shadow-md text-center">
+            <div className="bg-white p-8 rounded-lg shadow-md text-center cursor-pointer hover:shadow-lg transition-shadow" onClick={() => {
+              const mapSection = document.getElementById('location-map');
+              if (mapSection) mapSection.scrollIntoView({ behavior: 'smooth' });
+            }}>
               <div className="text-5xl mb-4">📍</div>
               <h3 className="text-2xl font-bold text-gray-900 mb-2">Visit Us</h3>
               <p className="text-gray-600">
@@ -108,13 +111,34 @@ export default function Contact() {
               <p className="text-gray-600 text-sm mt-4">
                 Sundays at 11:00 AM
               </p>
+              <p className="text-sky-600 text-sm mt-2 font-semibold">
+                Click to view map
+              </p>
+            </div>
+
+            {/* Message Form */}
+            <div className="bg-white p-8 rounded-lg shadow-md text-center">
+              <div className="text-5xl mb-4">💬</div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">Message Form</h3>
+              <p className="text-gray-600 mb-4">
+                Just fill out the form below and hit "send message!"
+              </p>
+              <button
+                onClick={() => {
+                  const formSection = document.getElementById('contact-form');
+                  if (formSection) formSection.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="text-sky-600 hover:text-sky-700 font-semibold underline"
+              >
+                Go to form
+              </button>
             </div>
           </div>
         </div>
       </section>
 
       {/* Contact Form */}
-      <section className="py-16 px-4 bg-white">
+      <section id="contact-form" className="py-16 px-4 bg-white">
         <div className="max-w-2xl mx-auto">
           <h2 className="text-4xl font-bold mb-12 text-center text-gray-900">
             Send us a Message
@@ -267,19 +291,38 @@ export default function Contact() {
         </div>
       </section>
 
+      {/* Map Section */}
+      <section id="location-map" className="py-16 px-4 bg-gray-50">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl font-bold mb-8 text-center text-gray-900">
+            Our Location
+          </h2>
+          <div className="bg-white p-6 rounded-lg shadow-md">
+            <p className="text-gray-700 mb-4 font-semibold text-center">
+              727 Mentor Avenue, Painesville, OH 44077
+            </p>
+            <div className="w-full h-96 rounded-lg overflow-hidden">
+              <iframe
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                loading="lazy"
+                allowFullScreen={true}
+                referrerPolicy="no-referrer-when-downgrade"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3012.9841234567!2d-81.2447!3d41.7567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8830d5e0c6c6c6c7%3A0x1234567890abcdef!2s727%20Mentor%20Ave%2C%20Painesville%2C%20OH%2044077!5e0!3m2!1sen!2sus!4v1234567890"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Response Time */}
       <section className="py-16 px-4 bg-white">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold mb-8 text-center text-gray-900">
             We're Here to Help
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="text-4xl font-bold text-sky-600 mb-2">24hrs</div>
-              <p className="text-gray-600">
-                We aim to respond to all messages within 24 hours
-              </p>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="text-center">
               <div className="text-4xl font-bold text-sky-600 mb-2">100%</div>
               <p className="text-gray-600">

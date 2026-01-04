@@ -1,5 +1,6 @@
-import { FEATURED_SERMONS, ALL_SERMONS, getSermonsByYear, type SermonData } from "@/lib/data/sermons";
+import { ALL_SERMONS, getSermonsByYear, type SermonData } from "@/lib/data/sermons";
 import Link from "next/link";
+import CollapsibleYearSection from "./CollapsibleYearSection";
 
 // Enable ISR - revalidate every hour (3600 seconds)
 export const revalidate = 3600;
@@ -9,7 +10,7 @@ export const metadata = {
   description: "Watch and listen to sermons from Calvary Fellowship Baptist Church. Messages from Pastor Doug Reeder and guest speakers.",
 };
 
-function SermonCard({ sermon, featured = false }: { sermon: SermonData; featured?: boolean }) {
+function FeaturedSermonCard({ sermon }: { sermon: SermonData }) {
   const getIconForType = (type: string) => {
     switch (type) {
       case 'facebook':
@@ -32,74 +33,35 @@ function SermonCard({ sermon, featured = false }: { sermon: SermonData; featured
     });
   };
 
-  if (featured) {
-    return (
-      <a
-        href={sermon.url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="block bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group"
-      >
-        <div className="p-6">
-          <div className="flex items-start justify-between mb-3">
-            <span className="text-3xl">{getIconForType(sermon.type)}</span>
-            <span className="text-xs font-semibold px-3 py-1 bg-sky-100 text-sky-800 rounded-full uppercase">
-              {sermon.type}
-            </span>
-          </div>
-          <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-sky-600 transition-colors">
-            {sermon.title}
-          </h3>
-          <p className="text-sm text-gray-600 mb-2">{formatDate(sermon.date)}</p>
-          {sermon.speaker && (
-            <p className="text-sm text-gray-700 italic">Speaker: {sermon.speaker}</p>
-          )}
-          <div className="mt-4 flex items-center text-sky-600 font-semibold text-sm">
-            <span>Watch Now</span>
-            <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </div>
-        </div>
-      </a>
-    );
-  }
-
   return (
     <a
       href={sermon.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="flex items-center gap-3 p-3 bg-white rounded-lg hover:bg-sky-50 transition-colors group border border-gray-100 hover:border-sky-200"
+      className="block bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group max-w-md mx-auto"
     >
-      <span className="text-2xl flex-shrink-0">{getIconForType(sermon.type)}</span>
-      <div className="flex-1 min-w-0">
-        <h4 className="font-semibold text-gray-900 group-hover:text-sky-600 transition-colors truncate">
+      <div className="p-8">
+        <div className="flex items-start justify-between mb-4">
+          <span className="text-4xl">{getIconForType(sermon.type)}</span>
+          <span className="text-xs font-semibold px-3 py-1 bg-sky-100 text-sky-800 rounded-full uppercase">
+            {sermon.type}
+          </span>
+        </div>
+        <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-sky-600 transition-colors">
           {sermon.title}
-        </h4>
+        </h3>
+        <p className="text-sm text-gray-600 mb-2">{formatDate(sermon.date)}</p>
         {sermon.speaker && (
-          <p className="text-xs text-gray-600 truncate">Speaker: {sermon.speaker}</p>
+          <p className="text-sm text-gray-700 italic mb-4">Speaker: {sermon.speaker}</p>
         )}
-      </div>
-      <div className="text-xs text-gray-500 flex-shrink-0">
-        {new Date(sermon.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+        <div className="mt-6 flex items-center text-sky-600 font-semibold">
+          <span>Watch Now</span>
+          <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </div>
       </div>
     </a>
-  );
-}
-
-function YearSection({ year, sermons }: { year: number; sermons: SermonData[] }) {
-  return (
-    <div className="mb-12">
-      <h3 className="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-sky-600">
-        {year}
-      </h3>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-        {sermons.map((sermon, index) => (
-          <SermonCard key={`${sermon.date}-${index}`} sermon={sermon} />
-        ))}
-      </div>
-    </div>
   );
 }
 
@@ -108,6 +70,10 @@ export default function SermonsPage() {
   const years = Array.from(
     new Set(ALL_SERMONS.map(s => parseInt(s.date.split('-')[0])))
   ).sort((a, b) => b - a);
+
+  // Get the most recent sermon
+  const mostRecentSermon = ALL_SERMONS.length > 0 ? ALL_SERMONS[0] : null;
+  const currentYear = new Date().getFullYear();
 
   return (
     <div className="w-full">
@@ -126,39 +92,38 @@ export default function SermonsPage() {
         </div>
       </section>
 
-      {/* Featured Sermons */}
-      <section className="py-16 px-4 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-4xl font-bold text-gray-900">
-              Recent Messages
-            </h2>
-            <div className="hidden md:block text-sm text-gray-500">
-              {ALL_SERMONS.length} total sermons
+      {/* Most Recent Message */}
+      {mostRecentSermon && (
+        <section className="py-16 px-4 bg-white">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold text-gray-900 mb-2">
+                Our most recent message
+              </h2>
+              <p className="text-gray-600">
+                {ALL_SERMONS.length} total sermons available
+              </p>
             </div>
+            <FeaturedSermonCard sermon={mostRecentSermon} />
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {FEATURED_SERMONS.map((sermon, index) => (
-              <SermonCard key={`featured-${sermon.date}-${index}`} sermon={sermon} featured />
-            ))}
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* All Sermons by Year */}
       <section className="py-16 px-4 bg-gray-50">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold text-gray-900 mb-12">
+          <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">
             Complete Archive
           </h2>
-          <div className="space-y-8">
+          <div className="space-y-4">
             {years.map(year => {
               const sermonsForYear = getSermonsByYear(year);
               return (
-                <YearSection
+                <CollapsibleYearSection
                   key={year}
                   year={year}
                   sermons={sermonsForYear}
+                  isExpanded={year === currentYear}
                 />
               );
             })}
