@@ -128,7 +128,7 @@ export default function Contact() {
                   const formSection = document.getElementById('contact-form');
                   if (formSection) formSection.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="text-sky-600 hover:text-sky-700 font-semibold underline"
+                className="text-sky-600 hover:text-sky-700 font-semibold underline cursor-pointer"
               >
                 Go to form
               </button>
