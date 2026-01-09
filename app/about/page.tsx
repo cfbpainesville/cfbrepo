@@ -104,7 +104,7 @@ export default async function About() {
             </p>
             <p className="text-gray-600 leading-relaxed">
               We believe that a church family should balance intimacy with
-              opportunity. At CFBC, you won't get lost in the crowd. You'll
+              opportunity. At Calvary Fellowship, you won't get lost in the crowd. You'll
               quickly form meaningful relationships with our members while having
               access to programs and ministries for every age and life stage.
             </p>
@@ -133,7 +133,7 @@ export default async function About() {
                 Steady Growth and Ministry
               </h3>
               <p className="text-gray-600">
-                Over the years, CFBC has grown from a small startup to a thriving
+                Over the years, Calvary Fellowship has grown from a small startup to a thriving
                 church community. Our commitment has remained constant: to know
                 Christ, to grow in Him, and to reach others for His Kingdom.
               </p>

@@ -14,7 +14,7 @@ export const LEADERSHIP_DATA: LeadershipMember[] = [
     id: "pastor-1",
     Name: "Pastor Doug Reeder",
     Position: "Pastor",
-    Bio: "Pastor Doug Reeder has been serving at CFBC since 1989 and became Senior Pastor in 2002. His passion is to lead our church family in knowing God's Word, growing in faith, and reaching the lost with the Gospel of Jesus Christ. A graduate of Liberty University, Pastor Doug brings a strong biblical foundation and a heart for discipleship. He is committed to expository preaching that challenges believers to live out their faith in practical, meaningful ways.",
+    Bio: "Pastor Doug Reeder has been serving at Calvary Fellowship since 1989 and became Senior Pastor in 2002. His passion is to lead our church family in knowing God's Word, growing in faith, and reaching the lost with the Gospel of Jesus Christ. A graduate of Liberty University, Pastor Doug brings a strong biblical foundation and a heart for discipleship. He is committed to expository preaching that challenges believers to live out their faith in practical, meaningful ways.",
     Email: "pastor9919@gmail.com",
     Phone: "(440) 354-8994",
   },

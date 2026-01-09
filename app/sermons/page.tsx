@@ -6,8 +6,8 @@ import CollapsibleYearSection from "./CollapsibleYearSection";
 export const revalidate = 3600;
 
 export const metadata = {
-  title: "Sermons | Calvary Fellowship Baptist Church",
-  description: "Watch and listen to sermons from Calvary Fellowship Baptist Church. Messages from Pastor Doug Reeder and guest speakers.",
+  title: "Sermons | Calvary Fellowship",
+  description: "Watch and listen to sermons from Calvary Fellowship. Messages from Pastor Doug Reeder and guest speakers.",
 };
 
 function FeaturedSermonCard({ sermon }: { sermon: SermonData }) {

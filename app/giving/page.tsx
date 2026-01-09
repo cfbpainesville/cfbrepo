@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "Give Online | Calvary Fellowship Baptist Church",
-  description: "Support the ministries of Calvary Fellowship Baptist Church through online giving.",
+  title: "Give Online | Calvary Fellowship",
+  description: "Support the ministries of Calvary Fellowship through online giving.",
 };
 
 export default function Giving() {

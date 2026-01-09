@@ -61,7 +61,7 @@ export default async function Home() {
           <div className="rounded-lg overflow-hidden shadow-lg">
             <Image
               src="/church-artistic-sketch.webp"
-              alt="Calvary Fellowship Baptist Church Building at 727 Mentor Avenue"
+              alt="Calvary Fellowship Building at 727 Mentor Avenue"
               width={1200}
               height={900}
               priority={true}
@@ -82,9 +82,6 @@ export default async function Home() {
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
               Welcome to Calvary Fellowship
             </h1>
-            <p className="text-xl md:text-2xl mb-8 text-gray-800">
-              Baptist Church
-            </p>
             <p className="text-lg max-w-2xl mx-auto text-gray-700">
               Small enough for you to quickly get to meet others in fellowship,
               but big enough to provide pertinent ministry and educational

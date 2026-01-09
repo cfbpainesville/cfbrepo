@@ -13,9 +13,9 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Calvary Fellowship Baptist Church | Painesville, Ohio",
+  title: "Calvary Fellowship | Painesville, Ohio",
   description:
-    "Calvary Fellowship Baptist Church in Painesville, Ohio - Proclaiming the Good News of Jesus Christ with worship services, ministries, and community outreach.",
+    "Calvary Fellowship in Painesville, Ohio - Proclaiming the Good News of Jesus Christ with worship services, ministries, and community outreach.",
   keywords: [
     "church",
     "baptist",
@@ -37,9 +37,9 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://cfbchurch.net",
-    title: "Calvary Fellowship Baptist Church",
+    title: "Calvary Fellowship",
     description:
-      "Calvary Fellowship Baptist Church in Painesville, Ohio - Proclaiming the Good News of Jesus Christ.",
+      "Calvary Fellowship in Painesville, Ohio - Proclaiming the Good News of Jesus Christ.",
   },
 };
 

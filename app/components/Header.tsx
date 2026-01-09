@@ -13,9 +13,6 @@ export default function Header() {
         <div className="flex justify-between items-center">
           <Link href="/" className="flex flex-col">
             <h1 className="text-2xl font-bold">Calvary Fellowship</h1>
-            <p className="text-xs opacity-90">
-              Baptist Church
-            </p>
           </Link>
 
           {/* Desktop Navigation */}

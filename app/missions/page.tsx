@@ -9,8 +9,8 @@ import Image from "next/image";
 export const revalidate = 604800;
 
 export const metadata = {
-  title: "Missions | Calvary Fellowship Baptist Church",
-  description: "Support the missionaries and mission work of Calvary Fellowship Baptist Church. We partner with missionaries around the world spreading the Gospel.",
+  title: "Missions | Calvary Fellowship",
+  description: "Support the missionaries and mission work of Calvary Fellowship. We partner with missionaries around the world spreading the Gospel.",
 };
 
 interface MissionRecord {

@@ -8,8 +8,8 @@ import Link from "next/link";
 export const revalidate = 604800;
 
 export const metadata = {
-  title: "Ministries | Calvary Fellowship Baptist Church",
-  description: "Discover the ministries at Calvary Fellowship Baptist Church. We have programs for all ages including children, youth, adults, men, women, and community outreach.",
+  title: "Ministries | Calvary Fellowship",
+  description: "Discover the ministries at Calvary Fellowship. We have programs for all ages including children, youth, adults, men, women, and community outreach.",
 };
 
 interface MinistryRecord {
@@ -129,7 +129,7 @@ export default async function MinistriesPage() {
             Our Ministries
           </h1>
           <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto">
-            At Calvary Fellowship Baptist Church, we have ministries for all ages and stages of life.
+            At Calvary Fellowship, we have ministries for all ages and stages of life.
             Join us in fellowship, learning, and service.
           </p>
         </div>

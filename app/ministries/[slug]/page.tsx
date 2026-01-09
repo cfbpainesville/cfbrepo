@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   if (!BASE_ID) {
     return {
-      title: "Ministry | Calvary Fellowship Baptist Church",
+      title: "Ministry | Calvary Fellowship",
     };
   }
 
@@ -54,17 +54,17 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
     if (!ministry) {
       return {
-        title: "Ministry Not Found | Calvary Fellowship Baptist Church",
+        title: "Ministry Not Found | Calvary Fellowship",
       };
     }
 
     return {
-      title: `${ministry["Ministry Name"]} | Calvary Fellowship Baptist Church`,
+      title: `${ministry["Ministry Name"]} | Calvary Fellowship`,
       description: ministry.Description.substring(0, 160),
     };
   } catch (error) {
     return {
-      title: "Ministry | Calvary Fellowship Baptist Church",
+      title: "Ministry | Calvary Fellowship",
     };
   }
 }

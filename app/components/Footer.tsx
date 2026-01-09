@@ -16,9 +16,6 @@ export default function Footer() {
           {/* Church Info */}
           <div>
             <h3 className="text-xl font-bold mb-4">Calvary Fellowship</h3>
-            <p className="footer-text mb-4">
-              Baptist Church
-            </p>
             <p className="footer-text text-sm mb-4">
               727 Mentor Avenue
               <br />
