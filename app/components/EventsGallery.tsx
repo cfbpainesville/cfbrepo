@@ -61,7 +61,13 @@ function EventsGalleryComponent({ events: serverEvents }: EventsGalleryProps) {
   const [flipDirection, setFlipDirection] = useState<'left' | 'right'>('right');
   const autoplayIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Auto-play carousel (5 second interval) - optimized to reduce main-thread work
+  // Ensure autoplay starts fresh on component mount
+  useEffect(() => {
+    // Reset autoplay to true on mount to ensure fresh start
+    setIsAutoplay(true);
+  }, []);
+
+  // Auto-play carousel (7 second interval) - optimized to reduce main-thread work
   useEffect(() => {
     if (!isAutoplay || allEvents.length <= 1) {
       // Clear any existing interval if autoplay is disabled or only one event
