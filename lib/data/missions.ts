@@ -15,6 +15,7 @@ export interface MissionRecord {
   Website?: string;
   "Image Path"?: string;
   Published: boolean;
+  "Sort Order"?: number;
 }
 
 export const MISSIONS_BACKUP_DATA: MissionRecord[] = [

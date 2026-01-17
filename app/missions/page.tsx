@@ -26,6 +26,7 @@ interface MissionRecord {
   Website?: string;
   "Image Path"?: string;
   Published: boolean;
+  "Sort Order"?: number;
 }
 
 function MissionaryCard({ missionary }: { missionary: MissionRecord }) {
@@ -225,6 +226,12 @@ export default async function MissionsPage() {
     error = e;
   }
 
+  // Sort by Sort Order field (ascending), missionaries without Sort Order go to the end
+  missions.sort((a, b) => {
+    const orderA = a["Sort Order"] ?? Number.MAX_SAFE_INTEGER;
+    const orderB = b["Sort Order"] ?? Number.MAX_SAFE_INTEGER;
+    return orderA - orderB;
+  });
 
   return (
     <div className="w-full">

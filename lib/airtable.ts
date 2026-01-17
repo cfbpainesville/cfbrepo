@@ -107,6 +107,7 @@ export interface Mission {
   Website?: string;
   "Image Path"?: string;
   Published: boolean;
+  "Sort Order"?: number;
 }
 
 // Helper function to create a record
