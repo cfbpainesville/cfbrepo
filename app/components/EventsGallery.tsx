@@ -61,13 +61,7 @@ function EventsGalleryComponent({ events: serverEvents }: EventsGalleryProps) {
   const [flipDirection, setFlipDirection] = useState<'left' | 'right'>('right');
   const autoplayIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Ensure autoplay starts fresh on component mount
-  useEffect(() => {
-    // Reset autoplay to true on mount to ensure fresh start
-    setIsAutoplay(true);
-  }, []);
-
-  // Auto-play carousel (7 second interval) - optimized to reduce main-thread work
+  // Auto-play carousel - exactly 7 seconds between transitions
   useEffect(() => {
     if (!isAutoplay || allEvents.length <= 1) {
       // Clear any existing interval if autoplay is disabled or only one event
@@ -83,14 +77,22 @@ function EventsGalleryComponent({ events: serverEvents }: EventsGalleryProps) {
       clearInterval(autoplayIntervalRef.current);
     }
 
+    // Start autoplay with exactly 7000ms intervals
     autoplayIntervalRef.current = setInterval(() => {
+      // Trigger flip animation
       setFlipDirection('right');
       setIsFlipping(true);
+
+      // Change index after flip animation starts
       setTimeout(() => {
         setCurrentIndex((prev) => (prev + 1) % allEvents.length);
-        setTimeout(() => setIsFlipping(false), 50);
       }, 300);
-    }, 7000); // 7 seconds - gives users more time to read event details
+
+      // Reset flip state
+      setTimeout(() => {
+        setIsFlipping(false);
+      }, 350);
+    }, 7000); // Exactly 7000ms = 7 seconds
 
     return () => {
       if (autoplayIntervalRef.current) {
@@ -104,20 +106,28 @@ function EventsGalleryComponent({ events: serverEvents }: EventsGalleryProps) {
     setFlipDirection('right');
     setIsFlipping(true);
     setIsAutoplay(false); // Stop autoplay when user manually navigates
+
     setTimeout(() => {
       setCurrentIndex((prev) => (prev + 1) % allEvents.length);
-      setTimeout(() => setIsFlipping(false), 50);
     }, 300);
+
+    setTimeout(() => {
+      setIsFlipping(false);
+    }, 350);
   };
 
   const goToPrev = () => {
     setFlipDirection('left');
     setIsFlipping(true);
     setIsAutoplay(false); // Stop autoplay when user manually navigates
+
     setTimeout(() => {
       setCurrentIndex((prev) => (prev - 1 + allEvents.length) % allEvents.length);
-      setTimeout(() => setIsFlipping(false), 50);
     }, 300);
+
+    setTimeout(() => {
+      setIsFlipping(false);
+    }, 350);
   };
 
   const handleMouseEnter = () => {
