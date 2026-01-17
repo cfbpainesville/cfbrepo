@@ -57,6 +57,8 @@ function EventsGalleryComponent({ events: serverEvents }: EventsGalleryProps) {
   const allEvents = [INITIAL_EVENT, ...serverEvents];
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoplay, setIsAutoplay] = useState(true);
+  const [isFlipping, setIsFlipping] = useState(false);
+  const [flipDirection, setFlipDirection] = useState<'left' | 'right'>('right');
   const autoplayIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
   // Auto-play carousel (5 second interval) - optimized to reduce main-thread work
@@ -76,7 +78,12 @@ function EventsGalleryComponent({ events: serverEvents }: EventsGalleryProps) {
     }
 
     autoplayIntervalRef.current = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % allEvents.length);
+      setFlipDirection('right');
+      setIsFlipping(true);
+      setTimeout(() => {
+        setCurrentIndex((prev) => (prev + 1) % allEvents.length);
+        setTimeout(() => setIsFlipping(false), 50);
+      }, 300);
     }, 5000); // 5 seconds - reduces CPU usage while maintaining engagement
 
     return () => {
@@ -88,13 +95,23 @@ function EventsGalleryComponent({ events: serverEvents }: EventsGalleryProps) {
   }, [isAutoplay, allEvents.length]);
 
   const goToNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % allEvents.length);
-    setIsAutoplay(true);
+    setFlipDirection('right');
+    setIsFlipping(true);
+    setIsAutoplay(false); // Stop autoplay when user manually navigates
+    setTimeout(() => {
+      setCurrentIndex((prev) => (prev + 1) % allEvents.length);
+      setTimeout(() => setIsFlipping(false), 50);
+    }, 300);
   };
 
   const goToPrev = () => {
-    setCurrentIndex((prev) => (prev - 1 + allEvents.length) % allEvents.length);
-    setIsAutoplay(true);
+    setFlipDirection('left');
+    setIsFlipping(true);
+    setIsAutoplay(false); // Stop autoplay when user manually navigates
+    setTimeout(() => {
+      setCurrentIndex((prev) => (prev - 1 + allEvents.length) % allEvents.length);
+      setTimeout(() => setIsFlipping(false), 50);
+    }, 300);
   };
 
   const handleMouseEnter = () => {
@@ -116,7 +133,7 @@ function EventsGalleryComponent({ events: serverEvents }: EventsGalleryProps) {
       {/* Main Event Display */}
       <div className="events-gallery-main">
         {/* Event Card */}
-        <div className="events-gallery-card">
+        <div className={`events-gallery-card ${isFlipping ? `flipping-${flipDirection}` : ''}`}>
           <div className="events-card-top">
             {/* Left Navigation Button */}
             <button
