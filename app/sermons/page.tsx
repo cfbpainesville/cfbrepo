@@ -1,9 +1,11 @@
-import { ALL_SERMONS, getSermonsByYear, type SermonData } from "@/lib/data/sermons";
+import { getAllRecords, TABLES } from "@/lib/airtable";
+import { ALL_SERMONS, type SermonData } from "@/lib/data/sermons";
 import Link from "next/link";
 import CollapsibleYearSection from "./CollapsibleYearSection";
 
-// Enable ISR - revalidate every hour (3600 seconds)
-export const revalidate = 3600;
+// Enable ISR - revalidate every 7 days (604800 seconds)
+// Sermons data rarely changes (weekly updates)
+export const revalidate = 604800;
 
 export const metadata = {
   title: "Sermons | Calvary Fellowship",
@@ -65,14 +67,75 @@ function FeaturedSermonCard({ sermon }: { sermon: SermonData }) {
   );
 }
 
-export default function SermonsPage() {
+// Helper function to determine sermon type from URL
+function getSermonType(url: string, downloadLink?: string): 'facebook' | 'youtube' | 'powerpoint' {
+  if (downloadLink || url.includes('.ppt')) return 'powerpoint';
+  if (url.includes('facebook.com') || url.includes('fb.watch')) return 'facebook';
+  if (url.includes('youtube.com') || url.includes('youtu.be')) return 'youtube';
+  return 'youtube'; // default
+}
+
+// Helper function to get sermons by year
+function getSermonsByYear(sermons: SermonData[], year: number): SermonData[] {
+  return sermons.filter(sermon => sermon.date.startsWith(year.toString()));
+}
+
+export default async function SermonsPage() {
+  const BASE_ID = process.env.NEXT_PUBLIC_AIRTABLE_BASE_ID;
+
+  let sermons: SermonData[] = [];
+  let usingBackupData = false;
+
+  if (!BASE_ID) {
+    console.warn("No Airtable Base ID found, using backup data");
+    sermons = ALL_SERMONS;
+    usingBackupData = true;
+  } else {
+    try {
+      const airtableSermons = await getAllRecords(BASE_ID, TABLES.SERMONS);
+
+      // Map Airtable data to SermonData format
+      sermons = airtableSermons
+        .filter((s: any) => s.Published)
+        .map((s: any) => {
+          const videoLink = s['Video Link'] || '';
+          const downloadLink = s['Download Link'] || '';
+          const url = videoLink || downloadLink;
+
+          return {
+            title: s.Title,
+            date: s.Date,
+            url: url,
+            speaker: s['Pastor/Speaker Name'],
+            type: getSermonType(url, downloadLink),
+          } as SermonData;
+        })
+        .filter((s: SermonData) => s.url) // Only include sermons with a URL
+        .sort((a, b) => {
+          // Sort by date descending (newest first)
+          return new Date(b.date).getTime() - new Date(a.date).getTime();
+        });
+
+      // If no sermons found, use backup data
+      if (!sermons || sermons.length === 0) {
+        console.warn("No published sermons found in Airtable, using backup data");
+        sermons = ALL_SERMONS;
+        usingBackupData = true;
+      }
+    } catch (error) {
+      console.error("Error fetching sermons from Airtable:", error);
+      sermons = ALL_SERMONS;
+      usingBackupData = true;
+    }
+  }
+
   // Get unique years from all sermons, sorted descending
   const years = Array.from(
-    new Set(ALL_SERMONS.map(s => parseInt(s.date.split('-')[0])))
+    new Set(sermons.map(s => parseInt(s.date.split('-')[0])))
   ).sort((a, b) => b - a);
 
   // Get the most recent sermon
-  const mostRecentSermon = ALL_SERMONS.length > 0 ? ALL_SERMONS[0] : null;
+  const mostRecentSermon = sermons.length > 0 ? sermons[0] : null;
   const currentYear = new Date().getFullYear();
 
   return (
@@ -101,7 +164,7 @@ export default function SermonsPage() {
                 Our most recent message
               </h2>
               <p className="text-gray-600">
-                {ALL_SERMONS.length} total sermons available
+                {sermons.length} total sermons available
               </p>
             </div>
             <FeaturedSermonCard sermon={mostRecentSermon} />
@@ -117,7 +180,7 @@ export default function SermonsPage() {
           </h2>
           <div className="space-y-4">
             {years.map(year => {
-              const sermonsForYear = getSermonsByYear(year);
+              const sermonsForYear = getSermonsByYear(sermons, year);
               return (
                 <CollapsibleYearSection
                   key={year}
