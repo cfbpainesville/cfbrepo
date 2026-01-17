@@ -133,7 +133,7 @@ function EventsGalleryComponent({ events: serverEvents }: EventsGalleryProps) {
       {/* Main Event Display */}
       <div className="events-gallery-main">
         {/* Event Card */}
-        <div className={`events-gallery-card ${isFlipping ? `flipping-${flipDirection}` : ''}`}>
+        <div className="events-gallery-card">
           <div className="events-card-top">
             {/* Left Navigation Button */}
             <button
@@ -145,7 +145,7 @@ function EventsGalleryComponent({ events: serverEvents }: EventsGalleryProps) {
             </button>
 
             {/* Event Icon */}
-            <div className="events-image-placeholder">
+            <div className={`events-image-placeholder ${isFlipping ? `flipping-${flipDirection}` : ''}`}>
               {currentEvent.image || "📅"}
             </div>
 
