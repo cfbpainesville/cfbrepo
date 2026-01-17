@@ -225,36 +225,6 @@ export default async function MissionsPage() {
     error = e;
   }
 
-  // Custom sort order based on last names
-  const getSortKey = (name: string): string => {
-    const sortMap: { [key: string]: string } = {
-      "Bart & Emily Allen": "Allen",
-      "Commonwealth Community Baptist Church": "Commonwealth",
-      "David & Renee Lyons": "Lyons",
-      "Dave & Renee Lyons": "Lyons",
-      "Dr. Jack & Sandy Sorg": "Sorg",
-      "Gary & Darla Pettet": "Pettet",
-      "Hannah's Home": "Hannah",
-      "Joy Spieth": "Spieth",
-      "Ken & Melinda Cogley": "Cogley",
-      "Michael & Sherri Vanek": "Vanek",
-      "Paul & Elaine Kintner": "Kintner",
-      "Steve & Beth Coffey": "Coffey",
-      "The Friends of Israel Gospel Ministry": "Berg",
-      "Jeff & Arlene Berg": "Berg",
-      "Tim & Alice Dysert": "Dysert",
-      "Short Term Missions": "Short",
-    };
-
-    return sortMap[name] || name.split(" ").pop() || name;
-  };
-
-  // Sort missions by custom sort key
-  missions.sort((a, b) => {
-    const keyA = getSortKey(a["Missionary Name"]);
-    const keyB = getSortKey(b["Missionary Name"]);
-    return keyA.localeCompare(keyB);
-  });
 
   return (
     <div className="w-full">
