@@ -84,7 +84,7 @@ function EventsGalleryComponent({ events: serverEvents }: EventsGalleryProps) {
         setCurrentIndex((prev) => (prev + 1) % allEvents.length);
         setTimeout(() => setIsFlipping(false), 50);
       }, 300);
-    }, 5000); // 5 seconds - reduces CPU usage while maintaining engagement
+    }, 7000); // 7 seconds - gives users more time to read event details
 
     return () => {
       if (autoplayIntervalRef.current) {
