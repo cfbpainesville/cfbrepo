@@ -83,9 +83,7 @@ export default async function Home() {
               Welcome to Calvary Fellowship
             </h1>
             <p className="text-lg max-w-2xl mx-auto text-gray-700">
-              Small enough for you to quickly get to meet others in fellowship,
-              but big enough to provide pertinent ministry and educational
-              opportunities.
+              Small enough to know you. Big enough to serve you. Friendly enough to serve alongside us.
             </p>
           </div>
         </div>

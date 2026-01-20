@@ -121,10 +121,10 @@ export default async function About() {
           <div className="space-y-6">
             <div className="border-l-4 border-blue-600 pl-6">
               <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                Founded in 1985
+                Founded in 1937
               </h3>
               <p className="text-gray-600">
-                We were founded in 1985 as the merger of Calvary Baptist Church and Fellowship Baptist Church with a vision to reach the Painesville community with the Gospel of Jesus Christ and to build a church family committed to biblical truth and genuine fellowship.
+                Originally chartered as the Painesville Gospel Tabernacle, our most recent name change was the result of a merger of Calvary Baptist Church and Fellowship Baptist Church. All along our vision has been to reach the Painesville community with the Gospel of Jesus Christ and to build a church family committed to biblical truth and genuine fellowship, sending and supporting missions throughout the world.
               </p>
             </div>
 
@@ -317,7 +317,7 @@ export default async function About() {
             <p className="text-gray-700 mb-4">
               For our complete, detailed, statement of faith,{" "}
               <a
-                href="https://www.cfbchurch.net/hp_wordpress/wp-content/uploads/2011/06/statement-of-faith.pdf"
+                href="/documents/Statement%20Of%20Faith.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-600 hover:text-blue-700 font-semibold underline"

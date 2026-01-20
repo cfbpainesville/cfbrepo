@@ -13,13 +13,14 @@ interface Event {
 }
 
 // Format date/time in the user's local timezone
+// Supports both ISO date strings and plain text (e.g., "Every Thursday")
 function formatEventTime(dateTimeStr: string): string {
   if (!dateTimeStr) return "";
 
   try {
     const date = new Date(dateTimeStr);
 
-    // Check if date is valid
+    // Check if date is valid - if not, return plain text as-is
     if (isNaN(date.getTime())) return dateTimeStr;
 
     // Format date as "Day, Month Date" (e.g., "Sunday, December 15")

@@ -34,12 +34,12 @@ function MissionaryCard({ missionary }: { missionary: MissionRecord }) {
     <div className="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow overflow-hidden">
       {/* Image */}
       {missionary["Image Path"] ? (
-        <div className="relative h-48 bg-gray-100">
+        <div className="relative h-48 bg-white">
           <Image
             src={missionary["Image Path"]}
             alt={missionary["Missionary Name"]}
             fill
-            className="object-cover"
+            className="object-contain"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             quality={75}
             loading="lazy"

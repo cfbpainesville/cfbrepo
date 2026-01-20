@@ -192,7 +192,7 @@ export default function Contact() {
                 htmlFor="email"
                 className="block text-sm font-semibold text-gray-900 mb-2"
               >
-                Email Address *
+                Email Address
               </label>
               <input
                 type="email"
@@ -200,7 +200,6 @@ export default function Contact() {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                required
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-sky-600 focus:ring-2 focus:ring-sky-200 placeholder-gray-500 text-gray-900"
                 placeholder="john@example.com"
               />
@@ -241,7 +240,7 @@ export default function Contact() {
                 required
                 rows={6}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-sky-600 focus:ring-2 focus:ring-sky-200 resize-none placeholder-gray-500 text-gray-900"
-                placeholder="Tell us how we can help you..."
+                placeholder="Tell us your story, share prayer requests, or tell us how we can help you..."
               ></textarea>
             </div>
 

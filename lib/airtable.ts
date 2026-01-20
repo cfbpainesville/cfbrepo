@@ -37,7 +37,7 @@ export const TABLES = {
 // Types for our Airtable records
 export interface ContactSubmission {
   Name: string;
-  Email: string;
+  Email?: string;
   Phone?: string;
   Message: string;
   "Date Submitted": string;
@@ -46,7 +46,7 @@ export interface ContactSubmission {
 
 export interface Event {
   "Event Name": string;
-  "Date/Time": string;
+  "Date/Time": string; // Supports both ISO date strings and plain text (e.g., "Every Thursday")
   Ministry: string;
   Description: string;
   Location?: string;
@@ -132,17 +132,31 @@ export async function getAllRecords(baseId: string, tableName: string, retries =
 
   for (let attempt = 1; attempt <= retries; attempt++) {
     try {
-      const records = await base(tableName).select().all();
+      // Add timeout to prevent hanging
+      const timeoutPromise = new Promise((_, reject) =>
+        setTimeout(() => reject(new Error('Airtable request timeout')), 5000)
+      );
+
+      const fetchPromise = base(tableName).select().all();
+      const records = await Promise.race([fetchPromise, timeoutPromise]) as any[];
+
       return records.map((record) => ({
         id: record.id,
         ...record.fields,
       }));
-    } catch (error) {
-      console.error(`Error fetching records (attempt ${attempt}/${retries}):`, error);
+    } catch (error: any) {
+      console.error(`Error fetching records (attempt ${attempt}/${retries}):`, error?.message || error);
 
-      // If this was the last attempt, throw the error
+      // Check if it's a rate limit error
+      if (error?.statusCode === 429 || error?.message?.includes('rate limit')) {
+        console.warn(`⚠️  Airtable rate limit exceeded for ${tableName}. Returning empty array.`);
+        return [];
+      }
+
+      // If this was the last attempt, return empty array instead of throwing
       if (attempt === retries) {
-        throw error;
+        console.warn(`⚠️  Failed to fetch ${tableName} after ${retries} attempts. Returning empty array.`);
+        return [];
       }
 
       // Wait before retrying (exponential backoff: 1s, 2s, 4s)
@@ -151,7 +165,7 @@ export async function getAllRecords(baseId: string, tableName: string, retries =
   }
 
   // This should never be reached, but TypeScript needs it
-  throw new Error("Failed to fetch records after all retries");
+  return [];
 }
 
 // Helper function to get a single record by ID
