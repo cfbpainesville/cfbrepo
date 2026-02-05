@@ -1,4 +1,5 @@
 import Airtable from "airtable";
+import { cache } from "react";
 
 // Lazy initialization of Airtable to support both Next.js and scripts
 let airtableInstance: Airtable | null = null;
@@ -126,8 +127,8 @@ export async function createRecord<T>(
   }
 }
 
-// Helper function to get all records from a table with retry logic
-export async function getAllRecords(baseId: string, tableName: string, retries = 3) {
+// Internal function to get all records (not cached)
+async function getAllRecordsInternal(baseId: string, tableName: string, retries = 3) {
   const base = getBase(baseId);
 
   for (let attempt = 1; attempt <= retries; attempt++) {
@@ -167,6 +168,10 @@ export async function getAllRecords(baseId: string, tableName: string, retries =
   // This should never be reached, but TypeScript needs it
   return [];
 }
+
+// Cached version that deduplicates requests within a single request cycle
+// This prevents the same data from being fetched multiple times (e.g., in generateMetadata and page component)
+export const getAllRecords = cache(getAllRecordsInternal);
 
 // Helper function to get a single record by ID
 export async function getRecord(

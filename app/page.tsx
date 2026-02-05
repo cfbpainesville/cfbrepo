@@ -4,10 +4,10 @@ import EventsGallery from "@/app/components/EventsGallery";
 import LocationLink from "@/app/components/LocationLink";
 import { getAllRecords, TABLES } from "@/lib/airtable";
 
-// Enable ISR with 3-day revalidation (259200 seconds)
-// Events change several times a month, so checking every 3 days is optimal
-// This reduces API load while ensuring events are fresh within 3 days
-export const revalidate = 259200;
+// Enable ISR with 7-day revalidation (604800 seconds)
+// Events change infrequently, checking weekly is sufficient
+// This minimizes API calls while keeping content reasonably fresh
+export const revalidate = 604800;
 
 interface AirtableEvent {
   id: string;

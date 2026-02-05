@@ -1,12 +1,6 @@
-import { getAllRecords, TABLES } from "@/lib/airtable";
-import { MISSIONS_BACKUP_DATA } from "@/lib/data/missions";
+import { MISSIONS_DATA } from "@/lib/data/missions";
 import Link from "next/link";
 import Image from "next/image";
-
-// Enable ISR - revalidate every 7 days (604800 seconds)
-// Missions data rarely changes (monthly/quarterly updates)
-// This reduces API calls while still allowing updates within a week
-export const revalidate = 604800;
 
 export const metadata = {
   title: "Missions | Calvary Fellowship",
@@ -184,54 +178,14 @@ function MissionaryCard({ missionary }: { missionary: MissionRecord }) {
 }
 
 export default async function MissionsPage() {
-  const BASE_ID = process.env.NEXT_PUBLIC_AIRTABLE_BASE_ID;
-
-  if (!BASE_ID) {
-    return (
-      <div className="w-full">
-        <section className="py-16 px-4 bg-white">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">Missions</h1>
-            <p className="text-gray-700">
-              Configuration error. Please check environment variables.
-            </p>
-          </div>
-        </section>
-      </div>
-    );
-  }
-
-  let missions: MissionRecord[] = [];
-  let error = null;
-  let usingBackupData = false;
-
-  try {
-    const allMissions = (await getAllRecords(
-      BASE_ID,
-      TABLES.MISSIONS
-    )) as MissionRecord[];
-    missions = allMissions.filter((m) => m.Published);
-
-    // If no missions found, use backup data
-    if (!missions || missions.length === 0) {
-      console.warn("No published missions found in Airtable, using backup data");
-      missions = MISSIONS_BACKUP_DATA.filter((m) => m.Published);
-      usingBackupData = true;
-    }
-  } catch (e) {
-    console.error("Error fetching missions from Airtable:", e);
-    // Use backup data on error
-    missions = MISSIONS_BACKUP_DATA.filter((m) => m.Published);
-    usingBackupData = true;
-    error = e;
-  }
-
-  // Sort by Sort Order field (ascending), missionaries without Sort Order go to the end
-  missions.sort((a, b) => {
-    const orderA = a["Sort Order"] ?? Number.MAX_SAFE_INTEGER;
-    const orderB = b["Sort Order"] ?? Number.MAX_SAFE_INTEGER;
-    return orderA - orderB;
-  });
+  // Use hardcoded data (no API calls)
+  const missions = MISSIONS_DATA
+    .filter((m) => m.Published)
+    .sort((a, b) => {
+      const orderA = a["Sort Order"] ?? Number.MAX_SAFE_INTEGER;
+      const orderB = b["Sort Order"] ?? Number.MAX_SAFE_INTEGER;
+      return orderA - orderB;
+    });
 
   return (
     <div className="w-full">
@@ -254,41 +208,21 @@ export default async function MissionsPage() {
       {/* Missionaries Grid */}
       <section className="py-16 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
-          {error ? (
-            <div className="text-center">
-              <p className="text-red-600 mb-4">
-                Unable to load missionaries at this time. Please try again
-                later.
-              </p>
-              <p className="text-sm text-gray-600">
-                Error: {error instanceof Error ? error.message : "Unknown error"}
-              </p>
-            </div>
-          ) : missions.length === 0 ? (
-            <div className="text-center">
-              <p className="text-gray-700">
-                No missionaries are currently listed. Check back soon!
-              </p>
-            </div>
-          ) : (
-            <>
-              <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                  Spreading the Gospel Worldwide
-                </h2>
-                <p className="text-lg text-gray-700 max-w-2xl mx-auto">
-                  We are privileged to support {missions.length} missionaries
-                  serving in countries throughout the world. Your prayers and support make their work possible.
-                </p>
-              </div>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Spreading the Gospel Worldwide
+            </h2>
+            <p className="text-lg text-gray-700 max-w-2xl mx-auto">
+              We are privileged to support {missions.length} missionaries
+              serving in countries throughout the world. Your prayers and support make their work possible.
+            </p>
+          </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {missions.map((missionary) => (
-                  <MissionaryCard key={missionary.id} missionary={missionary} />
-                ))}
-              </div>
-            </>
-          )}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {missions.map((missionary) => (
+              <MissionaryCard key={missionary.id} missionary={missionary} />
+            ))}
+          </div>
         </div>
       </section>
 

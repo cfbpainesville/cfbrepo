@@ -1,5 +1,4 @@
 import type { Viewport } from "next";
-import { getAllRecords, TABLES } from "@/lib/airtable";
 import { LEADERSHIP_DATA } from "@/lib/data/leadership";
 
 export const viewport: Viewport = {
@@ -7,11 +6,6 @@ export const viewport: Viewport = {
   initialScale: 1.0,
   viewportFit: "cover",
 };
-
-// Enable ISR with 7-day revalidation (604800 seconds)
-// Leadership data almost never changes (once or twice a year)
-// Has hardcoded fallback data, so safe to use longer cache
-export const revalidate = 604800;
 
 interface LeadershipMember {
   id?: string;
@@ -22,42 +16,9 @@ interface LeadershipMember {
   Phone?: string;
 }
 
-async function getLeadership(): Promise<LeadershipMember[]> {
-  try {
-    const baseId = process.env.NEXT_PUBLIC_AIRTABLE_BASE_ID;
-    if (!baseId) {
-      console.error("NEXT_PUBLIC_AIRTABLE_BASE_ID is not defined, using backup data");
-      return LEADERSHIP_DATA;
-    }
-
-    const records = (await getAllRecords(baseId, TABLES.LEADERSHIP)) as LeadershipMember[];
-
-    // If no records found, use backup data
-    if (!records || records.length === 0) {
-      return LEADERSHIP_DATA;
-    }
-
-    // Sort by position (Pastor first, then Deacons, then Trustees) and alphabetically within each group
-    const positionOrder: { [key: string]: number } = {
-      Pastor: 0,
-      Deacon: 1,
-      Trustee: 2,
-    };
-
-    return records.sort((a, b) => {
-      const posA = positionOrder[a.Position] ?? 999;
-      const posB = positionOrder[b.Position] ?? 999;
-      if (posA !== posB) return posA - posB;
-      return a.Name.localeCompare(b.Name);
-    });
-  } catch (error) {
-    console.error("Error fetching leadership data:", error);
-    return LEADERSHIP_DATA;
-  }
-}
-
 export default async function About() {
-  const leadership = await getLeadership();
+  // Use hardcoded data (no API calls)
+  const leadership = LEADERSHIP_DATA;
   return (
     <div className="w-full">
       {/* Header */}

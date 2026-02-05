@@ -1,9 +1,6 @@
-import { getAllRecords, TABLES } from "@/lib/airtable";
+import { MINISTRIES_DATA } from "@/lib/data/ministries";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-
-// Enable ISR - revalidate every hour
-export const revalidate = 3600;
 
 interface MinistryRecord {
   id: string;
@@ -16,75 +13,35 @@ interface MinistryRecord {
   Photos?: Array<{ url: string }>;
 }
 
-// Generate static params for all ministries
+// Generate static params for all ministries using hardcoded data
 export async function generateStaticParams() {
-  const BASE_ID = process.env.NEXT_PUBLIC_AIRTABLE_BASE_ID;
-
-  if (!BASE_ID) {
-    return [];
-  }
-
-  try {
-    const ministries = await getAllRecords(BASE_ID, TABLES.MINISTRIES) as MinistryRecord[];
-    return ministries
-      .filter((m) => m.Slug)
-      .map((ministry) => ({
-        slug: ministry.Slug!,
-      }));
-  } catch (error) {
-    console.error("Error generating static params:", error);
-    return [];
-  }
+  return MINISTRIES_DATA
+    .filter((m) => m.Slug)
+    .map((ministry) => ({
+      slug: ministry.Slug!,
+    }));
 }
 
-// Generate metadata for SEO
+// Generate metadata for SEO using hardcoded data
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const BASE_ID = process.env.NEXT_PUBLIC_AIRTABLE_BASE_ID;
+  const ministry = MINISTRIES_DATA.find((m) => m.Slug === slug);
 
-  if (!BASE_ID) {
+  if (!ministry) {
     return {
-      title: "Ministry | Calvary Fellowship",
+      title: "Ministry Not Found | Calvary Fellowship",
     };
   }
 
-  try {
-    const ministries = await getAllRecords(BASE_ID, TABLES.MINISTRIES) as MinistryRecord[];
-    const ministry = ministries.find((m) => m.Slug === slug);
-
-    if (!ministry) {
-      return {
-        title: "Ministry Not Found | Calvary Fellowship",
-      };
-    }
-
-    return {
-      title: `${ministry["Ministry Name"]} | Calvary Fellowship`,
-      description: ministry.Description.substring(0, 160),
-    };
-  } catch (error) {
-    return {
-      title: "Ministry | Calvary Fellowship",
-    };
-  }
+  return {
+    title: `${ministry["Ministry Name"]} | Calvary Fellowship`,
+    description: ministry.Description.substring(0, 160),
+  };
 }
 
 export default async function MinistryPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const BASE_ID = process.env.NEXT_PUBLIC_AIRTABLE_BASE_ID;
-
-  if (!BASE_ID) {
-    notFound();
-  }
-
-  let ministry: MinistryRecord | undefined;
-
-  try {
-    const ministries = await getAllRecords(BASE_ID, TABLES.MINISTRIES) as MinistryRecord[];
-    ministry = ministries.find((m) => m.Slug === slug);
-  } catch (error) {
-    console.error("Error fetching ministry:", error);
-  }
+  const ministry = MINISTRIES_DATA.find((m) => m.Slug === slug);
 
   if (!ministry) {
     notFound();

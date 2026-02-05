@@ -1,11 +1,5 @@
-import { getAllRecords, TABLES } from "@/lib/airtable";
-import { MINISTRIES_BACKUP_DATA } from "@/lib/data/ministries";
+import { MINISTRIES_DATA } from "@/lib/data/ministries";
 import Link from "next/link";
-
-// Enable ISR - revalidate every 7 days (604800 seconds)
-// Ministries data rarely changes (monthly/quarterly updates)
-// This reduces API calls while still allowing updates within a week
-export const revalidate = 604800;
 
 export const metadata = {
   title: "Ministries | Calvary Fellowship",
@@ -78,43 +72,8 @@ function MinistryCard({ ministry }: { ministry: MinistryRecord }) {
 }
 
 export default async function MinistriesPage() {
-  const BASE_ID = process.env.NEXT_PUBLIC_AIRTABLE_BASE_ID;
-
-  if (!BASE_ID) {
-    return (
-      <div className="w-full">
-        <section className="py-16 px-4 bg-white">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">Ministries</h1>
-            <p className="text-gray-700">
-              Airtable configuration is missing. Please check your environment variables.
-            </p>
-          </div>
-        </section>
-      </div>
-    );
-  }
-
-  let ministries: MinistryRecord[] = [];
-  let error = null;
-
-  try {
-    ministries = await getAllRecords(BASE_ID, TABLES.MINISTRIES) as MinistryRecord[];
-
-    // If no ministries found, use backup data
-    if (!ministries || ministries.length === 0) {
-      console.warn("No ministries found in Airtable, using backup data");
-      ministries = MINISTRIES_BACKUP_DATA;
-    }
-  } catch (e) {
-    console.error("Error fetching ministries from Airtable:", e);
-    // Use backup data on error
-    ministries = MINISTRIES_BACKUP_DATA;
-    error = e;
-  }
-
-  // Sort ministries by name
-  ministries.sort((a, b) =>
+  // Use hardcoded data (no API calls)
+  const ministries = [...MINISTRIES_DATA].sort((a, b) =>
     a["Ministry Name"].localeCompare(b["Ministry Name"])
   );
 
@@ -138,40 +97,21 @@ export default async function MinistriesPage() {
       {/* Ministries Grid */}
       <section className="py-16 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
-          {error ? (
-            <div className="text-center">
-              <p className="text-red-600 mb-4">
-                Unable to load ministries at this time. Please try again later.
-              </p>
-              <p className="text-sm text-gray-600">
-                Error: {error instanceof Error ? error.message : "Unknown error"}
-              </p>
-            </div>
-          ) : ministries.length === 0 ? (
-            <div className="text-center">
-              <p className="text-gray-700">
-                No ministries are currently listed. Check back soon!
-              </p>
-            </div>
-          ) : (
-            <>
-              <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                  Connect & Grow
-                </h2>
-                <p className="text-lg text-gray-700 max-w-2xl mx-auto">
-                  At Calvary Fellowship we have ministries for all ages and stages of life. Explore our ministries below
-                  and find where you can serve, learn, and build meaningful relationships.
-                </p>
-              </div>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Connect & Grow
+            </h2>
+            <p className="text-lg text-gray-700 max-w-2xl mx-auto">
+              At Calvary Fellowship we have ministries for all ages and stages of life. Explore our ministries below
+              and find where you can serve, learn, and build meaningful relationships.
+            </p>
+          </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {ministries.map((ministry) => (
-                  <MinistryCard key={ministry.id} ministry={ministry} />
-                ))}
-              </div>
-            </>
-          )}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {ministries.map((ministry) => (
+              <MinistryCard key={ministry.id} ministry={ministry} />
+            ))}
+          </div>
         </div>
       </section>
 
