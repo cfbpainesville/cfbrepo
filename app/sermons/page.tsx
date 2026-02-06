@@ -1,6 +1,7 @@
 import { getAllRecords, TABLES } from "@/lib/airtable";
 import { ALL_SERMONS, type SermonData } from "@/lib/data/sermons";
 import Link from "next/link";
+import Image from "next/image";
 import CollapsibleYearSection from "./CollapsibleYearSection";
 
 // Enable ISR - revalidate every 7 days (604800 seconds)
@@ -16,13 +17,13 @@ function FeaturedSermonCard({ sermon }: { sermon: SermonData }) {
   const getIconForType = (type: string) => {
     switch (type) {
       case 'facebook':
-        return '📘';
+        return '/webp-icons/video-play-icon.webp';
       case 'youtube':
-        return '▶️';
+        return '/webp-icons/video-play-icon.webp';
       case 'powerpoint':
-        return '📄';
+        return '/webp-icons/file-icon.webp';
       default:
-        return '🎤';
+        return '/webp-icons/microphone-icon.webp';
     }
   };
 
@@ -44,19 +45,28 @@ function FeaturedSermonCard({ sermon }: { sermon: SermonData }) {
     >
       <div className="p-8">
         <div className="flex items-start justify-between mb-4">
-          <span className="text-4xl">{getIconForType(sermon.type)}</span>
+          <div className="w-16 h-16">
+            <Image
+              src={getIconForType(sermon.type)}
+              alt={sermon.type}
+              width={64}
+              height={64}
+              className="w-full h-full object-contain mix-blend-multiply"
+              style={{ filter: 'contrast(1.1) brightness(0.95)' }}
+            />
+          </div>
           <span className="text-xs font-semibold px-3 py-1 bg-sky-100 text-sky-800 rounded-full uppercase">
             {sermon.type}
           </span>
         </div>
-        <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-sky-600 transition-colors">
+        <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-[#006CD7] transition-colors">
           {sermon.title}
         </h3>
         <p className="text-sm text-gray-600 mb-2">{formatDate(sermon.date)}</p>
         {sermon.speaker && (
           <p className="text-sm text-gray-700 italic mb-4">Speaker: {sermon.speaker}</p>
         )}
-        <div className="mt-6 flex items-center text-sky-600 font-semibold">
+        <div className="mt-6 flex items-center text-[#006CD7] font-semibold">
           <span>Watch Now</span>
           <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -173,7 +183,7 @@ export default async function SermonsPage() {
       )}
 
       {/* All Sermons by Year */}
-      <section className="py-16 px-4 bg-gray-50">
+      <section className="py-16 px-4 bg-[#D9E5F0]">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">
             Complete Archive
@@ -197,7 +207,7 @@ export default async function SermonsPage() {
       {/* Info Section */}
       <section className="py-16 px-4 bg-white">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="bg-sky-50 p-8 rounded-lg border-l-4 border-sky-600">
+          <div className="bg-[#C5D5E4] p-8 rounded-lg border-l-4 border-[#006CD7]">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
               Can't Find What You're Looking For?
             </h3>
@@ -208,7 +218,7 @@ export default async function SermonsPage() {
             </p>
             <Link
               href="/contact"
-              className="inline-block bg-sky-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-sky-700 transition-colors"
+              className="inline-block bg-[#006CD7] text-white px-8 py-3 rounded-lg font-semibold hover:bg-[#3D94E8] transition-colors"
             >
               Contact Us
             </Link>

@@ -1,19 +1,20 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import type { SermonData } from "@/lib/data/sermons";
 
 function SermonCard({ sermon }: { sermon: SermonData }) {
   const getIconForType = (type: string) => {
     switch (type) {
       case 'facebook':
-        return '📘';
+        return '/webp-icons/video-play-icon.webp';
       case 'youtube':
-        return '▶️';
+        return '/webp-icons/video-play-icon.webp';
       case 'powerpoint':
-        return '📄';
+        return '/webp-icons/file-icon.webp';
       default:
-        return '🎤';
+        return '/webp-icons/microphone-icon.webp';
     }
   };
 
@@ -22,11 +23,20 @@ function SermonCard({ sermon }: { sermon: SermonData }) {
       href={sermon.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="flex items-center gap-3 p-3 bg-white rounded-lg hover:bg-sky-50 transition-colors group border border-gray-100 hover:border-sky-200"
+      className="flex items-center gap-3 p-3 bg-white rounded-lg hover:bg-[#C5D5E4] transition-colors group border border-gray-100 hover:border-sky-200"
     >
-      <span className="text-2xl flex-shrink-0">{getIconForType(sermon.type)}</span>
+      <div className="w-10 h-10 flex-shrink-0">
+        <Image
+          src={getIconForType(sermon.type)}
+          alt={sermon.type}
+          width={40}
+          height={40}
+          className="w-full h-full object-contain mix-blend-multiply"
+          style={{ filter: 'contrast(1.1) brightness(0.95)' }}
+        />
+      </div>
       <div className="flex-1 min-w-0">
-        <h4 className="font-semibold text-gray-900 group-hover:text-sky-600 transition-colors truncate">
+        <h4 className="font-semibold text-gray-900 group-hover:text-[#006CD7] transition-colors truncate">
           {sermon.title}
         </h4>
         {sermon.speaker && (
@@ -55,7 +65,7 @@ export default function CollapsibleYearSection({
     <div className="mb-8 border border-gray-200 rounded-lg overflow-hidden">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full px-6 py-4 bg-gray-50 hover:bg-gray-100 transition-colors flex justify-between items-center"
+        className="w-full px-6 py-4 bg-[#D9E5F0] hover:bg-gray-100 transition-colors flex justify-between items-center"
       >
         <h3 className="text-2xl font-bold text-gray-900">{year}</h3>
         <div className="flex items-center gap-2">

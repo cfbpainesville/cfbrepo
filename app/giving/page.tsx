@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export const metadata = {
   title: "Give Online | Calvary Fellowship",
   description: "Support the ministries of Calvary Fellowship through online giving.",
@@ -7,8 +9,17 @@ export default function Giving() {
   return (
     <div className="w-full">
       {/* Header */}
-      <section className="bg-gradient-to-br from-blue-900 to-blue-700 text-white py-16 px-4">
-        <div className="max-w-4xl mx-auto">
+      <section className="bg-gradient-to-br from-[#006CD7] to-[#0055AB] text-white py-16 px-4 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-25">
+          <Image
+            src="/webp-background/hands-helping.webp"
+            alt=""
+            fill
+            className="object-cover"
+            priority={false}
+          />
+        </div>
+        <div className="max-w-4xl mx-auto relative z-10">
           <h1 className="text-5xl font-bold mb-4">Give Online</h1>
           <p className="text-xl text-blue-100">
             Supporting God's work at Calvary Fellowship
@@ -44,7 +55,16 @@ export default function Giving() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
               {/* Online Giving */}
               <div className="bg-white p-8 rounded-lg shadow-md border-2 border-blue-600">
-                <div className="text-5xl mb-4">💳</div>
+                <div className="w-20 h-20 mx-auto mb-4">
+                  <Image
+                    src="/webp-icons/credit-card.webp"
+                    alt="Credit Card"
+                    width={80}
+                    height={80}
+                    className="w-full h-full object-contain mix-blend-multiply"
+                    style={{ filter: 'contrast(1.1) brightness(0.95)' }}
+                  />
+                </div>
                 <h4 className="text-2xl font-bold text-gray-900 mb-4">
                   Give Online
                 </h4>
@@ -55,7 +75,7 @@ export default function Giving() {
                   href="https://www.kindridgiving.com/app/giving/cfbcgiving"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg font-bold hover:bg-blue-700 transition-colors"
+                  className="inline-block bg-[#006CD7] text-white px-8 py-3 rounded-lg font-bold hover:bg-[#3D94E8] transition-colors"
                 >
                   Give Now
                 </a>
@@ -63,7 +83,16 @@ export default function Giving() {
 
               {/* In-Person Giving */}
               <div className="bg-white p-8 rounded-lg shadow-md">
-                <div className="text-5xl mb-4">⛪</div>
+                <div className="w-20 h-20 mx-auto mb-4">
+                  <Image
+                    src="/webp-icons/brick-church-icon.webp"
+                    alt="Church Building"
+                    width={80}
+                    height={80}
+                    className="w-full h-full object-contain mix-blend-multiply"
+                    style={{ filter: 'contrast(1.1) brightness(0.95)' }}
+                  />
+                </div>
                 <h4 className="text-2xl font-bold text-gray-900 mb-4">
                   Give In Person
                 </h4>
@@ -78,8 +107,17 @@ export default function Giving() {
             </div>
 
             {/* Mail Option */}
-            <div className="bg-gray-50 p-8 rounded-lg">
-              <div className="text-4xl mb-4">✉️</div>
+            <div className="bg-[#D9E5F0] p-8 rounded-lg">
+              <div className="w-16 h-16 mx-auto mb-4">
+                <Image
+                  src="/webp-icons/giving-mail.webp"
+                  alt="Mail"
+                  width={64}
+                  height={64}
+                  className="w-full h-full object-contain mix-blend-multiply"
+                  style={{ filter: 'contrast(1.1) brightness(0.95)' }}
+                />
+              </div>
               <h4 className="text-xl font-bold text-gray-900 mb-3">
                 Give by Mail
               </h4>

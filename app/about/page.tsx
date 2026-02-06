@@ -22,7 +22,7 @@ export default async function About() {
   return (
     <div className="w-full">
       {/* Header */}
-      <section className="bg-gradient-to-br from-blue-900 to-blue-700 text-white py-16 px-4">
+      <section className="bg-gradient-to-br from-[#006CD7] to-[#0055AB] text-white py-16 px-4">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-5xl font-bold mb-4">About Calvary Fellowship</h1>
           <p className="text-xl text-blue-100">
@@ -51,7 +51,7 @@ export default async function About() {
       </section>
 
       {/* Church Character */}
-      <section className="py-16 px-4 bg-gray-50">
+      <section className="py-16 px-4 bg-[#D9E5F0]">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl font-bold mb-8 text-center text-gray-900">
             Our Character
@@ -115,7 +115,7 @@ export default async function About() {
       </section>
 
       {/* Senior Pastor */}
-      <section className="py-16 px-4 bg-gray-50">
+      <section className="py-16 px-4 bg-[#D9E5F0]">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl font-bold mb-12 text-center text-gray-900">
             Our Leadership

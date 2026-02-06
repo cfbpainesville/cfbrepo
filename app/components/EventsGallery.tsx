@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, memo } from "react";
+import Image from "next/image";
 import "./events-gallery.css";
 
 interface Event {
@@ -46,7 +47,7 @@ const INITIAL_EVENT: Event = {
   name: "Sunday Morning Services",
   time: "10:00 AM - 12:00 PM",
   description: "Sunday School @ 10 AM • Morning Worship @ 11 AM",
-  image: "🙏",
+  image: "/webp-icons/cross-icon.webp",
 };
 
 interface EventsGalleryProps {
@@ -163,7 +164,18 @@ function EventsGalleryComponent({ events: serverEvents }: EventsGalleryProps) {
 
             {/* Event Icon */}
             <div className={`events-image-placeholder ${isFlipping ? `flipping-${flipDirection}` : ''}`}>
-              {currentEvent.image || "📅"}
+              {currentEvent.image && currentEvent.image.startsWith('/') ? (
+                <Image
+                  src={currentEvent.image}
+                  alt={currentEvent.name}
+                  width={80}
+                  height={80}
+                  className="w-20 h-20 object-contain mix-blend-multiply"
+                  style={{ filter: 'contrast(1.1) brightness(0.95)' }}
+                />
+              ) : (
+                currentEvent.image || "📅"
+              )}
             </div>
 
             {/* Right Navigation Button */}

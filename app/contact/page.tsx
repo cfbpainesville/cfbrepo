@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { submitContactForm } from "@/app/actions/contact";
 
 export default function Contact() {
@@ -63,75 +64,115 @@ export default function Contact() {
       </section>
 
       {/* Contact Options */}
-      <section className="py-16 px-4 bg-gray-50">
+      <section className="py-16 px-4 bg-[#D9E5F0]">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Phone */}
-            <div className="bg-white p-8 rounded-lg shadow-md text-center">
-              <div className="text-5xl mb-4">📞</div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">Call Us</h3>
-              <p className="text-gray-600 mb-4">
-                Monday through Friday, 9:00 AM - 5:00 PM
-              </p>
-              <a
-                href="tel:(440) 354-8994"
-                className="text-3xl font-bold text-sky-600 hover:text-sky-700 transition-colors"
-              >
-                (440) 354-8994
-              </a>
+            <div className="bg-white p-8 rounded-lg shadow-md text-center relative overflow-hidden">
+              <div className="absolute inset-0 opacity-20">
+                <Image
+                  src="/webp-background/praying-hands.webp"
+                  alt=""
+                  fill
+                  className="object-cover"
+                  priority={false}
+                />
+              </div>
+              <div className="relative z-10">
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">Call Us</h3>
+                <p className="text-gray-600 mb-4">
+                  Monday through Friday, 9:00 AM - 5:00 PM
+                </p>
+                <a
+                  href="tel:(440) 354-8994"
+                  className="text-3xl font-bold text-[#006CD7] hover:text-[#3D94E8] transition-colors"
+                >
+                  (440) 354-8994
+                </a>
+              </div>
             </div>
 
             {/* Email */}
-            <div className="bg-white p-8 rounded-lg shadow-md text-center">
-              <div className="text-5xl mb-4">✉️</div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">Email Us</h3>
-              <p className="text-gray-600 mb-4">
-                Email is monitored on Thursdays
-              </p>
-              <a
-                href="mailto:info@cfbchurch.net"
-                className="text-xl font-bold text-sky-600 hover:text-sky-700 transition-colors break-all"
-              >
-                info@cfbchurch.net
-              </a>
+            <div className="bg-white p-8 rounded-lg shadow-md text-center relative overflow-hidden">
+              <div className="absolute inset-0 opacity-20">
+                <Image
+                  src="/webp-background/praying-hands-bible.webp"
+                  alt=""
+                  fill
+                  className="object-cover"
+                  priority={false}
+                />
+              </div>
+              <div className="relative z-10">
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">Email Us</h3>
+                <p className="text-gray-600 mb-4">
+                  Email is monitored on Thursdays
+                </p>
+                <a
+                  href="mailto:info@cfbchurch.net"
+                  className="text-xl font-bold text-[#006CD7] hover:text-[#3D94E8] transition-colors break-all"
+                >
+                  info@cfbchurch.net
+                </a>
+              </div>
             </div>
 
             {/* Visit */}
-            <div className="bg-white p-8 rounded-lg shadow-md text-center cursor-pointer hover:shadow-lg transition-shadow" onClick={() => {
+            <div className="bg-white p-8 rounded-lg shadow-md text-center cursor-pointer hover:shadow-lg transition-shadow relative overflow-hidden" onClick={() => {
               const mapSection = document.getElementById('location-map');
               if (mapSection) mapSection.scrollIntoView({ behavior: 'smooth' });
             }}>
-              <div className="text-5xl mb-4">📍</div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">Visit Us</h3>
-              <p className="text-gray-600">
-                727 Mentor Avenue
-                <br />
-                Painesville, OH 44077
-              </p>
-              <p className="text-gray-600 text-sm mt-4">
-                Sundays at 11:00 AM
-              </p>
-              <p className="text-sky-600 text-sm mt-2 font-semibold">
-                Click to view map
-              </p>
+              <div className="absolute inset-0 opacity-20">
+                <Image
+                  src="/webp-background/calvary.webp"
+                  alt=""
+                  fill
+                  className="object-cover"
+                  priority={false}
+                />
+              </div>
+              <div className="relative z-10">
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">Visit Us</h3>
+                <p className="text-gray-600">
+                  727 Mentor Avenue
+                  <br />
+                  Painesville, OH 44077
+                </p>
+                <p className="text-gray-600 text-sm mt-4">
+                  Sundays at 11:00 AM
+                </p>
+                <p className="text-[#006CD7] text-sm mt-2 font-semibold">
+                  Click to view map
+                </p>
+              </div>
             </div>
 
             {/* Message Form */}
-            <div className="bg-white p-8 rounded-lg shadow-md text-center">
-              <div className="text-5xl mb-4">💬</div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">Message Form</h3>
-              <p className="text-gray-600 mb-4">
-                Just fill out the form below and hit "send message!"
-              </p>
-              <button
-                onClick={() => {
-                  const formSection = document.getElementById('contact-form');
-                  if (formSection) formSection.scrollIntoView({ behavior: 'smooth' });
-                }}
-                className="text-sky-600 hover:text-sky-700 font-semibold underline cursor-pointer"
-              >
-                Go to form
-              </button>
+            <div className="bg-white p-8 rounded-lg shadow-md text-center relative overflow-hidden">
+              <div className="absolute inset-0 opacity-20">
+                <Image
+                  src="/webp-background/hands-helping.webp"
+                  alt=""
+                  fill
+                  className="object-cover"
+                  priority={false}
+                />
+              </div>
+              <div className="relative z-10">
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">Message Form</h3>
+                <p className="text-gray-600 mb-4">
+                  Just fill out the form below and hit "send message!"
+                </p>
+                <button
+                  onClick={() => {
+                    const formSection = document.getElementById('contact-form');
+                    if (formSection) formSection.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="text-[#006CD7] hover:text-[#3D94E8] font-semibold underline cursor-pointer"
+                >
+                  Go to form
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -181,7 +222,7 @@ export default function Contact() {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-sky-600 focus:ring-2 focus:ring-sky-200 placeholder-gray-500 text-gray-900"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#006CD7] focus:ring-2 focus:ring-[#6BB0F0] placeholder-gray-500 text-gray-900"
                 placeholder="John Doe"
               />
             </div>
@@ -200,7 +241,7 @@ export default function Contact() {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-sky-600 focus:ring-2 focus:ring-sky-200 placeholder-gray-500 text-gray-900"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#006CD7] focus:ring-2 focus:ring-[#6BB0F0] placeholder-gray-500 text-gray-900"
                 placeholder="john@example.com"
               />
             </div>
@@ -219,7 +260,7 @@ export default function Contact() {
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-sky-600 focus:ring-2 focus:ring-sky-200 placeholder-gray-500 text-gray-900"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#006CD7] focus:ring-2 focus:ring-[#6BB0F0] placeholder-gray-500 text-gray-900"
                 placeholder="(440) 123-4567"
               />
             </div>
@@ -239,7 +280,7 @@ export default function Contact() {
                 onChange={handleChange}
                 required
                 rows={6}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-sky-600 focus:ring-2 focus:ring-sky-200 resize-none placeholder-gray-500 text-gray-900"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#006CD7] focus:ring-2 focus:ring-[#6BB0F0] resize-none placeholder-gray-500 text-gray-900"
                 placeholder="Tell us your story, share prayer requests, or tell us how we can help you..."
               ></textarea>
             </div>
@@ -249,7 +290,7 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-sky-600 text-white font-bold py-3 rounded-lg hover:bg-sky-700 transition-colors disabled:bg-sky-300 disabled:cursor-not-allowed"
+                className="w-full bg-[#006CD7] text-white font-bold py-3 rounded-lg hover:bg-[#3D94E8] transition-colors disabled:bg-[#6BB0F0] disabled:cursor-not-allowed"
               >
                 {isLoading ? "Sending..." : "Send Message"}
               </button>
@@ -263,18 +304,18 @@ export default function Contact() {
       </section>
 
       {/* Prayer Request Info */}
-      <section className="py-16 px-4 bg-gray-50">
+      <section className="py-16 px-4 bg-[#D9E5F0]">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold mb-8 text-center text-gray-900">
             Prayer Requests
           </h2>
-          <div className="bg-sky-50 border-l-4 border-sky-600 p-8 rounded-lg">
+          <div className="bg-[#C5D5E4] border-l-4 border-[#006CD7] p-8 rounded-lg">
             <p className="text-gray-700 mb-4">
               If you have a prayer request you'd like our church to lift up in
               prayer, please include it in your message or call us directly at{" "}
               <a
                 href="tel:(440) 354-8994"
-                className="font-bold text-sky-600 hover:underline"
+                className="font-bold text-[#006CD7] hover:underline"
               >
                 (440) 354-8994
               </a>
@@ -291,7 +332,7 @@ export default function Contact() {
       </section>
 
       {/* Map Section */}
-      <section id="location-map" className="py-16 px-4 bg-gray-50">
+      <section id="location-map" className="py-16 px-4 bg-[#D9E5F0]">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold mb-8 text-center text-gray-900">
             Our Location
@@ -323,13 +364,13 @@ export default function Contact() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="text-center">
-              <div className="text-4xl font-bold text-sky-600 mb-2">100%</div>
+              <div className="text-4xl font-bold text-[#006CD7] mb-2">100%</div>
               <p className="text-gray-600">
                 All inquiries are welcomed and treated with care
               </p>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-sky-600 mb-2">👥</div>
+              <div className="text-4xl font-bold text-[#006CD7] mb-2">👥</div>
               <p className="text-gray-600">
                 Our team is happy to help with any questions or concerns
               </p>

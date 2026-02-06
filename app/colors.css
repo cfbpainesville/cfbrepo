@@ -1,46 +1,55 @@
-/* Church Building Color Palette */
+/* Church Building Color Palette - New Scheme */
 :root {
-  /* Primary Colors - Sky Blue (dominant in image) */
-  --color-primary: #87ceeb;            /* Light sky blue - primary */
-  --color-primary-dark: #5a8fba;       /* Medium sky blue */
-  --color-primary-darker: #4682b4;     /* Darker sky blue */
+  /* Primary Colors - Vibrant Blue */
+  --color-primary: #006CD7;            /* Main brand blue */
+  --color-primary-light: #3D94E8;      /* Lighter blue for hover */
+  --color-primary-lighter: #6BB0F0;    /* Even lighter blue */
+  --color-primary-dark: #0055AB;       /* Darker blue for depth */
 
-  /* Secondary Colors - Earthy Tones (warm accent) */
-  --color-secondary-light: #d2b48c;    /* Tan - left side of building */
-  --color-secondary: #a0522d;          /* Sienna - medium brick */
-  --color-secondary-dark: #8b4513;     /* Saddle brown - darker brick */
+  /* Secondary Colors - Warm Orange (Accent) */
+  --color-secondary: #E8883F;          /* Main accent orange */
+  --color-secondary-light: #F0A567;    /* Lighter orange for hover */
+  --color-secondary-lighter: #F5BE8E;  /* Even lighter orange */
+  --color-secondary-dark: #C96E28;     /* Darker orange for depth */
 
-  /* Tertiary Colors - Nature & Structure */
-  --color-tertiary: #6b8e23;           /* Dark olive green - trees */
-  --color-structure: #1a1a1a;          /* Nearly black - windows/dark elements */
+  /* Tertiary Colors - Light Blue-Gray (Backgrounds) */
+  --color-tertiary: #C5D5E4;           /* Main background color */
+  --color-tertiary-light: #D9E5F0;     /* Lighter variation */
+  --color-tertiary-dark: #A8BFD4;      /* Darker variation */
 
-  /* Color Blends - Smooth transitions */
-  --color-blue-to-white: linear-gradient(135deg, #87ceeb 0%, #ffffff 100%);
-  --color-tan-to-brown: linear-gradient(135deg, #d2b48c 0%, #8b4513 100%);
+  /* Text & Structure */
+  --color-structure: #130303;          /* Near-black for text */
+  --color-structure-light: #3A3030;    /* Lighter for secondary text */
+
+  /* Color Blends - Smooth gradient transitions */
+  --color-blue-gradient: linear-gradient(135deg, #006CD7 0%, #3D94E8 100%);
+  --color-orange-gradient: linear-gradient(135deg, #E8883F 0%, #F0A567 100%);
+  --color-tertiary-gradient: linear-gradient(135deg, #D9E5F0 0%, #C5D5E4 100%);
+  --color-hero-gradient: linear-gradient(135deg, #C5D5E4 0%, #E8F3FA 100%);
 
   /* Neutral Colors */
   --color-white: #ffffff;
-  --color-light: #f5f1e8;              /* Off-white */
-  --color-gray-light: #f3f3f3;
-  --color-gray: #888888;
-  --color-gray-dark: #333333;
-  --color-black: #000000;
+  --color-light: #f5f7f9;
+  --color-gray-light: #e9ecef;
+  --color-gray: #6c757d;
+  --color-gray-dark: #343a40;
+  --color-black: #130303;
 }
 
 /* Header & Footer - Primary Brand Color */
 .header-bg {
-  background: var(--color-blue-to-white);
-  color: var(--color-structure);
+  background: var(--color-blue-gradient);
+  color: var(--color-white);
 }
 
 .footer-bg {
-  background: var(--color-tan-to-brown);
+  background: linear-gradient(135deg, #0055AB 0%, #006CD7 100%);
   color: var(--color-white);
 }
 
 /* Hero Section Gradient */
 .hero-gradient {
-  background: linear-gradient(135deg, #87ceeb 0%, #ffffff 100%);
+  background: var(--color-hero-gradient);
 }
 
 /* Hover States */
@@ -50,40 +59,72 @@
 }
 
 .hover-secondary:hover {
-  color: var(--color-primary-darker);
+  color: var(--color-primary);
 }
 
 /* Buttons */
 .btn-primary {
-  background-color: var(--color-primary-dark);
+  background: var(--color-blue-gradient);
   color: var(--color-white);
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .btn-primary:hover {
-  background-color: var(--color-primary-darker);
+  background: var(--color-primary-light);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 108, 215, 0.3);
 }
 
 .btn-primary:disabled {
-  background-color: var(--color-primary);
+  background: var(--color-primary-lighter);
+  opacity: 0.6;
+}
+
+.btn-secondary {
+  background: var(--color-orange-gradient);
+  color: var(--color-white);
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: var(--color-secondary-light);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(232, 136, 63, 0.3);
 }
 
 /* Links */
 .link-accent {
-  color: var(--color-primary-dark);
+  color: var(--color-primary);
 }
 
 .link-accent:hover {
-  color: var(--color-primary-darker);
+  color: var(--color-primary-light);
 }
 
 /* Form Focus */
 .form-focus:focus {
-  border-color: var(--color-primary-dark);
-  box-shadow: 0 0 0 2px var(--color-secondary-light);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(0, 108, 215, 0.2);
 }
 
 /* Borders */
 .border-accent {
-  border-color: var(--color-primary-dark);
+  border-color: var(--color-primary);
+}
+
+.border-secondary {
+  border-color: var(--color-secondary);
+}
+
+/* Near-black subtle borders for definition */
+.border-subtle {
+  border-color: rgba(19, 3, 3, 0.1);
+}
+
+.border-subtle-medium {
+  border-color: rgba(19, 3, 3, 0.15);
+}
+
+.border-subtle-strong {
+  border-color: rgba(19, 3, 3, 0.25);
 }

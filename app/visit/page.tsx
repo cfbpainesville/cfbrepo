@@ -1,4 +1,5 @@
 import type { Viewport } from "next";
+import Image from "next/image";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -10,8 +11,17 @@ export default function Visit() {
   return (
     <div className="w-full">
       {/* Header */}
-      <section className="bg-gradient-to-br from-blue-900 to-blue-700 text-white py-16 px-4">
-        <div className="max-w-4xl mx-auto">
+      <section className="bg-gradient-to-br from-[#006CD7] to-[#0055AB] text-white py-16 px-4 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-25">
+          <Image
+            src="/webp-background/worship-hands.webp"
+            alt=""
+            fill
+            className="object-cover"
+            priority={false}
+          />
+        </div>
+        <div className="max-w-4xl mx-auto relative z-10">
           <h1 className="text-5xl font-bold mb-4">Visit Us</h1>
           <p className="text-xl text-blue-100">
             We'd love to welcome you to our church family
@@ -20,8 +30,17 @@ export default function Visit() {
       </section>
 
       {/* First-Time Visitor Guide - 1st */}
-      <section className="py-16 px-4 bg-white">
-        <div className="max-w-4xl mx-auto">
+      <section className="py-16 px-4 bg-white relative">
+        <div className="absolute inset-0 opacity-20">
+          <Image
+            src="/webp-background/bright-cross.webp"
+            alt=""
+            fill
+            className="object-cover"
+            priority={false}
+          />
+        </div>
+        <div className="max-w-4xl mx-auto relative z-10">
           <h2 className="text-4xl font-bold mb-12 text-center text-gray-900">
             First-Time Visitor Guide
           </h2>
@@ -90,7 +109,7 @@ export default function Visit() {
       </section>
 
       {/* Location & Parking - 2nd */}
-      <section className="py-16 px-4 bg-gray-50">
+      <section className="py-16 px-4 bg-[#D9E5F0]">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl font-bold mb-12 text-center text-gray-900">
             Location and Parking
@@ -138,8 +157,17 @@ export default function Visit() {
             Our Church Culture
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center p-6 bg-gray-50 rounded-lg">
-              <div className="text-5xl mb-4">🤝</div>
+            <div className="text-center p-6 bg-[#D9E5F0] rounded-lg">
+              <div className="w-20 h-20 mx-auto mb-4">
+                <Image
+                  src="/webp-icons/heart-icon.webp"
+                  alt="Heart"
+                  width={80}
+                  height={80}
+                  className="w-full h-full object-contain mix-blend-multiply"
+                  style={{ filter: 'contrast(1.1) brightness(0.95)' }}
+                />
+              </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
                 Genuine Welcome
               </h3>
@@ -149,8 +177,17 @@ export default function Visit() {
               </p>
             </div>
 
-            <div className="text-center p-6 bg-gray-50 rounded-lg">
-              <div className="text-5xl mb-4">📖</div>
+            <div className="text-center p-6 bg-[#D9E5F0] rounded-lg">
+              <div className="w-20 h-20 mx-auto mb-4">
+                <Image
+                  src="/webp-icons/file-icon.webp"
+                  alt="Bible"
+                  width={80}
+                  height={80}
+                  className="w-full h-full object-contain mix-blend-multiply"
+                  style={{ filter: 'contrast(1.1) brightness(0.95)' }}
+                />
+              </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
                 Bible-Centered
               </h3>
@@ -160,8 +197,17 @@ export default function Visit() {
               </p>
             </div>
 
-            <div className="text-center p-6 bg-gray-50 rounded-lg">
-              <div className="text-5xl mb-4">❤️</div>
+            <div className="text-center p-6 bg-[#D9E5F0] rounded-lg">
+              <div className="w-20 h-20 mx-auto mb-4">
+                <Image
+                  src="/webp-icons/heart-icon.webp"
+                  alt="Heart"
+                  width={80}
+                  height={80}
+                  className="w-full h-full object-contain mix-blend-multiply"
+                  style={{ filter: 'contrast(1.1) brightness(0.95)' }}
+                />
+              </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
                 Community Minded
               </h3>
@@ -175,7 +221,7 @@ export default function Visit() {
       </section>
 
       {/* Sunday Schedule - 4th */}
-      <section className="py-16 px-4 bg-gray-50">
+      <section className="py-16 px-4 bg-[#D9E5F0]">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl font-bold mb-12 text-center text-gray-900">
             Sunday Schedule

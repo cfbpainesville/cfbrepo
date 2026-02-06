@@ -169,7 +169,7 @@ export default function Footer() {
                   <p className="text-gray-700 text-sm mb-2">
                     <a
                       href="tel:(440) 354-8994"
-                      className="text-sky-600 hover:text-sky-700 font-semibold"
+                      className="text-[#006CD7] hover:text-[#3D94E8] font-semibold"
                     >
                       📞 (440) 354-8994
                     </a>
@@ -177,7 +177,7 @@ export default function Footer() {
                   <p className="text-gray-700 text-sm">
                     <Link
                       href="/contact"
-                      className="text-sky-600 hover:text-sky-700 font-semibold"
+                      className="text-[#006CD7] hover:text-[#3D94E8] font-semibold"
                     >
                       ✉️ Send us a Message
                     </Link>
@@ -187,7 +187,7 @@ export default function Footer() {
 
               <button
                 onClick={() => setShowMap(false)}
-                className="mt-6 w-full bg-sky-600 text-white font-bold py-2 rounded-lg hover:bg-sky-700 transition-colors"
+                className="mt-6 w-full bg-[#006CD7] text-white font-bold py-2 rounded-lg hover:bg-[#3D94E8] transition-colors"
               >
                 Close Map
               </button>

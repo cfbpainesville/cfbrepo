@@ -1,5 +1,6 @@
 import { MINISTRIES_DATA } from "@/lib/data/ministries";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 
 interface MinistryRecord {
@@ -47,13 +48,40 @@ export default async function MinistryPage({ params }: { params: Promise<{ slug:
     notFound();
   }
 
+  // Map ministry slugs to appropriate background images
+  const getBackgroundImage = (slug: string) => {
+    const backgrounds: Record<string, string> = {
+      'prayer-ministry': '/webp-background/praying-hands.webp',
+      'childrens-church': '/webp-background/children-crafts.webp',
+      'awana': '/webp-background/children-crafts.webp',
+      'womens-ministry': '/webp-background/women-gathering.webp',
+      'adult-bible-fellowship': '/webp-background/bible-open-coffee.webp',
+      '727-student-ministry': '/webp-background/worship-hands.webp',
+      'music-ministry': '/webp-background/worship-hands.webp',
+      'helping-hands-food-pantry': '/webp-background/hands-helping.webp',
+      'mens-ministry': '/webp-background/praying-hands-bible.webp',
+    };
+    return backgrounds[slug] || '/webp-background/bright-cross.webp';
+  };
+
+  const backgroundImage = getBackgroundImage(slug);
+
   return (
     <div className="w-full">
       {/* Hero Section */}
       <section
-        className="hero-gradient py-20 px-4"
+        className="hero-gradient py-20 px-4 relative overflow-hidden"
       >
-        <div className="max-w-4xl mx-auto">
+        <div className="absolute inset-0 opacity-25">
+          <Image
+            src={backgroundImage}
+            alt=""
+            fill
+            className="object-cover"
+            priority={false}
+          />
+        </div>
+        <div className="max-w-4xl mx-auto relative z-10">
           <Link
             href="/ministries"
             className="inline-flex items-center text-gray-700 hover:text-gray-900 mb-6 font-semibold"
@@ -106,9 +134,9 @@ export default async function MinistryPage({ params }: { params: Promise<{ slug:
 
           {/* Meeting Times */}
           {ministry["Meeting Times"] && (
-            <div className="bg-sky-50 p-8 rounded-lg mb-8 border-l-4 border-sky-600">
+            <div className="bg-[#C5D5E4] p-8 rounded-lg mb-8 border-l-4 border-[#006CD7]">
               <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center">
-                <svg className="w-6 h-6 mr-3 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-6 h-6 mr-3 text-[#006CD7]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 When We Meet
@@ -121,7 +149,7 @@ export default async function MinistryPage({ params }: { params: Promise<{ slug:
 
           {/* Contact */}
           {ministry["Leader Contact"] && (
-            <div className="bg-gray-50 p-8 rounded-lg mb-8">
+            <div className="bg-[#D9E5F0] p-8 rounded-lg mb-8">
               <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center">
                 <svg className="w-6 h-6 mr-3 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -137,9 +165,9 @@ export default async function MinistryPage({ params }: { params: Promise<{ slug:
       </section>
 
       {/* Call to Action */}
-      <section className="py-16 px-4 bg-gray-50">
+      <section className="py-16 px-4 bg-[#D9E5F0]">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="bg-white p-8 rounded-lg shadow-md border-l-4 border-sky-600">
+          <div className="bg-white p-8 rounded-lg shadow-md border-l-4 border-[#006CD7]">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
               Interested in Joining?
             </h3>
@@ -150,13 +178,13 @@ export default async function MinistryPage({ params }: { params: Promise<{ slug:
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/contact"
-                className="inline-block bg-sky-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-sky-700 transition-colors"
+                className="inline-block bg-gradient-to-r from-[#E8883F] to-[#F0A567] text-white px-8 py-3 rounded-lg font-semibold hover:from-[#F0A567] hover:to-[#F5BE8E] transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
               >
                 Contact Us
               </Link>
               <Link
                 href="/visit"
-                className="inline-block bg-white text-sky-600 border-2 border-sky-600 px-8 py-3 rounded-lg font-semibold hover:bg-sky-50 transition-colors"
+                className="inline-block bg-white text-[#006CD7] border-2 border-[#006CD7] px-8 py-3 rounded-lg font-semibold hover:bg-[#C5D5E4] transition-colors"
               >
                 Plan Your Visit
               </Link>

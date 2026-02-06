@@ -36,14 +36,14 @@ function MinistryCard({ ministry }: { ministry: MinistryRecord }) {
       </p>
 
       {ministry["Meeting Times"] && (
-        <div className="mb-3 p-3 bg-gray-50 rounded-lg">
+        <div className="mb-3 p-3 bg-[#D9E5F0] rounded-lg">
           <p className="text-sm font-semibold text-gray-900 mb-1">Meeting Times:</p>
           <p className="text-sm text-gray-700 line-clamp-2">{ministry["Meeting Times"]}</p>
         </div>
       )}
 
       {ministry.Slug && (
-        <div className="mt-4 flex items-center text-sky-600 font-semibold text-sm">
+        <div className="mt-4 flex items-center text-[#006CD7] font-semibold text-sm">
           <span>Learn More</span>
           <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -116,9 +116,9 @@ export default async function MinistriesPage() {
       </section>
 
       {/* Call to Action */}
-      <section className="py-16 px-4 bg-gray-50">
+      <section className="py-16 px-4 bg-[#D9E5F0]">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="bg-sky-50 p-8 rounded-lg border-l-4 border-sky-600">
+          <div className="bg-[#C5D5E4] p-8 rounded-lg border-l-4 border-[#006CD7]">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
               Want to Get Involved?
             </h3>
@@ -129,7 +129,7 @@ export default async function MinistriesPage() {
             </p>
             <Link
               href="/contact"
-              className="inline-block bg-sky-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-sky-700 transition-colors"
+              className="inline-block bg-[#006CD7] text-white px-8 py-3 rounded-lg font-semibold hover:bg-[#3D94E8] transition-colors"
             >
               Contact Us
             </Link>

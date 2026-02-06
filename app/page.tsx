@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import EventsGallery from "@/app/components/EventsGallery";
 import LocationLink from "@/app/components/LocationLink";
+import ChurchImageTransition from "@/app/components/ChurchImageTransition";
 import { getAllRecords, TABLES } from "@/lib/airtable";
 
 // Enable ISR with 7-day revalidation (604800 seconds)
@@ -37,14 +38,40 @@ async function getEvents(): Promise<Event[]> {
 
     const records = await getAllRecords(baseId, TABLES.EVENTS) as AirtableEvent[];
 
-    return records.map((record) => ({
+    const events = records.map((record) => ({
       id: record.id,
       name: record["Event Name"] || "Event",
       time: record["Date/Time"] || "", // Keep for backward compatibility
       dateTime: record["Date/Time"] || "", // Raw ISO string for client-side formatting
       description: record.Description || "",
-      image: "📅",
+      image: "/webp-icons/time-date-icon.webp",
     }));
+
+    // Remove duplicates based on name and dateTime
+    const uniqueEvents = events.filter((event, index, self) => {
+      return index === self.findIndex((e) => (
+        e.name === event.name && e.dateTime === event.dateTime
+      ));
+    });
+
+    // Sort events by date/time (soonest first)
+    // Events with invalid dates will be sorted to the end
+    return uniqueEvents.sort((a, b) => {
+      const dateA = new Date(a.dateTime || "");
+      const dateB = new Date(b.dateTime || "");
+
+      // Check if dates are valid
+      const isValidA = !isNaN(dateA.getTime());
+      const isValidB = !isNaN(dateB.getTime());
+
+      // Invalid dates go to the end
+      if (!isValidA && !isValidB) return 0;
+      if (!isValidA) return 1;
+      if (!isValidB) return -1;
+
+      // Sort by date ascending (soonest first)
+      return dateA.getTime() - dateB.getTime();
+    });
   } catch (error) {
     console.error("Error fetching events:", error);
     return [];
@@ -58,19 +85,7 @@ export default async function Home() {
       {/* Church Building Image - First Section */}
       <section className="py-12 px-4 bg-white">
         <div className="max-w-5xl mx-auto">
-          <div className="rounded-lg overflow-hidden shadow-lg">
-            <Image
-              src="/church-artistic-sketch.webp"
-              alt="Calvary Fellowship Building at 727 Mentor Avenue"
-              width={1200}
-              height={900}
-              priority={true}
-              loading="eager"
-              quality={85}
-              className="w-full h-auto"
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1200px"
-            />
-          </div>
+          <ChurchImageTransition />
           <LocationLink />
         </div>
       </section>
@@ -90,12 +105,21 @@ export default async function Home() {
       </section>
 
       {/* Pastor's Welcome */}
-      <section className="py-16 px-4 bg-white">
-        <div className="max-w-4xl mx-auto">
+      <section className="py-16 px-4 bg-white relative">
+        <div className="absolute inset-0 opacity-20">
+          <Image
+            src="/webp-background/praying-hands-bible.webp"
+            alt=""
+            fill
+            className="object-cover"
+            priority={false}
+          />
+        </div>
+        <div className="max-w-4xl mx-auto relative z-10">
           <h2 className="text-4xl font-bold mb-8 text-center text-gray-900">
             A Word from Our Pastor
           </h2>
-          <div className="bg-gray-50 p-8 rounded-lg border-l-4 border-sky-600">
+          <div className="bg-white/90 backdrop-blur-sm p-8 rounded-lg border-l-4 border-[#006CD7]">
             <p className="text-lg text-gray-700 mb-6 leading-relaxed">
               "If you are not greeted by at least three people, then we haven't
               done what's right, and I wouldn't expect you to come back."
@@ -128,54 +152,87 @@ export default async function Home() {
             Why Visit Calvary Fellowship?
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Card 1 */}
-            <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-200">
-              <div className="w-12 h-12 bg-sky-600 rounded-full flex items-center justify-center mb-4">
-                <span className="text-white text-2xl">🙏</span>
+            {/* Card 1 - Strong Faith */}
+            <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow border-2 border-[#130303]/10 hover:border-[#130303]/20 relative overflow-hidden">
+              <div className="absolute inset-0 opacity-[0.20]">
+                <Image
+                  src="/webp-background/bright-cross.webp"
+                  alt=""
+                  fill
+                  className="object-cover"
+                  priority={false}
+                />
               </div>
-              <h3 className="text-xl font-bold mb-3 text-gray-900">
-                Strong Faith
-              </h3>
-              <p className="text-gray-600">
-                Grounded in the Bible, we proclaim the Good News of Jesus
-                Christ with conviction and love.
-              </p>
+              <div className="relative z-10">
+                <h3 className="text-xl font-bold mb-3 text-gray-900">
+                  Strong Faith
+                </h3>
+                <p className="text-gray-600">
+                  Grounded in the Bible, we proclaim the Good News of Jesus
+                  Christ with conviction and love.
+                </p>
+              </div>
             </div>
 
-            {/* Card 2 */}
-            <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-200">
-              <div className="w-12 h-12 bg-sky-600 rounded-full flex items-center justify-center mb-4">
-                <span className="text-white text-2xl">👥</span>
+            {/* Card 2 - Real Community */}
+            <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow border-2 border-[#130303]/10 hover:border-[#130303]/20 relative overflow-hidden">
+              <div className="absolute inset-0 opacity-[0.20]">
+                <Image
+                  src="/webp-background/hands-helping.webp"
+                  alt=""
+                  fill
+                  className="object-cover"
+                  priority={false}
+                />
               </div>
-              <h3 className="text-xl font-bold mb-3 text-gray-900">
-                Real Community
-              </h3>
-              <p className="text-gray-600">
-                We're small enough to build genuine relationships and big enough
-                to offer diverse ministries for your family.
-              </p>
+              <div className="relative z-10">
+                <h3 className="text-xl font-bold mb-3 text-gray-900">
+                  Real Community
+                </h3>
+                <p className="text-gray-600">
+                  We're small enough to build genuine relationships and big enough
+                  to offer diverse ministries for your family.
+                </p>
+              </div>
             </div>
 
-            {/* Card 3 */}
-            <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-200">
-              <div className="w-12 h-12 bg-sky-600 rounded-full flex items-center justify-center mb-4">
-                <span className="text-white text-2xl">📚</span>
+            {/* Card 3 - Spiritual Growth */}
+            <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow border-2 border-[#130303]/10 hover:border-[#130303]/20 relative overflow-hidden">
+              <div className="absolute inset-0 opacity-[0.20]">
+                <Image
+                  src="/webp-background/bible-open-coffee.webp"
+                  alt=""
+                  fill
+                  className="object-cover"
+                  priority={false}
+                />
               </div>
-              <h3 className="text-xl font-bold mb-3 text-gray-900">
-                Spiritual Growth
-              </h3>
-              <p className="text-gray-600">
-                Through Bible study, discipleship, and prayer, we help you grow
-                closer to God and His Word.
-              </p>
+              <div className="relative z-10">
+                <h3 className="text-xl font-bold mb-3 text-gray-900">
+                  Spiritual Growth
+                </h3>
+                <p className="text-gray-600">
+                  Through Bible study, discipleship, and prayer, we help you grow
+                  closer to God and His Word.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Events & Ministries Gallery */}
-      <section className="py-16 px-4 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
+      <section className="py-16 px-4 bg-[#D9E5F0] relative">
+        <div className="absolute inset-0 opacity-20">
+          <Image
+            src="/webp-background/worship-hands.webp"
+            alt=""
+            fill
+            className="object-cover"
+            priority={false}
+          />
+        </div>
+        <div className="max-w-7xl mx-auto relative z-10">
           <h2 className="text-4xl font-bold mb-12 text-center text-gray-900">
             Upcoming Events & Ministries
           </h2>
@@ -192,8 +249,8 @@ export default async function Home() {
             Our Weekly Schedule
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-sky-50 p-6 rounded-lg">
-              <h3 className="text-2xl font-bold text-sky-700 mb-4">Sunday</h3>
+            <div className="bg-[#C5D5E4] p-6 rounded-lg">
+              <h3 className="text-2xl font-bold text-[#0055AB] mb-4">Sunday</h3>
               <ul className="space-y-3 text-gray-700">
                 <li className="flex justify-between">
                   <span>Sunday School</span>
@@ -210,7 +267,7 @@ export default async function Home() {
               </ul>
             </div>
 
-            <div className="bg-gray-50 p-6 rounded-lg">
+            <div className="bg-[#D9E5F0] p-6 rounded-lg">
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
                 During the Week
               </h3>
@@ -238,7 +295,7 @@ export default async function Home() {
           <div className="mt-8 text-center">
             <Link
               href="/ministries"
-              className="inline-block bg-blue-800 text-white px-8 py-3 rounded-lg font-bold hover:bg-blue-900 transition-colors shadow-lg"
+              className="inline-block bg-gradient-to-r from-[#E8883F] to-[#F0A567] text-white px-8 py-3 rounded-lg font-bold hover:from-[#F0A567] hover:to-[#F5BE8E] transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
             >
               Learn More About Our Ministries
             </Link>

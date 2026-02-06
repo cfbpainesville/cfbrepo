@@ -42,7 +42,7 @@ function MissionaryCard({ missionary }: { missionary: MissionRecord }) {
       ) : (
         <div className="h-48 bg-gradient-to-br from-sky-100 to-sky-200 flex items-center justify-center">
           <svg
-            className="w-20 h-20 text-sky-600 opacity-50"
+            className="w-20 h-20 text-[#006CD7] opacity-50"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -115,7 +115,7 @@ function MissionaryCard({ missionary }: { missionary: MissionRecord }) {
               </svg>
               <a
                 href={`mailto:${missionary.Email}`}
-                className="hover:text-sky-600 truncate"
+                className="hover:text-[#006CD7] truncate"
               >
                 {missionary.Email}
               </a>
@@ -141,7 +141,7 @@ function MissionaryCard({ missionary }: { missionary: MissionRecord }) {
                 href={missionary.Website}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-sky-600 truncate"
+                className="hover:text-[#006CD7] truncate"
               >
                 Website
               </a>
@@ -150,7 +150,7 @@ function MissionaryCard({ missionary }: { missionary: MissionRecord }) {
 
           {missionary.Address && (
             <details className="text-sm text-gray-600">
-              <summary className="cursor-pointer hover:text-sky-600 flex items-center">
+              <summary className="cursor-pointer hover:text-[#006CD7] flex items-center">
                 <svg
                   className="w-4 h-4 mr-2"
                   fill="none"
@@ -191,9 +191,18 @@ export default async function MissionsPage() {
     <div className="w-full">
       {/* Hero Section */}
       <section
-        className="hero-gradient py-20 px-4"
+        className="hero-gradient py-20 px-4 relative overflow-hidden"
       >
-        <div className="max-w-7xl mx-auto text-center">
+        <div className="absolute inset-0 opacity-25">
+          <Image
+            src="/webp-background/go-therefore-map.webp"
+            alt=""
+            fill
+            className="object-cover"
+            priority={false}
+          />
+        </div>
+        <div className="max-w-7xl mx-auto text-center relative z-10">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 text-gray-900">
             Our Missionaries
           </h1>
@@ -227,9 +236,18 @@ export default async function MissionsPage() {
       </section>
 
       {/* Call to Action */}
-      <section className="py-16 px-4 bg-gray-50">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="bg-sky-50 p-8 rounded-lg border-l-4 border-sky-600">
+      <section className="py-16 px-4 bg-[#D9E5F0] relative">
+        <div className="absolute inset-0 opacity-20">
+          <Image
+            src="/webp-background/hands-helping.webp"
+            alt=""
+            fill
+            className="object-cover"
+            priority={false}
+          />
+        </div>
+        <div className="max-w-4xl mx-auto text-center relative z-10">
+          <div className="bg-white/90 backdrop-blur-sm p-8 rounded-lg border-l-4 border-[#006CD7]">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
               Support Our Missionaries
             </h3>
@@ -240,7 +258,7 @@ export default async function MissionsPage() {
             </p>
             <Link
               href="/contact"
-              className="inline-block bg-sky-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-sky-700 transition-colors"
+              className="inline-block bg-[#006CD7] text-white px-8 py-3 rounded-lg font-semibold hover:bg-[#3D94E8] transition-colors"
             >
               Contact Us
             </Link>
