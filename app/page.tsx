@@ -153,8 +153,8 @@ export default async function Home() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Card 1 - Strong Faith */}
-            <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow border-2 border-[#130303]/10 hover:border-[#130303]/20 relative overflow-hidden">
-              <div className="absolute inset-0 opacity-[0.30]">
+            <div className="bg-white p-10 rounded-lg shadow-md hover:shadow-lg transition-shadow border-2 border-[#130303]/10 hover:border-[#130303]/20 relative overflow-hidden min-h-[280px]">
+              <div className="absolute inset-0 opacity-[0.50]">
                 <Image
                   src="/webp-background/bright-cross.webp"
                   alt=""
@@ -164,10 +164,10 @@ export default async function Home() {
                 />
               </div>
               <div className="relative z-10">
-                <h3 className="text-xl font-bold mb-3 text-gray-900">
+                <h3 className="text-xl font-bold mb-4 text-[#130303] drop-shadow-sm">
                   Strong Faith
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-[#130303] font-medium leading-relaxed">
                   Grounded in the Bible, we proclaim the Good News of Jesus
                   Christ with conviction and love.
                 </p>
@@ -175,8 +175,8 @@ export default async function Home() {
             </div>
 
             {/* Card 2 - Real Community */}
-            <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow border-2 border-[#130303]/10 hover:border-[#130303]/20 relative overflow-hidden">
-              <div className="absolute inset-0 opacity-[0.30]">
+            <div className="bg-white p-10 rounded-lg shadow-md hover:shadow-lg transition-shadow border-2 border-[#130303]/10 hover:border-[#130303]/20 relative overflow-hidden min-h-[280px]">
+              <div className="absolute inset-0 opacity-[0.50]">
                 <Image
                   src="/real-webp-photos/gathering-around-table.webp"
                   alt=""
@@ -186,10 +186,10 @@ export default async function Home() {
                 />
               </div>
               <div className="relative z-10">
-                <h3 className="text-xl font-bold mb-3 text-gray-900">
+                <h3 className="text-xl font-bold mb-4 text-[#130303] drop-shadow-sm">
                   Real Community
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-[#130303] font-medium leading-relaxed">
                   We're small enough to build genuine relationships and big enough
                   to offer diverse ministries for your family.
                 </p>
@@ -197,8 +197,8 @@ export default async function Home() {
             </div>
 
             {/* Card 3 - Spiritual Growth */}
-            <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow border-2 border-[#130303]/10 hover:border-[#130303]/20 relative overflow-hidden">
-              <div className="absolute inset-0 opacity-[0.30]">
+            <div className="bg-white p-10 rounded-lg shadow-md hover:shadow-lg transition-shadow border-2 border-[#130303]/10 hover:border-[#130303]/20 relative overflow-hidden min-h-[280px]">
+              <div className="absolute inset-0 opacity-[0.50]">
                 <Image
                   src="/webp-background/bible-open-coffee.webp"
                   alt=""
@@ -208,10 +208,10 @@ export default async function Home() {
                 />
               </div>
               <div className="relative z-10">
-                <h3 className="text-xl font-bold mb-3 text-gray-900">
+                <h3 className="text-xl font-bold mb-4 text-[#130303] drop-shadow-sm">
                   Spiritual Growth
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-[#130303] font-medium leading-relaxed">
                   Through Bible study, discipleship, and prayer, we help you grow
                   closer to God and His Word.
                 </p>

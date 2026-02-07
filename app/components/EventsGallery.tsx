@@ -47,7 +47,7 @@ const INITIAL_EVENT: Event = {
   name: "Sunday Morning Services",
   time: "10:00 AM - 12:00 PM",
   description: "Sunday School @ 10 AM • Morning Worship @ 11 AM",
-  image: "/webp-background/calvary.webp",
+  image: "/webp-background/main-service.webp",
 };
 
 // Map event names to specific background images
