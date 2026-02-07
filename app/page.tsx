@@ -178,7 +178,7 @@ export default async function Home() {
             <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow border-2 border-[#130303]/10 hover:border-[#130303]/20 relative overflow-hidden">
               <div className="absolute inset-0 opacity-[0.20]">
                 <Image
-                  src="/webp-background/hands-helping.webp"
+                  src="/real-webp-photos/gathering-around-table.webp"
                   alt=""
                   fill
                   className="object-cover"

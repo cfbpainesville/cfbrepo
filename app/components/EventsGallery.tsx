@@ -47,16 +47,43 @@ const INITIAL_EVENT: Event = {
   name: "Sunday Morning Services",
   time: "10:00 AM - 12:00 PM",
   description: "Sunday School @ 10 AM • Morning Worship @ 11 AM",
-  image: "/webp-icons/cross-icon.webp",
+  image: "/webp-background/calvary.webp",
 };
+
+// Map event names to specific background images
+function getEventImage(eventName: string): string {
+  const eventImageMap: Record<string, string> = {
+    "Sunday Morning Services": "/webp-background/calvary.webp",
+    "Morning Worship": "/webp-background/worship-hands.webp",
+    "Sunday School": "/webp-background/children-crafts.webp",
+    "Ladies Bible Study": "/webp-background/women-gathering.webp",
+  };
+
+  // Check for partial matches (case-insensitive)
+  const lowerEventName = eventName.toLowerCase();
+  for (const [key, value] of Object.entries(eventImageMap)) {
+    if (lowerEventName.includes(key.toLowerCase())) {
+      return value;
+    }
+  }
+
+  // Default to time-date icon if no match
+  return "/webp-icons/time-date-icon.webp";
+}
 
 interface EventsGalleryProps {
   events: Event[];
 }
 
 function EventsGalleryComponent({ events: serverEvents }: EventsGalleryProps) {
+  // Map server events to use specific images based on event name
+  const mappedEvents = serverEvents.map(event => ({
+    ...event,
+    image: getEventImage(event.name)
+  }));
+
   // Combine initial event with server-fetched events
-  const allEvents = [INITIAL_EVENT, ...serverEvents];
+  const allEvents = [INITIAL_EVENT, ...mappedEvents];
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoplay, setIsAutoplay] = useState(true);
   const [isFlipping, setIsFlipping] = useState(false);
