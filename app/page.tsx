@@ -106,7 +106,7 @@ export default async function Home() {
 
       {/* Pastor's Welcome */}
       <section className="py-16 px-4 bg-white relative">
-        <div className="absolute inset-0 opacity-20">
+        <div className="absolute inset-0 opacity-30">
           <Image
             src="/webp-background/praying-hands-bible.webp"
             alt=""
@@ -154,7 +154,7 @@ export default async function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Card 1 - Strong Faith */}
             <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow border-2 border-[#130303]/10 hover:border-[#130303]/20 relative overflow-hidden">
-              <div className="absolute inset-0 opacity-[0.20]">
+              <div className="absolute inset-0 opacity-[0.30]">
                 <Image
                   src="/webp-background/bright-cross.webp"
                   alt=""
@@ -176,7 +176,7 @@ export default async function Home() {
 
             {/* Card 2 - Real Community */}
             <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow border-2 border-[#130303]/10 hover:border-[#130303]/20 relative overflow-hidden">
-              <div className="absolute inset-0 opacity-[0.20]">
+              <div className="absolute inset-0 opacity-[0.30]">
                 <Image
                   src="/real-webp-photos/gathering-around-table.webp"
                   alt=""
@@ -198,7 +198,7 @@ export default async function Home() {
 
             {/* Card 3 - Spiritual Growth */}
             <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow border-2 border-[#130303]/10 hover:border-[#130303]/20 relative overflow-hidden">
-              <div className="absolute inset-0 opacity-[0.20]">
+              <div className="absolute inset-0 opacity-[0.30]">
                 <Image
                   src="/webp-background/bible-open-coffee.webp"
                   alt=""
@@ -223,7 +223,7 @@ export default async function Home() {
 
       {/* Events & Ministries Gallery */}
       <section className="py-16 px-4 bg-[#D9E5F0] relative">
-        <div className="absolute inset-0 opacity-20">
+        <div className="absolute inset-0 opacity-30">
           <Image
             src="/webp-background/worship-hands.webp"
             alt=""

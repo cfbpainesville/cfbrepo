@@ -31,7 +31,7 @@ export default function Visit() {
 
       {/* First-Time Visitor Guide - 1st */}
       <section className="py-16 px-4 bg-white relative">
-        <div className="absolute inset-0 opacity-20">
+        <div className="absolute inset-0 opacity-30">
           <Image
             src="/webp-background/bright-cross.webp"
             alt=""

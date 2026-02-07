@@ -237,7 +237,7 @@ export default async function MissionsPage() {
 
       {/* Call to Action */}
       <section className="py-16 px-4 bg-[#D9E5F0] relative">
-        <div className="absolute inset-0 opacity-20">
+        <div className="absolute inset-0 opacity-30">
           <Image
             src="/webp-background/hands-helping.webp"
             alt=""

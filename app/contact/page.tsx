@@ -69,7 +69,7 @@ export default function Contact() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Phone */}
             <div className="bg-white p-8 rounded-lg shadow-md text-center relative overflow-hidden">
-              <div className="absolute inset-0 opacity-20">
+              <div className="absolute inset-0 opacity-30">
                 <Image
                   src="/webp-background/praying-hands.webp"
                   alt=""
@@ -94,7 +94,7 @@ export default function Contact() {
 
             {/* Email */}
             <div className="bg-white p-8 rounded-lg shadow-md text-center relative overflow-hidden">
-              <div className="absolute inset-0 opacity-20">
+              <div className="absolute inset-0 opacity-30">
                 <Image
                   src="/webp-background/praying-hands-bible.webp"
                   alt=""
@@ -122,7 +122,7 @@ export default function Contact() {
               const mapSection = document.getElementById('location-map');
               if (mapSection) mapSection.scrollIntoView({ behavior: 'smooth' });
             }}>
-              <div className="absolute inset-0 opacity-20">
+              <div className="absolute inset-0 opacity-30">
                 <Image
                   src="/webp-background/calvary.webp"
                   alt=""
@@ -149,7 +149,7 @@ export default function Contact() {
 
             {/* Message Form */}
             <div className="bg-white p-8 rounded-lg shadow-md text-center relative overflow-hidden">
-              <div className="absolute inset-0 opacity-20">
+              <div className="absolute inset-0 opacity-30">
                 <Image
                   src="/webp-background/hands-helping.webp"
                   alt=""

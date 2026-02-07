@@ -195,10 +195,9 @@ function EventsGalleryComponent({ events: serverEvents }: EventsGalleryProps) {
                 <Image
                   src={currentEvent.image}
                   alt={currentEvent.name}
-                  width={80}
-                  height={80}
-                  className="w-20 h-20 object-contain mix-blend-multiply"
-                  style={{ filter: 'contrast(1.1) brightness(0.95)' }}
+                  fill
+                  className="object-cover"
+                  sizes="150px"
                 />
               ) : (
                 currentEvent.image || "📅"
