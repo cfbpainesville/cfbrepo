@@ -153,68 +153,74 @@ export default async function Home() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Card 1 - Strong Faith */}
-            <div className="bg-white p-10 rounded-lg shadow-md hover:shadow-lg transition-shadow border-2 border-[#130303]/10 hover:border-[#130303]/20 relative overflow-hidden min-h-[280px]">
-              <div className="absolute inset-0 opacity-[0.50]">
-                <Image
-                  src="/webp-background/bright-cross.webp"
-                  alt=""
-                  fill
-                  className="object-cover"
-                  priority={false}
-                />
-              </div>
-              <div className="relative z-10">
-                <h3 className="text-xl font-bold mb-4 text-[#130303] drop-shadow-sm">
-                  Strong Faith
-                </h3>
-                <p className="text-[#130303] font-medium leading-relaxed">
-                  Grounded in the Bible, we proclaim the Good News of Jesus
-                  Christ with conviction and love.
-                </p>
+            <div className="flex flex-col">
+              <h3 className="text-2xl font-bold mb-4 text-[#130303] text-center">
+                Strong Faith
+              </h3>
+              <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow border-2 border-[#130303]/10 hover:border-[#130303]/20 relative overflow-hidden min-h-[320px] flex items-end">
+                <div className="absolute inset-0 opacity-[0.50]">
+                  <Image
+                    src="/webp-background/bright-cross.webp"
+                    alt=""
+                    fill
+                    className="object-cover"
+                    priority={false}
+                  />
+                </div>
+                <div className="relative z-10 w-full">
+                  <p className="text-lg font-bold leading-relaxed text-[#130303] text-center" style={{ textShadow: '2px 2px 4px rgba(255,255,255,0.8), -1px -1px 2px rgba(255,255,255,0.6)' }}>
+                    Grounded in the Bible, we proclaim the Good News of Jesus
+                    Christ with conviction and love.
+                  </p>
+                </div>
               </div>
             </div>
 
             {/* Card 2 - Real Community */}
-            <div className="bg-white p-10 rounded-lg shadow-md hover:shadow-lg transition-shadow border-2 border-[#130303]/10 hover:border-[#130303]/20 relative overflow-hidden min-h-[280px]">
-              <div className="absolute inset-0 opacity-[0.50]">
-                <Image
-                  src="/real-webp-photos/gathering-around-table.webp"
-                  alt=""
-                  fill
-                  className="object-cover"
-                  priority={false}
-                />
-              </div>
-              <div className="relative z-10">
-                <h3 className="text-xl font-bold mb-4 text-[#130303] drop-shadow-sm">
-                  Real Community
-                </h3>
-                <p className="text-[#130303] font-medium leading-relaxed">
-                  We're small enough to build genuine relationships and big enough
-                  to offer diverse ministries for your family.
-                </p>
+            <div className="flex flex-col">
+              <h3 className="text-2xl font-bold mb-4 text-[#130303] text-center">
+                Real Community
+              </h3>
+              <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow border-2 border-[#130303]/10 hover:border-[#130303]/20 relative overflow-hidden min-h-[320px] flex items-end">
+                <div className="absolute inset-0 opacity-[0.50]">
+                  <Image
+                    src="/real-webp-photos/gathering-around-table.webp"
+                    alt=""
+                    fill
+                    className="object-cover"
+                    priority={false}
+                  />
+                </div>
+                <div className="relative z-10 w-full">
+                  <p className="text-lg font-bold leading-relaxed text-[#130303] text-center" style={{ textShadow: '2px 2px 4px rgba(255,255,255,0.8), -1px -1px 2px rgba(255,255,255,0.6)' }}>
+                    We're small enough to build genuine relationships and big enough
+                    to offer diverse ministries for your family.
+                  </p>
+                </div>
               </div>
             </div>
 
             {/* Card 3 - Spiritual Growth */}
-            <div className="bg-white p-10 rounded-lg shadow-md hover:shadow-lg transition-shadow border-2 border-[#130303]/10 hover:border-[#130303]/20 relative overflow-hidden min-h-[280px]">
-              <div className="absolute inset-0 opacity-[0.50]">
-                <Image
-                  src="/webp-background/bible-open-coffee.webp"
-                  alt=""
-                  fill
-                  className="object-cover"
-                  priority={false}
-                />
-              </div>
-              <div className="relative z-10">
-                <h3 className="text-xl font-bold mb-4 text-[#130303] drop-shadow-sm">
-                  Spiritual Growth
-                </h3>
-                <p className="text-[#130303] font-medium leading-relaxed">
-                  Through Bible study, discipleship, and prayer, we help you grow
-                  closer to God and His Word.
-                </p>
+            <div className="flex flex-col">
+              <h3 className="text-2xl font-bold mb-4 text-[#130303] text-center">
+                Spiritual Growth
+              </h3>
+              <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow border-2 border-[#130303]/10 hover:border-[#130303]/20 relative overflow-hidden min-h-[320px] flex items-end">
+                <div className="absolute inset-0 opacity-[0.50]">
+                  <Image
+                    src="/webp-background/bible-open-coffee.webp"
+                    alt=""
+                    fill
+                    className="object-cover"
+                    priority={false}
+                  />
+                </div>
+                <div className="relative z-10 w-full">
+                  <p className="text-lg font-bold leading-relaxed text-[#130303] text-center" style={{ textShadow: '2px 2px 4px rgba(255,255,255,0.8), -1px -1px 2px rgba(255,255,255,0.6)' }}>
+                    Through Bible study, discipleship, and prayer, we help you grow
+                    closer to God and His Word.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -222,17 +228,8 @@ export default async function Home() {
       </section>
 
       {/* Events & Ministries Gallery */}
-      <section className="py-16 px-4 bg-[#D9E5F0] relative">
-        <div className="absolute inset-0 opacity-30">
-          <Image
-            src="/webp-background/worship-hands.webp"
-            alt=""
-            fill
-            className="object-cover"
-            priority={false}
-          />
-        </div>
-        <div className="max-w-7xl mx-auto relative z-10">
+      <section className="py-16 px-4 bg-[#F5EFE7]">
+        <div className="max-w-7xl mx-auto">
           <h2 className="text-4xl font-bold mb-12 text-center text-gray-900">
             Upcoming Events & Ministries
           </h2>

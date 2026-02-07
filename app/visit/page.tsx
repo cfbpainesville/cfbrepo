@@ -11,17 +11,8 @@ export default function Visit() {
   return (
     <div className="w-full">
       {/* Header */}
-      <section className="bg-gradient-to-br from-[#006CD7] to-[#0055AB] text-white py-16 px-4 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-25">
-          <Image
-            src="/webp-background/worship-hands.webp"
-            alt=""
-            fill
-            className="object-cover"
-            priority={false}
-          />
-        </div>
-        <div className="max-w-4xl mx-auto relative z-10">
+      <section className="bg-gradient-to-br from-[#006CD7] to-[#0055AB] text-white py-16 px-4">
+        <div className="max-w-4xl mx-auto">
           <h1 className="text-5xl font-bold mb-4">Visit Us</h1>
           <p className="text-xl text-blue-100">
             We'd love to welcome you to our church family
@@ -33,7 +24,7 @@ export default function Visit() {
       <section className="py-16 px-4 bg-white relative">
         <div className="absolute inset-0 opacity-30">
           <Image
-            src="/webp-background/bright-cross.webp"
+            src="/real-webp-photos/inflatable.webp"
             alt=""
             fill
             className="object-cover"
