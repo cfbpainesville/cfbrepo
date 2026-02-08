@@ -57,6 +57,8 @@ function getEventImage(eventName: string): string {
     "Morning Worship": "/webp-background/worship-hands.webp",
     "Sunday School": "/webp-background/children-crafts.webp",
     "Ladies Bible Study": "/webp-background/women-gathering.webp",
+    "Bible Study Fellowship": "/webp-background/women-gathering.webp",
+    "Prayer Meeting": "/webp-background/praying-hands.webp",
   };
 
   // Check for partial matches (case-insensitive)
