@@ -118,7 +118,7 @@ export default function Giving() {
             </p>
             <div className="space-y-2">
               <p>
-                <span className="font-semibold">Phone:</span>{" "}
+                <span className="font-semibold text-gray-900">Phone:</span>{" "}
                 <a
                   href="tel:(440) 354-8994"
                   className="text-blue-600 hover:underline font-semibold"
@@ -127,7 +127,7 @@ export default function Giving() {
                 </a>
               </p>
               <p>
-                <span className="font-semibold">Email:</span>{" "}
+                <span className="font-semibold text-gray-900">Email:</span>{" "}
                 <a
                   href="mailto:info@cfbchurch.net"
                   className="text-blue-600 hover:underline font-semibold"

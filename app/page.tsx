@@ -251,15 +251,15 @@ export default async function Home() {
               <ul className="space-y-3 text-gray-700">
                 <li className="flex justify-between">
                   <span>Sunday School</span>
-                  <span className="font-semibold">10:00 AM</span>
+                  <span className="font-semibold text-gray-900">10:00 AM</span>
                 </li>
                 <li className="flex justify-between">
                   <span>Morning Worship</span>
-                  <span className="font-semibold">11:00 AM</span>
+                  <span className="font-semibold text-gray-900">11:00 AM</span>
                 </li>
                 <li className="flex justify-between">
                   <span>AWANA program for kids</span>
-                  <span className="font-semibold">5:30 PM</span>
+                  <span className="font-semibold text-gray-900">5:30 PM</span>
                 </li>
               </ul>
             </div>
@@ -271,19 +271,19 @@ export default async function Home() {
               <ul className="space-y-3 text-gray-700">
                 <li className="flex justify-between">
                   <span>Ladies Bible Study</span>
-                  <span className="font-semibold">Wed 10:00 AM</span>
+                  <span className="font-semibold text-gray-900">Wed 10:00 AM</span>
                 </li>
                 <li className="flex justify-between">
                   <span>Prayer Meeting</span>
-                  <span className="font-semibold">Wed 6:30 PM</span>
+                  <span className="font-semibold text-gray-900">Wed 6:30 PM</span>
                 </li>
                 <li className="flex justify-between">
                   <span>Prayer Meeting</span>
-                  <span className="font-semibold">Thu 2:00 PM</span>
+                  <span className="font-semibold text-gray-900">Thu 2:00 PM</span>
                 </li>
                 <li className="flex justify-between">
                   <span>Helping Hands Food Pantry</span>
-                  <span className="font-semibold text-sm">Contact church Thu 10am-2pm</span>
+                  <span className="font-semibold text-gray-900 text-sm">Contact church Thu 10am-2pm</span>
                 </li>
               </ul>
             </div>

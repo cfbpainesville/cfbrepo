@@ -91,15 +91,44 @@ function EventsGalleryComponent({ events: serverEvents }: EventsGalleryProps) {
   // Combine initial event with server-fetched events
   const allEvents = [INITIAL_EVENT, ...mappedEvents];
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isAutoplay, setIsAutoplay] = useState(true);
+  const [isAutoplay, setIsAutoplay] = useState(false); // Start with autoplay off
+  const [hasUserInteracted, setHasUserInteracted] = useState(false); // Track user interaction
+  const [isInView, setIsInView] = useState(false); // Track if component is in viewport
   const [isFlipping, setIsFlipping] = useState(false);
   const [flipDirection, setFlipDirection] = useState<'left' | 'right'>('right');
   const autoplayIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Intersection Observer - detect when component is in viewport
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+        // Only enable autoplay if in view AND user hasn't interacted
+        if (entry.isIntersecting && !hasUserInteracted) {
+          setIsAutoplay(true);
+        } else {
+          setIsAutoplay(false);
+        }
+      },
+      { threshold: 0.5 } // Trigger when 50% of component is visible
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => {
+      if (containerRef.current) {
+        observer.unobserve(containerRef.current);
+      }
+    };
+  }, [hasUserInteracted]);
 
   // Auto-play carousel - exactly 7 seconds between transitions
   useEffect(() => {
-    if (!isAutoplay || allEvents.length <= 1) {
-      // Clear any existing interval if autoplay is disabled or only one event
+    if (!isAutoplay || allEvents.length <= 1 || hasUserInteracted) {
+      // Clear any existing interval if autoplay is disabled or only one event or user interacted
       if (autoplayIntervalRef.current) {
         clearInterval(autoplayIntervalRef.current);
         autoplayIntervalRef.current = null;
@@ -135,12 +164,13 @@ function EventsGalleryComponent({ events: serverEvents }: EventsGalleryProps) {
         autoplayIntervalRef.current = null;
       }
     };
-  }, [isAutoplay, allEvents.length]);
+  }, [isAutoplay, allEvents.length, hasUserInteracted]);
 
   const goToNext = () => {
     setFlipDirection('right');
     setIsFlipping(true);
-    setIsAutoplay(false); // Stop autoplay when user manually navigates
+    setHasUserInteracted(true); // Permanently disable autoplay after user interaction
+    setIsAutoplay(false);
 
     setTimeout(() => {
       setCurrentIndex((prev) => (prev + 1) % allEvents.length);
@@ -154,7 +184,8 @@ function EventsGalleryComponent({ events: serverEvents }: EventsGalleryProps) {
   const goToPrev = () => {
     setFlipDirection('left');
     setIsFlipping(true);
-    setIsAutoplay(false); // Stop autoplay when user manually navigates
+    setHasUserInteracted(true); // Permanently disable autoplay after user interaction
+    setIsAutoplay(false);
 
     setTimeout(() => {
       setCurrentIndex((prev) => (prev - 1 + allEvents.length) % allEvents.length);
@@ -166,17 +197,24 @@ function EventsGalleryComponent({ events: serverEvents }: EventsGalleryProps) {
   };
 
   const handleMouseEnter = () => {
-    setIsAutoplay(false);
+    // Pause autoplay on hover, but only if user hasn't interacted
+    if (!hasUserInteracted) {
+      setIsAutoplay(false);
+    }
   };
 
   const handleMouseLeave = () => {
-    setIsAutoplay(true);
+    // Resume autoplay on mouse leave, but only if user hasn't interacted and component is in view
+    if (!hasUserInteracted && isInView) {
+      setIsAutoplay(true);
+    }
   };
 
   const currentEvent = allEvents[currentIndex];
 
   return (
     <div
+      ref={containerRef}
       className="events-gallery-container"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}

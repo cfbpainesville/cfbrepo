@@ -167,8 +167,17 @@ export default async function SermonsPage() {
 
       {/* Most Recent Message */}
       {mostRecentSermon && (
-        <section className="py-16 px-4 bg-white">
-          <div className="max-w-7xl mx-auto">
+        <section className="py-16 px-4 bg-white relative">
+          <div className="absolute inset-0 opacity-30">
+            <Image
+              src="/webp-background/empty-tomb.webp"
+              alt=""
+              fill
+              className="object-cover"
+              priority={false}
+            />
+          </div>
+          <div className="max-w-7xl mx-auto relative z-10">
             <div className="text-center mb-12">
               <h2 className="text-4xl font-bold text-gray-900 mb-2">
                 Our most recent message

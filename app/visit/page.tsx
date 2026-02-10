@@ -275,7 +275,7 @@ export default function Visit() {
             </p>
             <div className="space-y-2">
               <p>
-                <span className="font-semibold">Call us:</span>{" "}
+                <span className="font-semibold text-gray-900">Call us:</span>{" "}
                 <a
                   href="tel:(440) 354-8994"
                   className="text-blue-600 hover:underline font-semibold"
@@ -284,7 +284,7 @@ export default function Visit() {
                 </a>
               </p>
               <p>
-                <span className="font-semibold">Email us:</span>{" "}
+                <span className="font-semibold text-gray-900">Email us:</span>{" "}
                 <a
                   href="mailto:info@cfbchurch.net"
                   className="text-blue-600 hover:underline font-semibold"
@@ -293,7 +293,7 @@ export default function Visit() {
                 </a>
               </p>
               <p>
-                <span className="font-semibold">Or:</span>{" "}
+                <span className="font-semibold text-gray-900">Or:</span>{" "}
                 <a
                   href="/contact"
                   className="text-blue-600 hover:underline font-semibold"
