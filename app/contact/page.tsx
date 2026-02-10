@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import { submitContactForm } from "@/app/actions/contact";
 
 export default function Contact() {
@@ -68,111 +67,71 @@ export default function Contact() {
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Phone */}
-            <div className="bg-white p-8 rounded-lg shadow-md text-center relative overflow-hidden">
-              <div className="absolute inset-0 opacity-30">
-                <Image
-                  src="/webp-background/praying-hands.webp"
-                  alt=""
-                  fill
-                  className="object-cover"
-                  priority={false}
-                />
-              </div>
-              <div className="relative z-10">
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">Call Us</h3>
-                <p className="text-gray-600 mb-4">
-                  Monday through Friday, 9:00 AM - 5:00 PM
-                </p>
-                <a
-                  href="tel:(440) 354-8994"
-                  className="text-3xl font-bold text-[#006CD7] hover:text-[#3D94E8] transition-colors"
-                >
-                  (440) 354-8994
-                </a>
-              </div>
+            <div className="bg-white p-8 rounded-lg shadow-md text-center">
+              <div className="text-6xl mb-4">📞</div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">Call Us</h3>
+              <p className="text-gray-600 mb-4">
+                Monday through Friday, 9:00 AM - 5:00 PM
+              </p>
+              <a
+                href="tel:(440) 354-8994"
+                className="text-3xl font-bold text-[#006CD7] hover:text-[#3D94E8] transition-colors"
+              >
+                (440) 354-8994
+              </a>
             </div>
 
             {/* Email */}
-            <div className="bg-white p-8 rounded-lg shadow-md text-center relative overflow-hidden">
-              <div className="absolute inset-0 opacity-30">
-                <Image
-                  src="/webp-background/praying-hands-bible.webp"
-                  alt=""
-                  fill
-                  className="object-cover"
-                  priority={false}
-                />
-              </div>
-              <div className="relative z-10">
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">Email Us</h3>
-                <p className="text-gray-600 mb-4">
-                  Email is monitored on Thursdays
-                </p>
-                <a
-                  href="mailto:info@cfbchurch.net"
-                  className="text-xl font-bold text-[#006CD7] hover:text-[#3D94E8] transition-colors break-all"
-                >
-                  info@cfbchurch.net
-                </a>
-              </div>
+            <div className="bg-white p-8 rounded-lg shadow-md text-center">
+              <div className="text-6xl mb-4">📧</div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">Email Us</h3>
+              <p className="text-gray-600 mb-4">
+                Email is monitored on Thursdays
+              </p>
+              <a
+                href="mailto:info@cfbchurch.net"
+                className="text-xl font-bold text-[#006CD7] hover:text-[#3D94E8] transition-colors break-all"
+              >
+                info@cfbchurch.net
+              </a>
             </div>
 
             {/* Visit */}
-            <div className="bg-white p-8 rounded-lg shadow-md text-center cursor-pointer hover:shadow-lg transition-shadow relative overflow-hidden" onClick={() => {
+            <div className="bg-white p-8 rounded-lg shadow-md text-center cursor-pointer hover:shadow-lg transition-shadow" onClick={() => {
               const mapSection = document.getElementById('location-map');
               if (mapSection) mapSection.scrollIntoView({ behavior: 'smooth' });
             }}>
-              <div className="absolute inset-0 opacity-30">
-                <Image
-                  src="/webp-background/calvary.webp"
-                  alt=""
-                  fill
-                  className="object-cover"
-                  priority={false}
-                />
-              </div>
-              <div className="relative z-10">
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">Visit Us</h3>
-                <p className="text-gray-600">
-                  727 Mentor Avenue
-                  <br />
-                  Painesville, OH 44077
-                </p>
-                <p className="text-gray-600 text-sm mt-4">
-                  Sundays at 11:00 AM
-                </p>
-                <p className="text-[#006CD7] text-sm mt-2 font-semibold">
-                  Click to view map
-                </p>
-              </div>
+              <div className="text-6xl mb-4">📍</div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">Visit Us</h3>
+              <p className="text-gray-600">
+                727 Mentor Avenue
+                <br />
+                Painesville, OH 44077
+              </p>
+              <p className="text-gray-600 text-sm mt-4">
+                Sundays at 11:00 AM
+              </p>
+              <p className="text-[#006CD7] text-sm mt-2 font-semibold">
+                Click to view map
+              </p>
             </div>
 
             {/* Message Form */}
-            <div className="bg-white p-8 rounded-lg shadow-md text-center relative overflow-hidden">
-              <div className="absolute inset-0 opacity-30">
-                <Image
-                  src="/webp-background/hands-helping.webp"
-                  alt=""
-                  fill
-                  className="object-cover"
-                  priority={false}
-                />
-              </div>
-              <div className="relative z-10">
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">Message Form</h3>
-                <p className="text-gray-600 mb-4">
-                  Just fill out the form below and hit "send message!"
-                </p>
-                <button
-                  onClick={() => {
-                    const formSection = document.getElementById('contact-form');
-                    if (formSection) formSection.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                  className="text-[#006CD7] hover:text-[#3D94E8] font-semibold underline cursor-pointer"
-                >
-                  Go to form
-                </button>
-              </div>
+            <div className="bg-white p-8 rounded-lg shadow-md text-center">
+              <div className="text-6xl mb-4">💬</div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">Message Form</h3>
+              <p className="text-gray-600 mb-4">
+                Just fill out the form below and hit "send message!"
+              </p>
+              <button
+                onClick={() => {
+                  const formSection = document.getElementById('contact-form');
+                  if (formSection) formSection.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="text-[#006CD7] hover:text-[#3D94E8] font-semibold underline cursor-pointer"
+              >
+                Go to form
+              </button>
             </div>
           </div>
         </div>

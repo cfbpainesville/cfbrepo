@@ -24,10 +24,10 @@ export default function Visit() {
       <section className="py-16 px-4 bg-white relative">
         <div className="absolute inset-0 opacity-30">
           <Image
-            src="/real-webp-photos/inflatable.webp"
+            src="/cfb-church-image.webp"
             alt=""
             fill
-            className="object-cover"
+            className="object-cover object-left"
             priority={false}
           />
         </div>
@@ -148,64 +148,76 @@ export default function Visit() {
             Our Church Culture
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center p-6 bg-[#D9E5F0] rounded-lg">
-              <div className="w-20 h-20 mx-auto mb-4">
-                <Image
-                  src="/webp-icons/heart-icon.webp"
-                  alt="Heart"
-                  width={80}
-                  height={80}
-                  className="w-full h-full object-contain mix-blend-multiply"
-                  style={{ filter: 'contrast(1.1) brightness(0.95)' }}
-                />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
+            {/* Card 1 - Genuine Welcome */}
+            <div className="flex flex-col">
+              <h3 className="text-2xl font-bold mb-4 text-[#130303] text-center">
                 Genuine Welcome
               </h3>
-              <p className="text-gray-600">
-                We believe in authentic, personal relationships. You won't feel
-                like a stranger here.
-              </p>
+              <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow border-2 border-[#130303]/10 hover:border-[#130303]/20 relative overflow-hidden min-h-[320px] flex items-end">
+                <div className="absolute inset-0 opacity-[0.50]">
+                  <Image
+                    src="/real-webp-photos/tower.webp"
+                    alt=""
+                    fill
+                    className="object-cover"
+                    priority={false}
+                  />
+                </div>
+                <div className="relative z-10 w-full">
+                  <p className="text-lg font-bold leading-relaxed text-[#130303] text-center" style={{ textShadow: '2px 2px 4px rgba(255,255,255,0.8), -1px -1px 2px rgba(255,255,255,0.6)' }}>
+                    We believe in authentic, personal relationships. You won't feel
+                    like a stranger here.
+                  </p>
+                </div>
+              </div>
             </div>
 
-            <div className="text-center p-6 bg-[#D9E5F0] rounded-lg">
-              <div className="w-20 h-20 mx-auto mb-4">
-                <Image
-                  src="/webp-icons/file-icon.webp"
-                  alt="Bible"
-                  width={80}
-                  height={80}
-                  className="w-full h-full object-contain mix-blend-multiply"
-                  style={{ filter: 'contrast(1.1) brightness(0.95)' }}
-                />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
+            {/* Card 2 - Bible-Centered */}
+            <div className="flex flex-col">
+              <h3 className="text-2xl font-bold mb-4 text-[#130303] text-center">
                 Bible-Centered
               </h3>
-              <p className="text-gray-600">
-                Everything we do is rooted in Scripture. We study God's Word
-                seriously and live it out practically.
-              </p>
+              <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow border-2 border-[#130303]/10 hover:border-[#130303]/20 relative overflow-hidden min-h-[320px] flex items-end">
+                <div className="absolute inset-0 opacity-[0.50]">
+                  <Image
+                    src="/webp-background/bible-open-coffee.webp"
+                    alt=""
+                    fill
+                    className="object-cover"
+                    priority={false}
+                  />
+                </div>
+                <div className="relative z-10 w-full">
+                  <p className="text-lg font-bold leading-relaxed text-[#130303] text-center" style={{ textShadow: '2px 2px 4px rgba(255,255,255,0.8), -1px -1px 2px rgba(255,255,255,0.6)' }}>
+                    Everything we do is rooted in Scripture. We study God's Word
+                    seriously and live it out practically.
+                  </p>
+                </div>
+              </div>
             </div>
 
-            <div className="text-center p-6 bg-[#D9E5F0] rounded-lg">
-              <div className="w-20 h-20 mx-auto mb-4">
-                <Image
-                  src="/webp-icons/heart-icon.webp"
-                  alt="Heart"
-                  width={80}
-                  height={80}
-                  className="w-full h-full object-contain mix-blend-multiply"
-                  style={{ filter: 'contrast(1.1) brightness(0.95)' }}
-                />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
+            {/* Card 3 - Community Minded */}
+            <div className="flex flex-col">
+              <h3 className="text-2xl font-bold mb-4 text-[#130303] text-center">
                 Community Minded
               </h3>
-              <p className="text-gray-600">
-                We serve our community through outreach and compassion, living
-                out the Gospel in action.
-              </p>
+              <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow border-2 border-[#130303]/10 hover:border-[#130303]/20 relative overflow-hidden min-h-[320px] flex items-end">
+                <div className="absolute inset-0 opacity-[0.50]">
+                  <Image
+                    src="/real-webp-photos/inflatable.webp"
+                    alt=""
+                    fill
+                    className="object-cover"
+                    priority={false}
+                  />
+                </div>
+                <div className="relative z-10 w-full">
+                  <p className="text-lg font-bold leading-relaxed text-[#130303] text-center" style={{ textShadow: '2px 2px 4px rgba(255,255,255,0.8), -1px -1px 2px rgba(255,255,255,0.6)' }}>
+                    We serve our community through outreach and compassion, living
+                    out the Gospel in action.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

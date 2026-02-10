@@ -55,16 +55,7 @@ export default function Giving() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
               {/* Online Giving */}
               <div className="bg-white p-8 rounded-lg shadow-md border-2 border-blue-600">
-                <div className="w-20 h-20 mx-auto mb-4">
-                  <Image
-                    src="/webp-icons/credit-card.webp"
-                    alt="Credit Card"
-                    width={80}
-                    height={80}
-                    className="w-full h-full object-contain mix-blend-multiply"
-                    style={{ filter: 'contrast(1.1) brightness(0.95)' }}
-                  />
-                </div>
+                <div className="text-6xl mb-4">💳</div>
                 <h4 className="text-2xl font-bold text-gray-900 mb-4">
                   Give Online
                 </h4>
@@ -83,16 +74,7 @@ export default function Giving() {
 
               {/* In-Person Giving */}
               <div className="bg-white p-8 rounded-lg shadow-md">
-                <div className="w-20 h-20 mx-auto mb-4">
-                  <Image
-                    src="/webp-icons/brick-church-icon.webp"
-                    alt="Church Building"
-                    width={80}
-                    height={80}
-                    className="w-full h-full object-contain mix-blend-multiply"
-                    style={{ filter: 'contrast(1.1) brightness(0.95)' }}
-                  />
-                </div>
+                <div className="text-6xl mb-4">⛪</div>
                 <h4 className="text-2xl font-bold text-gray-900 mb-4">
                   Give In Person
                 </h4>
@@ -108,16 +90,7 @@ export default function Giving() {
 
             {/* Mail Option */}
             <div className="bg-[#D9E5F0] p-8 rounded-lg">
-              <div className="w-16 h-16 mx-auto mb-4">
-                <Image
-                  src="/webp-icons/giving-mail.webp"
-                  alt="Mail"
-                  width={64}
-                  height={64}
-                  className="w-full h-full object-contain mix-blend-multiply"
-                  style={{ filter: 'contrast(1.1) brightness(0.95)' }}
-                />
-              </div>
+              <div className="text-6xl mb-4">✉️</div>
               <h4 className="text-xl font-bold text-gray-900 mb-3">
                 Give by Mail
               </h4>

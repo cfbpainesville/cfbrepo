@@ -63,7 +63,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
+  gap: 4rem;
   perspective: 1000px;
 }
 
@@ -124,30 +124,31 @@
   line-height: 1.6;
 }
 
-/* Navigation Buttons - Rounded blocks (height = 2x width) */
+/* Navigation Buttons - Large stretched arrows */
 .events-nav-btn {
   flex-shrink: 0;
-  background: linear-gradient(135deg, #006CD7 0%, #3D94E8 100%);
-  color: white;
+  background: transparent;
+  color: #006CD7;
   border: none;
-  width: 2.5rem;
-  height: 5rem;  /* Double the width */
-  border-radius: 1.25rem;  /* Half the width for rounded ends */
-  font-size: 2rem;
+  width: auto;
+  height: auto;
+  font-size: 5rem;
+  font-weight: 300;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.2s ease, background 0.3s ease;
+  transition: transform 0.2s ease, color 0.3s ease;
   z-index: 10;
-  box-shadow: 0 2px 8px rgba(0, 108, 215, 0.3);
   will-change: transform;
+  padding: 0;
+  line-height: 1;
+  transform: scaleY(1.5);
 }
 
 .events-nav-btn:hover:not(:disabled) {
-  background: linear-gradient(135deg, #3D94E8 0%, #6BB0F0 100%);
-  transform: scale(1.05) translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 108, 215, 0.4);
+  color: #3D94E8;
+  transform: scaleY(1.5) scale(1.1);
 }
 
 .events-nav-btn:disabled {
@@ -209,7 +210,7 @@
   }
 
   .events-card-top {
-    gap: 1.5rem;
+    gap: 3rem;
   }
 
   .events-image-placeholder {
@@ -227,10 +228,12 @@
   }
 
   .events-nav-btn {
-    width: 2rem;
-    height: 4rem;  /* Double the width */
-    border-radius: 1rem;  /* Half the width */
-    font-size: 1.5rem;
+    font-size: 4rem;
+    transform: scaleY(1.5);
+  }
+
+  .events-nav-btn:hover:not(:disabled) {
+    transform: scaleY(1.5) scale(1.1);
   }
 }
 
@@ -244,7 +247,7 @@
   }
 
   .events-card-top {
-    gap: 1rem;
+    gap: 2rem;
   }
 
   .events-image-placeholder {
@@ -262,9 +265,11 @@
   }
 
   .events-nav-btn {
-    width: 1.5rem;
-    height: 3rem;  /* Double the width */
-    border-radius: 0.75rem;  /* Half the width */
-    font-size: 1.25rem;
+    font-size: 3rem;
+    transform: scaleY(1.5);
+  }
+
+  .events-nav-btn:hover:not(:disabled) {
+    transform: scaleY(1.5) scale(1.1);
   }
 }

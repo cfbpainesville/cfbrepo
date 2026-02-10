@@ -59,6 +59,10 @@ function getEventImage(eventName: string): string {
     "Ladies Bible Study": "/webp-background/women-gathering.webp",
     "Bible Study Fellowship": "/webp-background/women-gathering.webp",
     "Prayer Meeting": "/webp-background/praying-hands.webp",
+    "AWANA": "/webp-icons/awana-clubs.webp",
+    "Food Pantry": "/webp-background/food-pantry.webp",
+    "Helping Hands": "/webp-background/food-pantry.webp",
+    "Fellowship Lunch": "/real-webp-photos/gathering-around-table.webp",
   };
 
   // Check for partial matches (case-insensitive)
