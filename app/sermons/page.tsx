@@ -4,9 +4,9 @@ import Link from "next/link";
 import Image from "next/image";
 import CollapsibleYearSection from "./CollapsibleYearSection";
 
-// Enable ISR - revalidate every 7 days (604800 seconds)
-// Sermons data rarely changes (weekly updates)
-export const revalidate = 604800;
+// Enable ISR - revalidate every 6 days (518400 seconds)
+// Using 6 days (not 7) to ensure new sermons always appear within a week
+export const revalidate = 518400;
 
 export const metadata = {
   title: "Sermons | Calvary Fellowship",

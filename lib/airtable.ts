@@ -135,7 +135,7 @@ async function getAllRecordsInternal(baseId: string, tableName: string, retries 
     try {
       // Add timeout to prevent hanging
       const timeoutPromise = new Promise((_, reject) =>
-        setTimeout(() => reject(new Error('Airtable request timeout')), 5000)
+        setTimeout(() => reject(new Error('Airtable request timeout')), 30000)
       );
 
       const fetchPromise = base(tableName).select().all();
