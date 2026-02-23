@@ -278,7 +278,6 @@ function EventsGalleryComponent({ events: serverEvents }: EventsGalleryProps) {
             className={`events-indicator ${
               index === currentIndex ? "active" : ""
             }`}
-            aria-label={index === currentIndex ? `Currently showing event ${index + 1} of ${allEvents.length}` : undefined}
           />
         ))}
       </div>
