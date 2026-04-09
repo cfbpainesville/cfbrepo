@@ -15,6 +15,8 @@ interface Event {
 
 // Format date/time in the user's local timezone
 // Supports both ISO date strings and plain text (e.g., "Every Thursday")
+// Only shows the time portion for ISO dates — date is omitted unless the
+// client writes it explicitly as plain text in the Airtable entry.
 function formatEventTime(dateTimeStr: string): string {
   if (!dateTimeStr) return "";
 
@@ -24,21 +26,14 @@ function formatEventTime(dateTimeStr: string): string {
     // Check if date is valid - if not, return plain text as-is
     if (isNaN(date.getTime())) return dateTimeStr;
 
-    // Format date as "Day, Month Date" (e.g., "Sunday, December 15")
-    const dayName = date.toLocaleDateString('en-US', { weekday: 'long' });
-    const monthName = date.toLocaleDateString('en-US', { month: 'long' });
-    const dayNumber = date.getDate();
-
-    // Format time as "H:MM AM/PM"
-    const timeStr = date.toLocaleTimeString('en-US', {
+    // Only show the time (e.g. "10:00 AM"), not the calendar date.
+    // To show a specific date, put it as plain text in the Airtable entry.
+    return date.toLocaleTimeString('en-US', {
       hour: 'numeric',
       minute: '2-digit',
       hour12: true
     });
-
-    return `${dayName}, ${monthName} ${dayNumber} @ ${timeStr}`;
   } catch (error) {
-    // If parsing fails, return original string
     return dateTimeStr;
   }
 }

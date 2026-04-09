@@ -1,5 +1,8 @@
+import fs from "fs";
+import path from "path";
 import type { Viewport } from "next";
 import Image from "next/image";
+import PhotoGallery from "@/app/components/PhotoGallery";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -7,7 +10,20 @@ export const viewport: Viewport = {
   viewportFit: "cover",
 };
 
+function getGalleryImages(): string[] {
+  const galleryDir = path.join(process.cwd(), "public", "images", "gallery");
+  try {
+    return fs
+      .readdirSync(galleryDir)
+      .filter((f) => /\.(jpe?g|png|webp|gif)$/i.test(f))
+      .map((f) => `/images/gallery/${f}`);
+  } catch {
+    return [];
+  }
+}
+
 export default function Visit() {
+  const galleryImages = getGalleryImages();
   return (
     <div className="w-full">
       {/* Header */}
@@ -98,6 +114,13 @@ export default function Visit() {
           </div>
         </div>
       </section>
+
+      {/* Photo Gallery */}
+      {galleryImages.length > 0 && (
+        <section className="py-12 px-4 bg-white">
+          <PhotoGallery images={galleryImages} />
+        </section>
+      )}
 
       {/* Location & Parking - 2nd */}
       <section className="py-16 px-4 bg-[#D9E5F0]">

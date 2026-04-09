@@ -1,6 +1,9 @@
+import fs from "fs";
+import path from "path";
 import Link from "next/link";
 import Image from "next/image";
 import EventsGallery from "@/app/components/EventsGallery";
+import PhotoGallery from "@/app/components/PhotoGallery";
 import LocationLink from "@/app/components/LocationLink";
 import ChurchImageTransition from "@/app/components/ChurchImageTransition";
 import { getAllRecords, TABLES } from "@/lib/airtable";
@@ -78,8 +81,21 @@ async function getEvents(): Promise<Event[]> {
   }
 }
 
+function getGalleryImages(): string[] {
+  const galleryDir = path.join(process.cwd(), "public", "images", "gallery");
+  try {
+    return fs
+      .readdirSync(galleryDir)
+      .filter((f) => /\.(jpe?g|png|webp|gif)$/i.test(f))
+      .map((f) => `/images/gallery/${f}`);
+  } catch {
+    return [];
+  }
+}
+
 export default async function Home() {
   const events = await getEvents();
+  const galleryImages = getGalleryImages();
   return (
     <div className="w-full">
       {/* Church Building Image - First Section */}
@@ -104,6 +120,13 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* Photo Gallery */}
+      {galleryImages.length > 0 && (
+        <section className="py-12 px-4 bg-white">
+          <PhotoGallery images={galleryImages} />
+        </section>
+      )}
+
       {/* Pastor's Welcome */}
       <section className="py-16 px-4 bg-white relative">
         <div className="absolute inset-0 opacity-30">
@@ -121,8 +144,8 @@ export default async function Home() {
           </h2>
           <div className="bg-white/90 backdrop-blur-sm p-8 rounded-lg border-l-4 border-[#006CD7]">
             <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-              "If you are not greeted by at least three people, then we haven't
-              done what's right, and I wouldn't expect you to come back."
+              If you are not greeted by at least three people, then we haven't
+              done what's right, and I wouldn't expect you to come back.
             </p>
             <p className="text-gray-600">
               This is our commitment to you. At Calvary Fellowship, we believe in genuine
