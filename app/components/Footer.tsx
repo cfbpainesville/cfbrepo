@@ -47,7 +47,13 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="footer-link font-semibold"
               >
-                👍 Follow Us on Facebook
+                <span className="inline-flex items-center gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" width="20" height="20" aria-hidden="true">
+                    <circle fill="#1877F2" cx="18" cy="18" r="18"/>
+                    <path fill="#fff" d="M25 18h-4v-2c0-.9.7-1 1-1h3V11h-3c-3.3 0-4 2.5-4 4v3h-3v4h3v10h4V22h3l1-4z"/>
+                  </svg>
+                  Follow Us on Facebook
+                </span>
               </a>
             </p>
           </div>
