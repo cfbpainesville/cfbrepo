@@ -35,10 +35,20 @@ export default function Footer() {
                 📞 (440) 354-8994
               </a>
             </p>
-            <p className="footer-text text-sm">
+            <p className="footer-text text-sm mb-2">
               <Link href="/contact" className="footer-link font-semibold">
                 ✉️ Send us a Message
               </Link>
+            </p>
+            <p className="footer-text text-sm">
+              <a
+                href="https://www.facebook.com/calvaryfellowshipbaptistchurch"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footer-link font-semibold"
+              >
+                👍 Follow Us on Facebook
+              </a>
             </p>
           </div>
 

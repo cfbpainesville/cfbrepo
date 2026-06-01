@@ -165,6 +165,34 @@ export default async function SermonsPage() {
         </div>
       </section>
 
+      {/* Facebook Live Section */}
+      <section className="py-10 px-4 bg-[#1877F2]">
+        <div className="max-w-3xl mx-auto text-center">
+          <p className="text-white text-lg font-semibold mb-3">
+            You can watch the service live on Facebook at{" "}
+            <a
+              href="https://www.facebook.com/watch/calvaryfellowshipbaptistchurch/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-blue-100 transition-colors"
+            >
+              facebook.com/watch/calvaryfellowshipbaptistchurch
+            </a>
+          </p>
+          <p className="text-white text-base">
+            or see the most recent messages here:{" "}
+            <a
+              href="https://www.facebook.com/calvaryfellowshipbaptistchurch"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-blue-100 transition-colors"
+            >
+              facebook.com/calvaryfellowshipbaptistchurch
+            </a>
+          </p>
+        </div>
+      </section>
+
       {/* Most Recent Message */}
       {mostRecentSermon && (
         <section className="py-16 px-4 bg-white relative">
