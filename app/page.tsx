@@ -114,7 +114,7 @@ export default async function Home() {
               Welcome to Calvary Fellowship
             </h1>
             <p className="text-lg max-w-2xl mx-auto text-gray-700">
-              Small enough to know you. Big enough to serve you. Friendly enough to serve alongside us.
+              Small enough to know you. Big enough to serve you. Friendly enough to serve with you.
             </p>
           </div>
         </div>
