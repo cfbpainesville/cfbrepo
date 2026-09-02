@@ -107,15 +107,45 @@ export default async function Home() {
       </section>
 
       {/* Hero Section */}
-      <section className="hero-gradient text-gray-900 py-24 px-4">
+      <section className="hero-gradient text-gray-900 py-12 px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-8">
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
               Welcome to Calvary Fellowship
             </h1>
             <p className="text-lg max-w-2xl mx-auto text-gray-700">
               Small enough to know you. Big enough to serve you. Friendly enough to serve with you.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Events & Ministries Gallery */}
+      <section className="py-16 px-4 bg-[#F5EFE7]">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-4xl font-bold mb-12 text-center text-gray-900">
+            Upcoming Events & Ministries
+          </h2>
+          <div className="max-w-5xl mx-auto">
+            <EventsGallery events={events} />
+          </div>
+        </div>
+      </section>
+
+      {/* Special Notice */}
+      <section className="py-16 px-4 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-4xl font-bold mb-12 text-center text-gray-900">
+            Special Notice
+          </h2>
+          <div className="max-w-md mx-auto">
+            <Image
+              src="/images/awana-flyer.jpg"
+              alt="AWANA Kick-Off Carnival — September 13, 2026, 4:00–5:30 PM with the first session following from 5:30–7:00 PM at Calvary Fellowship Baptist Church, 727 Mentor Avenue, Painesville"
+              width={404}
+              height={640}
+              className="w-full h-auto rounded-lg shadow-md"
+            />
           </div>
         </div>
       </section>
@@ -246,18 +276,6 @@ export default async function Home() {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Events & Ministries Gallery */}
-      <section className="py-16 px-4 bg-[#F5EFE7]">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold mb-12 text-center text-gray-900">
-            Upcoming Events & Ministries
-          </h2>
-          <div className="max-w-5xl mx-auto">
-            <EventsGallery events={events} />
           </div>
         </div>
       </section>
