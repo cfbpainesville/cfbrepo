@@ -120,23 +120,11 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Events & Ministries Gallery */}
-      <section className="py-16 px-4 bg-[#F5EFE7]">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold mb-12 text-center text-gray-900">
-            Upcoming Events & Ministries
-          </h2>
-          <div className="max-w-5xl mx-auto">
-            <EventsGallery events={events} />
-          </div>
-        </div>
-      </section>
-
       {/* Special Notice */}
       <section className="py-16 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-4xl font-bold mb-12 text-center text-gray-900">
-            Special Notice
+            Special Event Notice
           </h2>
           <div className="max-w-md mx-auto">
             <Image
@@ -146,6 +134,18 @@ export default async function Home() {
               height={640}
               className="w-full h-auto rounded-lg shadow-md"
             />
+          </div>
+        </div>
+      </section>
+
+      {/* Events & Ministries Gallery */}
+      <section className="py-16 px-4 bg-[#F5EFE7]">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-4xl font-bold mb-12 text-center text-gray-900">
+            Upcoming Events & Ministries
+          </h2>
+          <div className="max-w-5xl mx-auto">
+            <EventsGallery events={events} />
           </div>
         </div>
       </section>
