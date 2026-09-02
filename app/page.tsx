@@ -153,6 +153,9 @@ export default async function Home() {
       {/* Photo Gallery */}
       {galleryImages.length > 0 && (
         <section className="py-12 px-4 bg-white">
+          <h2 className="text-4xl font-bold mb-12 text-center text-gray-900">
+            Photo Gallery
+          </h2>
           <PhotoGallery images={galleryImages} />
         </section>
       )}
