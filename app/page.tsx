@@ -132,6 +132,24 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* Special Notice */}
+      <section className="py-16 px-4 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-4xl font-bold mb-12 text-center text-gray-900">
+            Special Notice
+          </h2>
+          <div className="max-w-md mx-auto">
+            <Image
+              src="/images/awana-flyer.jpg"
+              alt="AWANA Kick-Off Carnival — September 13, 2026, 4:00–5:30 PM with the first session following from 5:30–7:00 PM at Calvary Fellowship Baptist Church, 727 Mentor Avenue, Painesville"
+              width={404}
+              height={640}
+              className="w-full h-auto rounded-lg shadow-md"
+            />
+          </div>
+        </div>
+      </section>
+
       {/* Photo Gallery */}
       {galleryImages.length > 0 && (
         <section className="py-12 px-4 bg-white">
