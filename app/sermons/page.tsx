@@ -1,7 +1,6 @@
 import { getAllRecords, TABLES } from "@/lib/airtable";
 import { ALL_SERMONS, type SermonData } from "@/lib/data/sermons";
 import Link from "next/link";
-import Image from "next/image";
 import CollapsibleYearSection from "./CollapsibleYearSection";
 
 // Enable ISR - revalidate every 6 days (518400 seconds)
@@ -12,70 +11,6 @@ export const metadata = {
   title: "Sermons | Calvary Fellowship",
   description: "Watch and listen to sermons from Calvary Fellowship. Messages from Pastor Doug Reeder and guest speakers.",
 };
-
-function FeaturedSermonCard({ sermon }: { sermon: SermonData }) {
-  const getIconForType = (type: string) => {
-    switch (type) {
-      case 'facebook':
-        return '/webp-icons/video-play-icon.webp';
-      case 'youtube':
-        return '/webp-icons/video-play-icon.webp';
-      case 'powerpoint':
-        return '/webp-icons/file-icon.webp';
-      default:
-        return '/webp-icons/microphone-icon.webp';
-    }
-  };
-
-  const formatDate = (dateStr: string) => {
-    const date = new Date(dateStr);
-    return date.toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
-  };
-
-  return (
-    <a
-      href={sermon.url}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="block bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group max-w-md mx-auto"
-    >
-      <div className="p-8">
-        <div className="flex items-start justify-between mb-4">
-          <div className="w-16 h-16">
-            <Image
-              src={getIconForType(sermon.type)}
-              alt={sermon.type}
-              width={64}
-              height={64}
-              className="w-full h-full object-contain mix-blend-multiply"
-              style={{ filter: 'contrast(1.1) brightness(0.95)' }}
-            />
-          </div>
-          <span className="text-xs font-semibold px-3 py-1 bg-sky-100 text-sky-800 rounded-full uppercase">
-            {sermon.type}
-          </span>
-        </div>
-        <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-[#006CD7] transition-colors">
-          {sermon.title}
-        </h3>
-        <p className="text-sm text-gray-600 mb-2">{formatDate(sermon.date)}</p>
-        {sermon.speaker && (
-          <p className="text-sm text-gray-700 italic mb-4">Speaker: {sermon.speaker}</p>
-        )}
-        <div className="mt-6 flex items-center text-[#006CD7] font-semibold">
-          <span>Watch Now</span>
-          <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </div>
-      </div>
-    </a>
-  );
-}
 
 // Helper function to determine sermon type from URL
 function getSermonType(url: string, downloadLink?: string): 'facebook' | 'youtube' | 'powerpoint' {
@@ -144,8 +79,6 @@ export default async function SermonsPage() {
     new Set(sermons.map(s => parseInt(s.date.split('-')[0])))
   ).sort((a, b) => b - a);
 
-  // Get the most recent sermon
-  const mostRecentSermon = sermons.length > 0 ? sermons[0] : null;
   const currentYear = new Date().getFullYear();
 
   return (
@@ -168,7 +101,7 @@ export default async function SermonsPage() {
       {/* Facebook Live Section */}
       <section className="py-10 px-4 bg-[#1877F2]">
         <div className="max-w-3xl mx-auto text-center">
-          <p className="text-white text-lg font-semibold mb-3">
+          <p className="text-white text-[31.5px] leading-tight font-semibold mb-3">
             You can watch the service live on Facebook at{" "}
             <a
               href="https://www.facebook.com/watch/calvaryfellowshipbaptistchurch/"
@@ -179,7 +112,7 @@ export default async function SermonsPage() {
               facebook.com/watch/calvaryfellowshipbaptistchurch
             </a>
           </p>
-          <p className="text-white text-base">
+          <p className="text-white text-[28px] leading-tight">
             or see the most recent messages here:{" "}
             <a
               href="https://www.facebook.com/calvaryfellowshipbaptistchurch"
@@ -192,32 +125,6 @@ export default async function SermonsPage() {
           </p>
         </div>
       </section>
-
-      {/* Most Recent Message */}
-      {mostRecentSermon && (
-        <section className="py-16 px-4 bg-white relative">
-          <div className="absolute inset-0 opacity-30">
-            <Image
-              src="/webp-background/empty-tomb.webp"
-              alt=""
-              fill
-              className="object-cover"
-              priority={false}
-            />
-          </div>
-          <div className="max-w-7xl mx-auto relative z-10">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-gray-900 mb-2">
-                Our most recent message
-              </h2>
-              <p className="text-gray-600">
-                {sermons.length} total sermons available
-              </p>
-            </div>
-            <FeaturedSermonCard sermon={mostRecentSermon} />
-          </div>
-        </section>
-      )}
 
       {/* All Sermons by Year */}
       <section className="py-16 px-4 bg-[#D9E5F0]">
