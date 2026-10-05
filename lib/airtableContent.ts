@@ -1,14 +1,17 @@
-// Leadership and Ministries content, read from Airtable on the twice-weekly
-// schedule (lib/refreshSchedule.ts) and whenever the site is published.
-// If Airtable cannot be reached or returns nothing, the pages fall back to
-// the backup copies in lib/data/ so they never go blank.
+// Leadership, Ministries and Missions content, read from Airtable on the
+// twice-weekly schedule (lib/refreshSchedule.ts) and whenever the site is
+// published. If Airtable cannot be reached or returns nothing, the pages fall
+// back to the backup copies in lib/data/ so they never go blank.
 //
 // Text only: Airtable photo links expire after a few hours, so photos from
-// Airtable are intentionally not used here.
+// Airtable are intentionally not used here. Missionary photos stay in the
+// website's public/missionaries/ folder; Airtable's "Image Path" column only
+// names which site file to show.
 
 import { getScheduledRecords, TABLES } from "./airtable";
 import { LEADERSHIP_DATA, type LeadershipMember } from "./data/leadership";
 import { MINISTRIES_DATA, type MinistryRecord } from "./data/ministries";
+import { MISSIONS_DATA, type MissionRecord } from "./data/missions";
 
 function getBaseId(): string | undefined {
   return process.env.NEXT_PUBLIC_AIRTABLE_BASE_ID;
@@ -85,5 +88,51 @@ export async function getMinistries(): Promise<MinistryRecord[]> {
   } catch (error) {
     console.error("Error fetching ministries from Airtable:", error);
     return MINISTRIES_DATA;
+  }
+}
+
+// Only site-hosted image files are used (paths beginning with "/"), so photos
+// always come from the website's own folder, never from an outside link.
+function siteImagePath(value: unknown): string | undefined {
+  const path = optionalText(value)?.trim();
+  return path && path.startsWith("/") && !path.startsWith("//") ? path : undefined;
+}
+
+export async function getMissions(): Promise<MissionRecord[]> {
+  const baseId = getBaseId();
+  if (!baseId) {
+    console.warn("No Airtable Base ID found, using backup missions data");
+    return MISSIONS_DATA;
+  }
+
+  try {
+    const records = await getScheduledRecords(baseId, TABLES.MISSIONS);
+    const missions: MissionRecord[] = records
+      .map((r: any) => ({
+        id: r.id,
+        "Missionary Name": text(r["Missionary Name"]),
+        Location: text(r.Location),
+        Country: optionalText(r.Country),
+        Ministry: text(r.Ministry),
+        Description: optionalText(r.Description),
+        Email: optionalText(r.Email),
+        Phone: optionalText(r.Phone),
+        Address: optionalText(r.Address),
+        Website: optionalText(r.Website),
+        "Image Path": siteImagePath(r["Image Path"]),
+        Published: r.Published === true,
+        "Sort Order":
+          typeof r["Sort Order"] === "number" ? r["Sort Order"] : undefined,
+      }))
+      .filter((m: MissionRecord) => m["Missionary Name"]);
+
+    if (missions.length === 0) {
+      console.warn("No missions found in Airtable, using backup data");
+      return MISSIONS_DATA;
+    }
+    return missions;
+  } catch (error) {
+    console.error("Error fetching missions from Airtable:", error);
+    return MISSIONS_DATA;
   }
 }

@@ -1,4 +1,4 @@
-import { MISSIONS_DATA } from "@/lib/data/missions";
+import { getMissions } from "@/lib/airtableContent";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -178,8 +178,8 @@ function MissionaryCard({ missionary }: { missionary: MissionRecord }) {
 }
 
 export default async function MissionsPage() {
-  // Use hardcoded data (no API calls)
-  const missions = MISSIONS_DATA
+  // Read from Airtable on the twice-weekly schedule (falls back to lib/data/missions.ts)
+  const missions = (await getMissions())
     .filter((m) => m.Published)
     .sort((a, b) => {
       const orderA = a["Sort Order"] ?? Number.MAX_SAFE_INTEGER;
