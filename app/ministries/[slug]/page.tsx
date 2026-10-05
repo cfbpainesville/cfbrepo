@@ -1,4 +1,4 @@
-import { MINISTRIES_DATA } from "@/lib/data/ministries";
+import { getMinistries } from "@/lib/airtableContent";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -14,19 +14,19 @@ interface MinistryRecord {
   Photos?: Array<{ url: string }>;
 }
 
-// Generate static params for all ministries using hardcoded data
+// Generate static params for all ministries (Airtable, with file fallback)
 export async function generateStaticParams() {
-  return MINISTRIES_DATA
+  return (await getMinistries())
     .filter((m) => m.Slug)
     .map((ministry) => ({
       slug: ministry.Slug!,
     }));
 }
 
-// Generate metadata for SEO using hardcoded data
+// Generate metadata for SEO
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const ministry = MINISTRIES_DATA.find((m) => m.Slug === slug);
+  const ministry = (await getMinistries()).find((m) => m.Slug === slug);
 
   if (!ministry) {
     return {
@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function MinistryPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const ministry = MINISTRIES_DATA.find((m) => m.Slug === slug);
+  const ministry = (await getMinistries()).find((m) => m.Slug === slug);
 
   if (!ministry) {
     notFound();

@@ -1,6 +1,6 @@
-// Hardcoded ministries data
-// This is the primary data source (no API calls)
-// Update this file when ministries data changes
+// Backup ministries data
+// The site reads ministries from Airtable (see lib/airtableContent.ts);
+// this file is used only if Airtable is unavailable.
 
 export interface MinistryRecord {
   id: string;
