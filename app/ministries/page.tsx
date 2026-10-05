@@ -1,4 +1,4 @@
-import { MINISTRIES_DATA } from "@/lib/data/ministries";
+import { getMinistries } from "@/lib/airtableContent";
 import Link from "next/link";
 
 export const metadata = {
@@ -72,8 +72,8 @@ function MinistryCard({ ministry }: { ministry: MinistryRecord }) {
 }
 
 export default async function MinistriesPage() {
-  // Use hardcoded data (no API calls)
-  const ministries = [...MINISTRIES_DATA].sort((a, b) =>
+  // Read from Airtable on the twice-weekly schedule (falls back to lib/data/ministries.ts)
+  const ministries = (await getMinistries()).sort((a, b) =>
     a["Ministry Name"].localeCompare(b["Ministry Name"])
   );
 

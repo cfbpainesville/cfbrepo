@@ -1,5 +1,7 @@
 import Airtable from "airtable";
 import { cache } from "react";
+import { unstable_cache } from "next/cache";
+import { secondsUntilNextRefresh } from "./refreshSchedule";
 
 // Lazy initialization of Airtable to support both Next.js and scripts
 let airtableInstance: Airtable | null = null;
@@ -172,6 +174,24 @@ async function getAllRecordsInternal(baseId: string, tableName: string, retries 
 // Cached version that deduplicates requests within a single request cycle
 // This prevents the same data from being fetched multiple times (e.g., in generateMetadata and page component)
 export const getAllRecords = cache(getAllRecordsInternal);
+
+// Scheduled version for site pages: results are stored and re-read from
+// Airtable only on the twice-weekly schedule (see lib/refreshSchedule.ts)
+// and whenever the site is published. Pages that use this automatically
+// re-render on the same schedule.
+export const getScheduledRecords = cache(
+  async (baseId: string, tableName: string): Promise<any[]> => {
+    const fetchCached = unstable_cache(
+      () => getAllRecordsInternal(baseId, tableName),
+      ["airtable-records", tableName],
+      {
+        revalidate: secondsUntilNextRefresh(),
+        tags: [`airtable-${tableName}`],
+      }
+    );
+    return fetchCached();
+  }
+);
 
 // Helper function to get a single record by ID
 export async function getRecord(

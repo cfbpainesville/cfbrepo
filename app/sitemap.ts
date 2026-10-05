@@ -1,9 +1,9 @@
 import { MetadataRoute } from "next";
-import { MINISTRIES_DATA } from "@/lib/data/ministries";
+import { getMinistries } from "@/lib/airtableContent";
 
 const BASE_URL = "https://cfbchurch.net";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: BASE_URL,
@@ -49,7 +49,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Automatically include an entry for every ministry that has its own page,
   // so this list stays in sync when ministries are added/removed.
-  const ministryRoutes: MetadataRoute.Sitemap = MINISTRIES_DATA.filter(
+  const ministryRoutes: MetadataRoute.Sitemap = (await getMinistries()).filter(
     (ministry) => Boolean(ministry.Slug)
   ).map((ministry) => ({
     url: `${BASE_URL}/ministries/${ministry.Slug}`,

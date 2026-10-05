@@ -1,5 +1,5 @@
 import type { Viewport } from "next";
-import { LEADERSHIP_DATA } from "@/lib/data/leadership";
+import { getLeadership } from "@/lib/airtableContent";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -17,8 +17,8 @@ interface LeadershipMember {
 }
 
 export default async function About() {
-  // Use hardcoded data (no API calls)
-  const leadership = LEADERSHIP_DATA;
+  // Read from Airtable on the twice-weekly schedule (falls back to lib/data/leadership.ts)
+  const leadership = await getLeadership();
   return (
     <div className="w-full">
       {/* Header */}

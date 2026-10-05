@@ -6,12 +6,11 @@ import EventsGallery from "@/app/components/EventsGallery";
 import PhotoGallery from "@/app/components/PhotoGallery";
 import LocationLink from "@/app/components/LocationLink";
 import ChurchImageTransition from "@/app/components/ChurchImageTransition";
-import { getAllRecords, TABLES } from "@/lib/airtable";
+import { getScheduledRecords, TABLES } from "@/lib/airtable";
 
-// Enable ISR with 7-day revalidation (604800 seconds)
-// Events change infrequently, checking weekly is sufficient
-// This minimizes API calls while keeping content reasonably fresh
-export const revalidate = 604800;
+// Events are re-read from Airtable on the twice-weekly schedule
+// (Monday and Friday, 1:00 AM Eastern) via getScheduledRecords,
+// and whenever the site is published. See lib/refreshSchedule.ts.
 
 interface AirtableEvent {
   id: string;
@@ -39,7 +38,7 @@ async function getEvents(): Promise<Event[]> {
       return [];
     }
 
-    const records = await getAllRecords(baseId, TABLES.EVENTS) as AirtableEvent[];
+    const records = await getScheduledRecords(baseId, TABLES.EVENTS) as AirtableEvent[];
 
     const events = records.map((record) => ({
       id: record.id,

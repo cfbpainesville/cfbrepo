@@ -1,11 +1,11 @@
-import { getAllRecords, TABLES } from "@/lib/airtable";
+import { getScheduledRecords, TABLES } from "@/lib/airtable";
 import { ALL_SERMONS, type SermonData } from "@/lib/data/sermons";
 import Link from "next/link";
 import CollapsibleYearSection from "./CollapsibleYearSection";
 
-// Enable ISR - revalidate every 6 days (518400 seconds)
-// Using 6 days (not 7) to ensure new sermons always appear within a week
-export const revalidate = 518400;
+// Sermons are re-read from Airtable on the twice-weekly schedule
+// (Monday and Friday, 1:00 AM Eastern) via getScheduledRecords,
+// and whenever the site is published. See lib/refreshSchedule.ts.
 
 export const metadata = {
   title: "Sermons | Calvary Fellowship",
@@ -37,7 +37,7 @@ export default async function SermonsPage() {
     usingBackupData = true;
   } else {
     try {
-      const airtableSermons = await getAllRecords(BASE_ID, TABLES.SERMONS);
+      const airtableSermons = await getScheduledRecords(BASE_ID, TABLES.SERMONS);
 
       // Map Airtable data to SermonData format
       sermons = airtableSermons
