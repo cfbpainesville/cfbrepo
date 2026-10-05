@@ -1,6 +1,6 @@
-// Hardcoded missions data
-// This is the primary data source (no API calls)
-// Update this file when missions data changes
+// Backup missions data
+// The Missions page reads from the Airtable "Missions" table (see lib/airtableContent.ts).
+// This file is only used if Airtable cannot be reached.
 
 export interface MissionRecord {
   id: string;
