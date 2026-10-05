@@ -222,7 +222,7 @@ export default async function MissionsPage() {
               Spreading the Gospel Worldwide
             </h2>
             <p className="text-lg text-gray-700 max-w-2xl mx-auto">
-              We are privileged to support {missions.length} missionaries
+              We are privileged to support {missions.length} missionary efforts
               serving in countries throughout the world. Your prayers and support make their work possible.
             </p>
           </div>
